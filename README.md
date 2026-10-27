@@ -2,6 +2,8 @@
 
 > 状态：架构研究阶段。**不是产品代码仓，不是冻结设计，不直接施工。**
 > 主产品仓：WEXPC。本仓只承载“为什么这样分、怎么分、写代码时怎么遵守”的规范与模板；结论以 ADR 形式回迁主仓后才生效。
+>
+> **V0.2（2026-10-28）**：根据主仓现状审计，补充了“四种协作形态”“能力三层（定义/可用性/权限）”“迁移以资产盘点先行、目录最后动”三处修订，并把目录树明确为**目标参考**而非施工顺序。新增 [WEXPC1 ↔ WEXPC 差异审计](docs/audits/WEXPC1-WEXPC-DIFF-AUDIT-V0.1.md)。
 
 ## 本仓要解决的问题
 
@@ -32,6 +34,8 @@ WEX 的功能会长期增加：连接器、工作流、Agent、协作方式、�
 | 8 | [docs/07-guardrails.md](docs/07-guardrails.md) | CI、工具、脚手架、AI 施工任务包怎么设 |
 | 9 | [docs/08-anti-patterns.md](docs/08-anti-patterns.md) | 哪些做法会把架构重新拖回旧状态 |
 | 10 | [docs/09-glossary.md](docs/09-glossary.md) | 术语约定，避免同名不同义 |
+| 11 | [docs/audits/WEXPC1-WEXPC-DIFF-AUDIT-V0.1.md](docs/audits/WEXPC1-WEXPC-DIFF-AUDIT-V0.1.md) | 与主仓 WEXPC 现状的差异审计：哪些能用、哪些要改、哪些暂不适用 |
+| 12 | [CHANGELOG.md](CHANGELOG.md) | 版本变更记录 |
 
 模板目录：
 
