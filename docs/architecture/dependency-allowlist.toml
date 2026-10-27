@@ -1,0 +1,43 @@
+# 依赖白名单（arch-check 输入）
+# 规则：未在此登记的依赖边视为违规；deny 优先于 allow。
+# 语法为示例，具体实现由 tools/arch-check 决定。
+
+[meta]
+version = 1
+description = "WEXPC1 依赖方向白名单"
+
+[[allow]]
+from = "platform/contract"
+to = ["serde", "thiserror"]
+
+[[allow]]
+from = "platform/*"
+to = ["platform/contract"]
+
+[[allow]]
+from = "modules/*"
+to = ["platform/contract", "platform/host", "platform/secrets"]
+
+[[allow]]
+from = "modules/*"
+to = ["serde", "thiserror", "serde_json", "tokio"]
+
+[[allow]]
+from = "apps/desktop"
+to = ["platform/*", "modules/*", "serde", "tokio", "tauri"]
+
+[[deny]]
+from = "platform/*"
+to = ["modules/*", "apps/*"]
+
+[[deny]]
+from = "modules/*"
+to = ["modules/*"]
+
+[[deny]]
+from = "modules/*"
+to = ["apps/*"]
+
+[[deny]]
+from = "platform/contract"
+to = ["platform/*", "modules/*", "apps/*"]

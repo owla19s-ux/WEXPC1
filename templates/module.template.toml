@@ -1,0 +1,38 @@
+# 模块元数据模板
+# 位置：modules/<id>/module.toml
+# 用途：arch-check、模块索引、启动一致性校验、AI 任务包生成。
+# 规则：字段值必须与代码实际声明一致；不一致 CI 失败。
+
+id = "<module-id>"                 # 小写连字符，如 "github"
+name = "<显示名>"
+version = "0.1.0"                  # 模块自身版本
+contract_version = "0.1"           # 兼容的契约版本
+owner = "<owner>"                  # 维护者标识（团队/角色，不写隐私）
+maturity = "L1"                    # L0草案 / L1可编译 / L2契约完整 / L3生产可用 / L4可替换
+
+# 对外能力 ID（必须与代码声明一致）
+capabilities = [
+  # "<module>.<resource>.<action>",
+]
+
+# 允许依赖（只写 contract/platform；不允许“全部允许”）
+dependencies = [
+  "platform/contract",
+]
+
+# 明确禁止（用于评审提示与工具检查）
+forbidden = [
+  "apps/*",
+  "modules/*",
+]
+
+# 数据命名空间
+storage_namespace = "<module-id>"
+
+# 支持的平台
+platforms = ["windows"]
+
+# 已知外部依赖（SDK/服务）
+external_dependencies = [
+  # "github-rest-api",
+]

@@ -1,0 +1,38 @@
+# Rust / Tauri / Node 产物
+/target/
+**/target/
+node_modules/
+dist/
+build/
+*.pdb
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Tauri
+src-tauri/target/
+*.tauri
+
+# 本地环境
+.env
+.env.*
+!.env.example
+*.local
+
+# 编辑器/系统
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 日志/临时
+*.log
+tmp/
+.tmp/
+
+# 密钥/凭证（绝不提交）
+*.pem
+*.key
+secrets.*
+credentials.*
