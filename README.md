@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [运行时扩展接入契约 V0.1（候选）](docs/WEXPC-RUNTIME-EXTENSION-CONTRACT-V0.1.md)：模型接口、UI 插槽、注册与启停生命周期。
+
 - [按功能聚合的目录与模块设计 V0.1](docs/WEXPC-MODULE-LOCALITY-DESIGN-V0.1.md)
 - [旧资料说明](旧资料/README.md)
 - [归档前的原仓库入口](旧资料/2026-10-28-before-locality/README.md)
