@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [需求对冲架构案例库](需求对冲架构/README.md)：以真实复杂需求反向压测候选架构，当前包含角色权限与 API / 模型选择案例。
+
 - [运行时扩展接入契约 V0.1（候选）](docs/WEXPC-RUNTIME-EXTENSION-CONTRACT-V0.1.md)：模型接口、UI 插槽、注册与启停生命周期。
 - [按功能聚合的目录与模块设计 V0.1](docs/WEXPC-MODULE-LOCALITY-DESIGN-V0.1.md)
 - [DSH 源码研究参考资料](references/dsh/README.md)：能力接缝、协议适配器、清单与生命周期、AI 施工约束。**仅供研究，不自动并入当前设计。**
