@@ -58,3 +58,5 @@
 - [10：批量工具执行与子 Agent 生命周期](10-tool-batch-and-subagent-lifecycle.md)
 
 - [11：跨领域可借鉴机制](11-cross-domain-reference-value.md)
+
+- [12：插件 HMR 与热插拔机制](12-hmr-hot-plug-runtime.md)
