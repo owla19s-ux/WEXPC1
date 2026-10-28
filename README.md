@@ -5,8 +5,8 @@
 ## 当前入口
 
 - [运行时扩展接入契约 V0.1（候选）](docs/WEXPC-RUNTIME-EXTENSION-CONTRACT-V0.1.md)：模型接口、UI 插槽、注册与启停生命周期。
-
 - [按功能聚合的目录与模块设计 V0.1](docs/WEXPC-MODULE-LOCALITY-DESIGN-V0.1.md)
+- [DSH 源码研究参考资料](references/dsh/README.md)：能力接缝、协议适配器、清单与生命周期、AI 施工约束。**仅供研究，不自动并入当前设计。**
 - [旧资料说明](旧资料/README.md)
 - [归档前的原仓库入口](旧资料/2026-10-28-before-locality/README.md)
 
@@ -14,4 +14,4 @@
 
 新设计为候选，下一步继续细化；路径、接口、crate 划分和迁移均未冻结。不要据此创建空产品骨架或直接搬迁 WEXPC。产品范围以 [WEXPC 基线](https://github.com/owla19s-ux/wexpc/blob/main/docs/PC-PRODUCT-AND-TECH-BASELINE.md) 为准。
 
-2026-10-28：归集原文档与模板，建立新设计入口。旧资料用于追溯，不自动约束新设计。
+2026-10-28：归集原文档与模板，建立新设计入口。旧资料用于追溯，不自动约束新设计；DSH 参考资料独立存放，不代表采纳其架构或技术栈。
