@@ -64,3 +64,5 @@
 - [13：凭证、配置、压缩与 Workflow](13-credentials-settings-compaction-workflow.md)
 
 - [14：Session 重放、只读投影与 UI 插槽](14-session-projection-ui-extension.md)
+
+- [15：持久化、远程边界与研究总审](15-persistence-remote-boundaries-and-final-audit.md)
