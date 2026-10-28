@@ -16,6 +16,7 @@
 6. [工程规则如何转化为施工卡](06-engineering-rules-and-task-cards.md)
 7. [插件管理、热更新与运行时边界](07-plugin-management-and-runtime-boundaries.md)
 8. [需求驱动的架构反向压测](08-requirement-driven-architecture-stress-tests.md)
+9. [作用域工具解析与权限边界](09-scoped-tool-resolution-and-policy.md)
 
 ## 当前源码入口
 
