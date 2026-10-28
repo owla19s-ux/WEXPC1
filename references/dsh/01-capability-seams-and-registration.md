@@ -53,3 +53,17 @@ DSH 的 Scope 机制让注册的可见范围与释放责任关联：通过特定
 - [LLM 注册服务与流式调用](https://github.com/DeepSeek-AI/deepseek-harness/blob/master/packages/llm/llm/src/index.ts)
 - [Scope 注册生命周期](https://github.com/DeepSeek-AI/deepseek-harness/blob/master/packages/core/scope/README.md)
 - [工具注册与执行扩展点](https://github.com/DeepSeek-AI/deepseek-harness/blob/master/packages/core/tools/README.md)
+
+## 6. 进一步核对的注册表实现细节
+
+对照当前 DSH 源码版本 `22ddee3792402c3e70ec5f86a63c3e3e895a2f60` 的 `packages/llm/llm/src/index.ts`，可以确认几个比概念图更具体的约束：
+
+- `registerAdapter()` 在写入前准备并校验整组 provider routes；任一键冲突时整组注册失败，不留下部分路由。
+- 注册返回 disposer；释放时删除该注册拥有的全部路由，并发布 `llm/adapters-updated` 通知。
+- 注册句柄提供 `replace()`：先完整校验候选集合，再在一个同步区段替换，避免消费者观察到短暂的空档；已释放的句柄拒绝再次注册，防止资源失去释放所有者。
+- DSH 对适配器路由采用“一个 provider route 对应一个所有者”的冲突策略；这不代表所有能力都应采用单提供者模式。源码中的其他能力明确使用命名多提供者注册表，以满足多个实现共存的需求。
+- 注册表变化事件只负责通知消费者重新读取当前目录；消费者不依赖事件载荷保存第二份权威状态。
+
+这些实现细节值得 WEX 研究的是**注册的所有权、整组校验、替换原子性和状态通知**，而不是直接照搬“每个 ID 只能有一个实现”。WEX 必须按能力语义决定：某些能力需要唯一所有者，另一些能力需要多个可命名提供者并存。
+
+参考：[LLM 注册实现](https://github.com/DeepSeek-AI/deepseek-harness/blob/22ddee3792402c3e70ec5f86a63c3e3e895a2f60/packages/llm/llm/src/index.ts)、[provider-routed LLM adapters 设计记录](https://github.com/DeepSeek-AI/deepseek-harness/blob/22ddee3792402c3e3e895a2f60/.agents/notes/implemented/architecture/2026-07-14-provider-routed-llm-adapters.md)。
