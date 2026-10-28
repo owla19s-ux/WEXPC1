@@ -60,3 +60,5 @@
 - [11：跨领域可借鉴机制](11-cross-domain-reference-value.md)
 
 - [12：插件 HMR 与热插拔机制](12-hmr-hot-plug-runtime.md)
+
+- [13：凭证、配置、压缩与 Workflow](13-credentials-settings-compaction-workflow.md)
