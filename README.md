@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [模型调用协调行为试点](experiments/model-coordination-spike/README.md)：TypeScript／Node 模拟实验六组检查通过；验证协议解耦、补保存及结束处理，不代表 Rust/Tauri、动态加载或持久恢复已通过。
+
 - [三项关键边界：源码证据与收敛建议](docs/WEXPC-BOUNDARY-DECISION-NOTES-V0.1.md)：模型协调、关系维护方、模板本地事务的候选取舍与验收条件；未修改产品代码。
 
 - [全局协作与契约地图 V0.1](docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)：五条主链、13 条协作边界、权威状态候选、兼容与未决项；整体讨论入口，不是冻结协议或迁移令。
