@@ -14,6 +14,7 @@
 4. [AI 施工约束与可验证模块边界](04-ai-construction-and-verification.md)
 5. [组合架构与模块边界](05-composition-and-package-boundaries.md)
 6. [工程规则如何转化为施工卡](06-engineering-rules-and-task-cards.md)
+7. [插件管理、热更新与运行时边界](07-plugin-management-and-runtime-boundaries.md)
 
 ## 当前源码入口
 
@@ -32,6 +33,7 @@
 | 新增包施工清单 | [adding-a-package.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-package.md) | 新模块所需文件、依赖、导出、构建引用与验证 |
 | AI 工程规则 | [AGENTS.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/AGENTS.md)、[docs/AGENTS.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/AGENTS.md) | 工程知识分层与规则权威位置 |
 | 机器校验 | [verify-cordis-config.ts](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/verify-cordis-config.ts)、[run-gates.ts](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/run-gates.ts) | 把依赖、配置与验证要求变成自动检查 |
+| 插件管理与热更新 | [plugin-manager README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/boot/plugin-manager/README.md)、[app-boot README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/boot/app-boot/README.md) | 区分安装、配置应用、加载成功与实际激活状态 |
 
 ## 初步结论
 
