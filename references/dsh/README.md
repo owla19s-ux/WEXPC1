@@ -15,6 +15,7 @@
 5. [组合架构与模块边界](05-composition-and-package-boundaries.md)
 6. [工程规则如何转化为施工卡](06-engineering-rules-and-task-cards.md)
 7. [插件管理、热更新与运行时边界](07-plugin-management-and-runtime-boundaries.md)
+8. [需求驱动的架构反向压测](08-requirement-driven-architecture-stress-tests.md)
 
 ## 当前源码入口
 
@@ -34,6 +35,7 @@
 | AI 工程规则 | [AGENTS.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/AGENTS.md)、[docs/AGENTS.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/AGENTS.md) | 工程知识分层与规则权威位置 |
 | 机器校验 | [verify-cordis-config.ts](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/verify-cordis-config.ts)、[run-gates.ts](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/run-gates.ts) | 把依赖、配置与验证要求变成自动检查 |
 | 插件管理与热更新 | [plugin-manager README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/boot/plugin-manager/README.md)、[app-boot README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/boot/app-boot/README.md) | 区分安装、配置应用、加载成功与实际激活状态 |
+| 需求反向压测 | [需求驱动架构审查](08-requirement-driven-architecture-stress-tests.md) | 用角色、API、任务与权限场景验证底层抽象是否真正满足产品需求 |
 
 ## 初步结论
 
