@@ -55,3 +55,4 @@
 - **不采纳／限制**：不符合 WEX 目标或存在明确风险。
 
 本文档夹不冻结 WEX 的语言、ABI、目录、包格式、协议或运行时方案。
+- [10：批量工具执行与子 Agent 生命周期](10-tool-batch-and-subagent-lifecycle.md)
