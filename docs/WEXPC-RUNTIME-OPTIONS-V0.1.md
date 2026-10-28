@@ -97,7 +97,7 @@ WEX 浏览器宿主与扩展 UI 的接口须独立于 Rust 内存对象和内部
 - [WebAssembly Component Model](https://component-model.bytecodealliance.org/)：标准接口与宿主能力路线，具体版本支持需锁定。
 - [MDN iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe)：sandbox 与来源限制；同源并同时允许脚本和 same-origin 等配置不能随意视为隔离。
 - [仓库 DSH 研究索引](../references/dsh/README.md)：独立参考资料，不自动作为采纳决定。
-- [需求案例库](../需求对冲架构/README.md)：后续验证须与角色／API／授权等案例对齐；本轮只核对索引，未逐案例验收。
+- 需求案例库为未来准备，本轮不研究、不修改，也不作为当前选型或试点的前置条件（用户于 2026-10-29 明确）。
 
 ## 8. 当前建议与待定项
 
