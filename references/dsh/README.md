@@ -62,3 +62,5 @@
 - [12：插件 HMR 与热插拔机制](12-hmr-hot-plug-runtime.md)
 
 - [13：凭证、配置、压缩与 Workflow](13-credentials-settings-compaction-workflow.md)
+
+- [14：Session 重放、只读投影与 UI 插槽](14-session-projection-ui-extension.md)
