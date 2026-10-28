@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [全局协作与契约地图 V0.1](docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)：五条主链、13 条协作边界、权威状态候选、兼容与未决项；整体讨论入口，不是冻结协议或迁移令。
+
 - [新增模型厂商模块：架构边界推演 V0.1](docs/WEXPC-PROVIDER-BOUNDARY-WALKTHROUGH-V0.1.md)：从加载、调用到取消和更新推演责任；职责、业务语义和实现契约均未冻结。当前先检查候选架构，不直接按目录施工。
 
 - [运行时加载机制实验](experiments/runtime-loader-spike/README.md)：Node/Linux 8 项检查通过；Rust/Tauri、浏览器和 Windows 尚未验证。
