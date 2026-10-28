@@ -12,6 +12,8 @@
 2. [协议设计与适配器边界](02-protocols-and-adapters.md)
 3. [插件清单、加载与生命周期](03-manifest-loading-lifecycle.md)
 4. [AI 施工约束与可验证模块边界](04-ai-construction-and-verification.md)
+5. [组合架构与模块边界](05-composition-and-package-boundaries.md)
+6. [工程规则如何转化为施工卡](06-engineering-rules-and-task-cards.md)
 
 ## 当前源码入口
 
@@ -26,6 +28,10 @@
 | 客户端模块加载 | [client modules README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/modules/README.md) | 前端模块清单、按需加载、图更新与失效限制 |
 | LLM 适配器开发指南 | [adding-an-llm-adapter.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-an-llm-adapter.md) | 协议义务、错误、取消、流式终态和验证 |
 | 扩展开发指南 | [extension-cookbook.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/extension-cookbook.md) | 功能应挂接到哪个扩展点，而非修改中央循环 |
+| 架构与组合 | [architecture.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)、[packages/README.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/README.md) | 插件树、profile/bundle/package 的职责边界 |
+| 新增包施工清单 | [adding-a-package.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-package.md) | 新模块所需文件、依赖、导出、构建引用与验证 |
+| AI 工程规则 | [AGENTS.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/AGENTS.md)、[docs/AGENTS.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/AGENTS.md) | 工程知识分层与规则权威位置 |
+| 机器校验 | [verify-cordis-config.ts](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/verify-cordis-config.ts)、[run-gates.ts](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/run-gates.ts) | 把依赖、配置与验证要求变成自动检查 |
 
 ## 初步结论
 
