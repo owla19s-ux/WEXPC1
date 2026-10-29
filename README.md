@@ -9,6 +9,8 @@
 - [源码目录与 Windows 安装、数据存放要求（2026-10-30）](docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 - [产品需求重新理解与工程偏差审查](docs/WEXPC-PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md)
 
+**规划核对原则**：先核对用户需求、已确认技术选型及已有实现，再列 WEX 真正需要开发的缺口；不能因为旧版本文档仍写「自由画布」就重复规划自研画布。技术已选定不等于工程已实现。详见 [产品需求重新理解与工程偏差审查](docs/WEXPC-PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md) §7。
+
 用户描述的使用需求应归并为可复用能力，不按每个名词建立系统。Space 是组织与组合；软件开发是一种工作流模式；前期 AI 只做简单配置。UI 按实际页面组织，模块专属面板随模块。
 
 ## 源码维护入口
