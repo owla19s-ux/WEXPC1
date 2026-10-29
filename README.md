@@ -2,6 +2,14 @@
 
 本仓保存设计研究、实验和用户确认的源码维护目录。目前新增目录只有职责说明，尚未形成可运行 WEXPC 应用；旧 WEXPC 产品代码未迁移。
 
+## 当前技术基线（2026-10-30 已确认）
+
+WEXPC1 新实现以 **TypeScript 单主语言 + Electron Windows 桌面宿主 + React UI** 为优先技术路线；**React Flow 是首期重点工作流编辑器**，**DSH 连接器是首期外部施工入口**。SQLite + 用户选择的文件目录为持久化优先候选；Electron Forge 为打包候选。Cordis / DSH 插件体系是重要的长期扩展技术来源，不要求首期完成接入。此处为已确认技术方向，尚非代码已实现、Windows 安装已验证或 WEXPC 主仓版本修改。
+
+WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，连接器按公开接口派发任务并关联产物，**不将 DSH 客户端或运行时搬入 WEX**。保留原 Space / Context、任务卡、权限、目录与长期需求。旧 Rust/Tauri 仅作历史代码、行为及测试参考，不强制迁移。
+
+详见 [运行时方案比较 §10](docs/WEXPC-RUNTIME-OPTIONS-V0.1.md) 与 [Windows 数据要求 §9](docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)。
+
 ## 当前依据
 
 - [Space 层级、两种目录接入与 React Flow 工作流共编（2026-10-30）](docs/WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)
@@ -28,7 +36,7 @@
 | [docs](docs/README.md) | 设计文档索引 |
 | [tools](tools/README.md) | 开发检查工具位置 |
 
-2026-10-30：按用户指示建立目录及说明，取代此前“不建立目录”的阶段限制。子文件和技术栈仍未冻结，不创建虚假的 main.*、page.* 或构建入口。未采用独立 work、templates、dispatcher、execution 顶层目录。
+2026-10-30：按用户指示建立目录及说明，取代此前“不建立目录”的阶段限制。子文件及具体实现接口仍未冻结；主技术路线已按上文确认，不创建虚假的 main.*、page.* 或构建入口。未采用独立 work、templates、dispatcher、execution 顶层目录。
 
 ## 研究与历史资料
 
