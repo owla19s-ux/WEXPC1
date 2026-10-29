@@ -66,3 +66,40 @@
 - [14：Session 重放、只读投影与 UI 插槽](14-session-projection-ui-extension.md)
 
 - [15：持久化、远程边界与研究总审](15-persistence-remote-boundaries-and-final-audit.md)
+
+
+## 2026-10-30 补充：DSH 前后端插件体系的可复用边界
+
+背景：WEXPC1 正评估 TypeScript 单主语言、Electron 桌面宿主、Cordis 插件体系及 React Flow。旧 Rust/Tauri 路线和运行时扩展候选属于历史研究，不因本节自动删除或改变正式版本。
+
+### DSH 源码事实与关键入口
+
+| 机制 | 源码/说明 | WEX 候选用途 | 限制 |
+|---|---|---|---|
+| Cordis `Context` / `Fiber` / `inject` | [vendored Cordis](https://github.com/deepseek-ai/deepseek-harness/blob/master/vendor/cordis/README.md) | 服务注册、依赖、可逆注册与卸载 | 并非 OS 沙箱；直接复用须核对具体版本/许可 |
+| Profile / Bundle / patch | [architecture](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md) | 通过配置组合连接器、Agent、工具 | DSH 特定包与 profile，不可直接当 WEX 产品目录 |
+| Client Modules | [modules README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/modules/README.md) | 跟随宿主模块图增删、动态资源与样式卸载 | 浏览器实现，Electron 打包后的资源交付与 CSP 需适配 |
+| UI Slots / Renderer | [client README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/README.md) | 功能自带面板、统一插槽挂载 | 需要 WEX 定义自己的页面插槽而非直接使用 DSH 页面 |
+| UI 插件管理器 | [ui-plugin-manager README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/ui-plugin-manager/README.md) | 插件列表、启停、按包/实例设置面板 | DSH `pluginManager` 和 profile patch 是特有依赖 |
+| Host/Client 业务通信 | [web client architecture](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/web-client.md) | 类型化 Host API，客户端查询与操作 | Electron main/preload/renderer 仍需设计最小桥接边界 |
+
+DSH `ui-plugin-manager` 的实证插槽：`plugins.item`、`plugins.bundle.config`、`plugins.row.config`；插件注册配置面板而不是修改设置页。DSH `Client Modules` 随宿主插件图装卸模块，停用时等待清理异步 effects，释放不再使用的资源和样式。其 HMR 替换存在 React 局部状态丢失及失败不自动回滚的限制，WEX 的表单草稿应独立于被替换组件保存。
+
+### 复用决定与边界（建议，不是工程完成）
+
+1. **优先直接依赖 Cordis 的稳定公共包**，而非复制 DSH 所有源码；先核对本仓 vendored Cordis 与公开 npm 版本的差异。
+2. WEX 特有的 Space、Context、任务、执行回执、权限仍由 WEX 拥有；Cordis 负责插件生命周期和服务组织，不自动成为 WEX 的业务数据库或权限系统。
+3. **UI Slots/Client Modules 是强参考、候选复用实现**，尚不能等同于可独立 npm 安装的稳定库。先核查模块入口和 DSH 私有依赖，再评估移植量；WEX 只添加所需 UI 插槽，不复制 DSH 整套 Web 页面。
+4. DSH 插件的兼容分两层：纯 Cordis 公共服务插件较容易复用；依赖 DSH 专属 `ctx.tools`、`ctx.sessions`、`ctx.llm` 或浏览器 client 的插件需适配。**不承诺所有 DSH 插件直接安装可用**。
+5. Electron 只负责 Windows 桌面宿主入口、窗口和受限 IPC；插件有副作用时仍由 WEX 按真实授权和操作状态执行。内部可信插件与外部第三方不可信代码必须区分信任与安全隔离。
+6. 每项复用先分 `已有组件直接调用 / 需要少量适配 / 依赖 DSH 整体不能直接搬用` 三类，不得把参考机制再规划成平行自研系统。
+
+### 对 WEXPC1 功能目录的影响
+
+- `connections/`：Cordis 插件注册 + 服务/能力描述 + 模块自带设置 UI。
+- `UI/`：定义 WEX 页面与 Slots 的位置，不在中心页面写每个连接器的配置细节。
+- `workflows/`：React Flow 工作流编辑与任务调度；可通过插件发现工具，但任务记录独立持久化。
+- `shared/`：统一权限、凭证引用、可靠数据保存等，不随插件卸载而丢失。
+- `app/`：Electron 启动、插件装配、主窗口、进程 IPC；不承担具体连接器实现。
+
+**研究状态**：本节为上游官方文档与既有代码组织的研究核对，未执行 WEX 在 Electron 上动态加载/卸载 DSH 插件的实测，未触发 Actions，未变更产品代码及正式版本范围。
