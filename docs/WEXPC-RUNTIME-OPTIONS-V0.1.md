@@ -111,3 +111,47 @@ WEX 浏览器宿主与扩展 UI 的接口须独立于 Rust 内存对象和内部
 - 对应的测试证据、状态恢复与现有资产迁移成本。
 
 先验证一个贯通试点，再决定是否修改全仓技术路线；不继续扩写通用插件平台来代替证据。
+
+
+## 9. 2026-10-30：DSH Cordis、客户端插件与 Hermes 持久化复核
+
+本节是后续研究结论，修正上文 2026-10-29 尚未考虑 DSH 完整客户端插件能力的比较；原方案仍保留为待验证候选，**未批准语言迁移，也未进行 Windows/Tauri 端到端测试**。
+
+### 已由上游源码说明确认
+
+- DSH 官方架构以 TypeScript/Node 与 Cordis 插件树承载模型适配、工具、会话、Agent Loop；通过 Profile/Bundle 和 patch 组合。启用 HMR 时插件配置可动态生效。注意：这是 DSH 自己运行环境的事实，不能自动推广到 Tauri。
+- DSH `packages/boot/plugin-manager` 支持 Web 管理插件启用/停用、安装/卸载外部 bundle；**没有开启 HMR 时要重启才能应用**。不是所有部署模式天然实时生效。
+- DSH `packages/client/modules` + `ui-slots` + `ui-renderer` + `hmr` 将浏览器 UI 插件和宿主插件图相联。正常插件启停不必刷新整页；重新构建的 bundle 可替换。但是替换组件的 React 局部状态丢失；失败重载**没有旧代码回滚**；文档明确 Web 传输方案并不直接覆盖 Electron 后端重启。
+- Hermes Kanban 使用 SQLite 持久任务，worker 为独立 OS 进程；任务状态与 worker 生命周期分离，但其调度文档明确**单机**，不证明跨机器调度能力。
+
+### 对 WEX 语言与运行路线的具体影响
+
+| 判断问题 | 核对后的结论 | 证据等级 |
+|---|---|---|
+| TypeScript 能否承担能力注册、插件组合和主业务逻辑 | DSH 已有成熟实现，**可行**；但 WEX 的授权、数据归属、Space/Context 不因此自动具备 | 上游案例确认 |
+| UI 插件能否在宿主运行时加载和替换 | DSH Web 方案证明可行；WEX Tauri/WebView2 需要自身验证 | 案例确认，WEX 未测 |
+| Rust 是否必须拥有 Dispatcher/Agent Loop | 否；Hermes 使用 Python、DSH 使用 TS，调度是业务机制而非特定语言能力 | 案例确认 |
+| 换成全 TypeScript 是否消除 IPC、插件生命周期和系统权限问题 | 否；不同进程和 UI 仍有边界，第三方代码信任问题不消失 | 架构判断 |
+| 是否应立即放弃 Rust/Tauri 现有代码 | **不应**；尚无 WEX 的综合迁移成本、Windows 插件与可靠恢复证据 | 未验证，不批准 |
+| WEX 只需一种主开发语言是否合理 | **正式技术候选**：TypeScript 主业务 + Rust 可选系统辅助；另一候选为既有 Rust 核心 + TS UI + 扩展进程 | 待实验比较 |
+
+### 既有本地机制实验必须纳入判断
+
+本仓 `experiments/runtime-loader-spike/README.md` 已记录 2026-10-29 的 Node/Linux **8 项通过**：启动后发现新包、子进程调用、静态面板、BUSY 排空、停用、进程替换、重复 ID 拒绝及初始化失败保护。不能再把「动态扩展是否可能」列成零证据空白；但它没有覆盖 Windows/Tauri、真实 React UI、跨进程权限、持久化、实际协议和失败恢复。不能据此声称产品通过。
+
+### 后续只需要针对真正未证实的差异做比较
+
+1. 在 **Windows 安装态**验证原 Rust/Tauri 宿主 + JS 扩展进程 + React 面板的动态加入/停用/重载，复用已有实验，不重写机制。
+2. 用一个小型 **TypeScript 宿主对照样例**验证 Cordis 或同类加载模式下，连接器服务、客户端 UI 组件、持久任务数据如何独立于插件 React 状态；重点测重载失败与旧任务恢复，不另造一套插件框架。
+3. 记录两条路线**实际要维护的代码边界、打包依赖、安装成本、错误恢复复杂度、迁移现有 Rust 资产的代价**，再决定是否改主业务语言。
+4. 不扩展产品范围、不新建第二套工作流/任务管理平台；React Flow 仍是工作流编辑技术首选。
+
+### 参考
+
+- [DSH 官方架构](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)
+- [DSH Plugin Manager](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/boot/plugin-manager/README.md)
+- [DSH Client Modules](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/modules/README.md)
+- [DSH Client HMR](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/hmr/README.md)
+- [DSH 客户端包索引](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/README.md)
+- [Hermes Kanban](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/kanban.md)
+- [WEXPC1 已执行加载机制实验](../experiments/runtime-loader-spike/README.md)
