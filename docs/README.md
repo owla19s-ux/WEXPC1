@@ -1,5 +1,7 @@
 # 设计文档索引
 
+新确认的 Space/Context 目录语义与 React Flow 选型见 [Space 与工作流编辑器设计（2026-10-30）](WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)；它修正旧文档中“所有 Space/Context 实际数据归入公共数据根目录”的泛化表述。
+
 当前源码目录和 Windows 文件存放以 [2026-10-30 新要求](WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md) 为入口。此前目录、契约地图等保留研究价值，其中不同的目录命名和拆分不自动约束新结构；安全与真实执行要求不因此取消。
 
 - [WEXPC-BOUNDARY-DECISION-NOTES-V0.1.md](WEXPC-BOUNDARY-DECISION-NOTES-V0.1.md)
