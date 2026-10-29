@@ -47,7 +47,7 @@ WEX Space 页面（入口）
 
 ### 3.1 技术选型
 
-- **首选：React Flow（`@xyflow/react`）**，用于 React/Tauri 桌面端的节点、连线、自定义节点、缩放拖拽、布局及可视编辑。
+- **首选：React Flow（`@xyflow/react`）**，用于 React/Tauri 桌面端的节点、连线、自定义节点、缩放拖拽、布局及可视编辑。**这些基础画布能力由库提供，不再另列「未来自研自由画布」项目**；WEX 仍需集成、制作专属节点配置及真实数据联动。
 - **备选：Rete.js**；不并行建设两套编辑器。
 - React Flow 是**画布组件而非任务调度器、工作流业务协议或现成多 AI 执行平台**。选型首选已确认，尚未在 WEXPC 中进行安装、编译、桌面集成及原型验证。
 - 参考：[React Flow](https://reactflow.dev/)；[保存/恢复示例](https://reactflow.dev/examples/interaction/save-and-restore)；[连接校验示例](https://reactflow.dev/examples/interaction/validation)；[Rete.js](https://retejs.org/)。
@@ -129,6 +129,7 @@ WEX Space 页面（入口）
 
 - **已确定**：Space 类别当前无物理地址；Space 工作区和独立 Context 均可由用户自主选择目录；组织关系不要求移动文件；人和 AI 共编同一工作流；React Flow 免费开源基础库为工作流编辑器技术首选，位于 workflows 内而非连接器；画布流程可供大量任务卡复用，编辑与实际启动分离。
 - **仍待研究**：子目录与配置格式、实际文件持久化、重名及移动规则、完整节点语义、工作流运行与调度、在途编辑及 Tauri 实际集成表现。
+- **版本旧表述纠偏**：主仓旧版规划中若仍出现「后续独立开发自由画布」，不得据此重新开发 React Flow 已提供的拖拽、连线、缩放；应改为「基于已选画布实现 WEX 特有交互」，并另行确认版本同步。选型已确认不代表 WEX 产品中已经交付。
 - **没有批准**：自动调整 0.1.1/0.1.2 版本范围、迁移 WEXPC 代码、现在做复杂组织/企业共享存储、宣称运行验证通过。
 
 本文件补充并在上述新确认的空间目录语义上**修正**[源码目录与 Windows 数据要求](WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)里“Space/Context 实际资料统一位于 WEX 数据根目录”的旧概括；旧文档的安装数据隔离、凭证处理、故障恢复和模块源码规则仍保留。
