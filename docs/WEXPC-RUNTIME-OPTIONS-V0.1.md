@@ -155,3 +155,39 @@ WEX 浏览器宿主与扩展 UI 的接口须独立于 Rust 内存对象和内部
 - [DSH 客户端包索引](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/client/README.md)
 - [Hermes Kanban](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/kanban.md)
 - [WEXPC1 已执行加载机制实验](../experiments/runtime-loader-spike/README.md)
+
+
+## 10. 2026-10-30 已确认新实现技术基线（覆盖旧路线优先级）
+
+**用户确认**：WEXPC1 第一优先是开发与维护轻量化，技术路线收敛为 **TypeScript（主要开发语言）+ Electron（Windows 宿主）+ React（UI）**；React Flow 为首期重要工作流编辑器；DSH 通过独立连接器接入、负责外部 Agent 施工。Cordis 和 DSH 插件生态继续作为未来的重要扩展来源，但不作为首批接通 DSH 的前置条件。
+
+本条覆盖 §1、§8、§9 对 Rust/Tauri 主宿主的旧优先级，不删除旧方案作为历史研究；**Electron + TypeScript 是已确认的设计基线，并非已通过 Windows 端到端实测的工程结果**。
+
+### 功能与技术对位
+
+| 功能 | 当前优先实现 | 暂不要求 |
+|---|---|---|
+| Windows 桌面 | Electron main + preload + React renderer，以 TypeScript 开发 | 继承 Rust Core 或同时维护两种桌面宿主 |
+| Space、Context、对话、任务数据 | WEX 自身模块、SQLite 与用户指定目录优先候选 | 完整映射 DSH 内部数据结构 |
+| 工作流 | React Flow 节点/连线编辑、用户与 AI 共用编辑能力、明确启动后才运行 | 重新自研基础画布、首期完成全自动多 Agent 工作流引擎 |
+| 外部施工 | 独立 DSH 连接器：派发任务、关联会话/回执/文件、支持人工验收 | 搬运 DSH 客户端、复写其 Agent Loop、依赖全量状态同步 |
+| 扩展来源 | 保留 Cordis / DSH 插件体系研究及未来复用边界 | 将插件平台作为首期功能前置 |
+
+### Electron 落地必须遵守的边界
+
+1. `app/` 集中管理 Electron 进程生命周期、预加载脚本和主窗口；业务目录保持独立，不要求每个域拥有自己的进程。
+2. 保持 Electron 安全默认值：`contextIsolation`、sandbox，禁用 `nodeIntegration`；经 preload 白名单接口与校验过的 IPC 提供本地能力。不因为同用 TypeScript 就允许 renderer 直接访问任意文件或命令。
+3. 长时间运行或不可信内容不能简单堵塞主进程；利用适当工作进程并处理退出、异常与恢复。Cordis 插件生命周期**不等于** OS 级隔离。
+4. Windows 用户可选择程序和主要数据存储位置。Electron `userData`、`sessionData` 及缓存须在恰当生命周期初始化；不能承诺系统盘零写入，例外应可追踪。
+5. SQLite、Electron Forge 和具体插件包格式仍为**技术候选/实现细节**；不把候选当成已经验证或冻结的接口协议。
+6. WEX 任务卡、产物位置、验收与组织关系独立持久化；DSH 仅作为外部执行者，不要求内部 Agent/Session 与 WEX Context 一一映射。
+
+### 待实际工程验证，而非继续无限扩展架构
+
+- 打包安装、用户自选数据位置、退出与重开恢复；
+- React Flow 基础编辑与流程文件保存；
+- DSH 公开接口实际可用的派发、返回和产物获取行为；
+- Preload/IPC 权限以及长任务不阻塞 UI；
+- Windows 资源占用和异常恢复。
+
+**原则**：首期产出可用 WEX，而非再重建 DSH、Cordis、Agent Loop 或通用项目管理平台；保留现有架构及长期需求文档作为持续增强依据。
