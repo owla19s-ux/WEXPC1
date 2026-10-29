@@ -4,6 +4,8 @@
 
 ## 当前依据
 
+- [Space 层级、两种目录接入与 React Flow 工作流共编（2026-10-30）](docs/WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)
+
 - [源码目录与 Windows 安装、数据存放要求（2026-10-30）](docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 - [产品需求重新理解与工程偏差审查](docs/WEXPC-PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md)
 
