@@ -7,3 +7,5 @@
 [源码目录与 Windows 数据要求](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
+
+2026-10-30 技术首选：工作流可视化编辑使用 React Flow（`@xyflow/react`）；人与 AI 经统一编辑能力修改同一份流程定义。画布不负责调度和执行。详见 [Space 与工作流编辑器设计](../docs/WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)。尚未集成验证。
