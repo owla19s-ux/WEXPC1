@@ -47,3 +47,7 @@ node --expose-internals dsh/checks/test-loader-runtime.mjs
 ## WEX 对内置 DSH 插件宿主的阶段限定（2026-10-30）
 
 本目录的 Cordis Core + Loader 是 **DSH 原生插件专用兼容基础**，不是 WEX 自有插件或连接器的强制底层。运行不了但必须使用的 DSH 插件，按实际依赖选择增补必要 Service、外部 DSH 连接器或 WEX 功能适配。优先评估独立工作进程而非直接运行在 Electron 主进程；具体 IPC 尚未定。详见 [双机制架构基线修正](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)。
+
+## 本阶段交付目标（2026-10-30）
+
+本目录独立目标是 **DSH 插件宿主达到 Windows 真机可操作的兼容测试状态**：Core+Loader 可启动，能载入、执行、卸载真实插件并观察错误。现有 Linux 构建和 hello Bundle 通过不等于真机验收。完整插件市场、Agent 引擎和 WEX 自有动态插件机制不作为前置。独立 DSH Agent 连接器职责见 [connections/dsh/](../connections/dsh/README.md)，不应依赖本宿主运行。具体边界见 [双路线验收](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md#八dsh-双路线验收目标2026-10-30-最新确认)。
