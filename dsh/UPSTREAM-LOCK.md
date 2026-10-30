@@ -39,3 +39,16 @@
 按已复制源码静态 import 关系，Cordis Core 依赖 cosmokit 与外部 `@standard-schema/spec`；Loader 依赖 Cordis、cosmokit、schemastery，以及 Node 运行环境。Loader 原始包声明了可选 `node-addon-require-builtin`，构建与运行时行为必须具体测试。工作区包声明仍含 `workspace:~`，不能直接把当前快照当作独立 npm 安装包。
 
 **验证进度**：已人工读取核心、Loader 入口与直接导入关系，并补齐已知直接源文件；目前尚未建立完整上游 workspace、锁文件与构建脚本，也未运行 TypeScript 编译/加载测试，不能认定所有传递依赖闭合。上游 DSH Plugin Manager / App Boot 仅有入口文件，仍不是完整包。后续应优先完成最小 Core+Loader 构建试点，不提前设计 WEX 公共契约。
+
+
+## 第三批：建立可重复的静态检查入口
+
+新增 `dsh/checks/check-imports.mjs`：用 Node.js 内置文件 API 递归扫描 `dsh/upstream/vendor/{cordis,loader,cosmokit,schemastery}/src` 下的 TS/JS 文件，检查相对 import 指向文件是否实际存在，并列出外部 package specifier。运行方式：
+
+```sh
+node dsh/checks/check-imports.mjs
+```
+
+该脚本不需要 npm 安装，也不会联网或启动 GitHub Actions。**限制：它不执行 TypeScript 类型检查、构建、动态 import、Node 条件 exports 或真实插件加载**；通过只能证明扫描范围内的相对静态路径存在。检查源码本身可能存在复杂的动态导入，因此不能将其输出视为全部依赖闭包证明。
+
+本批通过连接器核对了 Cordis 主要入口相对导入路径，并已提交上述可重复检查工具。但由于当前运行容器没有 WEXPC1 仓库的本地克隆，不能在本环境直接对 GitHub 远端文件运行脚本；因此**没有声称静态扫描通过或构建通过**。网络拉取 GitHub 到本地容器失败（DNS 不可解析），这不是代码测试失败。下一步需要在可访问仓库的环境运行脚本、补齐遗漏，再进行真正的 Node/TS 编译和 Cordis 加载测试。
