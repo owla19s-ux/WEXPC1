@@ -33,14 +33,16 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 | [space](space/README.md) | Space、Group、Context 组织与关联 |
 | [conversations](conversations/README.md) | 对话及消息业务 |
 | [AI](AI/README.md) | AI 配置与 [角色](AI/roles/README.md)，后续可扩充记忆等能力 |
-| [plugins](plugins/README.md) | WEX 自有插件机制：注册、依赖、生命周期与扩展管理 |
-| [connections](connections/README.md) | WEX 自有连接体系：API、搜索、本地工具、外部 DSH 等 |
-| [workflows](workflows/README.md) | 工作流、调度、运行与模式 |
+| [plugins](plugins/README.md) | WEX 自有动态插件机制预留研究；暂不采用固定实现 |
+| [connections](connections/README.md) | 内部/公共连接与适配边界；基础连接器及优先研究的外部 Agent 客户端连接器 |
+| [workflows](workflows/README.md) | 工作流定义、任务状态、调度与执行；现有 React Flow 实验仍在此目录 |
+| [views](views/README.md) | 专业视图、架构树与多视角呈现的未来归属；目前仅职责说明 |
 | [permissions](permissions/README.md) | 独立权限系统与授权策略 |
 | [accounts](accounts/README.md) | 账号与身份体系（仅预留，后续研究） |
 | [shared](shared/README.md) | 存储、凭证及真正共用的技术机制 |
 | [docs](docs/README.md) | 设计文档索引 |
 | [tools](tools/README.md) | 开发检查工具位置 |
+| [dsh](dsh/README.md) | 独立 DSH Core + Loader 原生插件宿主研究；不是 DSH Agent 连接器 |
 
 2026-10-30：按用户指示建立目录及说明，取代此前“不建立目录”的阶段限制。子文件及具体实现接口仍未冻结；主技术路线已按上文确认，不创建虚假的 main.*、page.* 或构建入口。未采用独立 work、templates、dispatcher、execution 顶层目录。
 
@@ -48,7 +50,6 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 **目录补充（2026-10-30）**：权限独立为 `permissions/`，角色配置归 `AI/roles/`，账号体系预留 `accounts/`。三者分别管理授权、AI 角色配置和身份，不能混在一起。账号不构成首版强制登录要求。
 
-| [dsh](dsh/README.md) | DSH 插件机制复用包与 WEX 适配入口 |
 
 ## 研究与历史资料
 
