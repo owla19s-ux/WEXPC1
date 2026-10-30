@@ -60,3 +60,6 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 安装目录、用户数据根目录和源码目录不同。主要数据遵循用户选择的位置，系统凭证等为明确例外；重装后接回数据是待实现和验证的要求。
 
 产品版本范围仍参考 [WEXPC 正式基线](https://github.com/owla19s-ux/wexpc/blob/main/docs/PC-PRODUCT-AND-TECH-BASELINE.md)，本次不改变版本排期或迁移主仓代码。
+
+
+2026-10-30 新增 [DSH / Cordis 原始文件快照与适配审查](references/dsh/source-snapshot/README.md)：已保留许可证、来源 SHA、原始文档/类型文件，先读源码再设计 WEX 公共契约。
