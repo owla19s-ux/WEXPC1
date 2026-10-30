@@ -1,34 +1,23 @@
-# connections
+# connections — WEX 内部与公共连接/适配体系
 
-**最新阶段边界（2026-10-30）**：WEX 内置连接器不强制走 Cordis；Cordis Core+Loader 专用于独立的 DSH 原生插件实验宿主。外部 Agent 客户端连接器优先研究真实任务交接/结果回执；基础 API、本地、Git/GitHub 能力保留用于 WEX 独立核验与恢复。内部连接层和公共连接/适配层共同提供受控双向能力交换，不另建“插件墙”。下文较早“首版采用 Cordis 优先”“插件加载器统一”的候选叙述已被本项修正覆盖。详见 [阶段研究决策摘要](../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)。
+**状态（2026-10-30）**：代码目录职责已确定；当前以连接器研究与模块划分为主，尚未形成 WEX 产品级公共连接协议或完整调用闭环。旧文档中“WEX 连接器默认采用 Cordis”的意见已废止。
 
+## 职责
 
-公共连接和能力接入。模块实现、配置及专属 UI 就近维护；能力发现不等于授权。具体加载协议尚未冻结。
+- **内部连接职责**：在需要跨功能域/对外交换时，将 WEX 内部的受控能力接入连接体系；正常模块内部调用不必强制绕行公共边界。
+- **公共连接/适配职责**：作为内部能力与外部能力的双向交换边界，负责能力描述、访问身份、请求分派、授权检查接点、结果/错误/回执映射。用户比喻的“插座墙”就是现有连接系统，**不是另一个新增子系统**。
+- **具体连接器**：处理目标服务协议、连接状态、参数和产物转换；不持有 Space/Context、任务状态、权限账本的权威副本，不需要依赖 WEX 内部私有服务源码。
+- **优先级**：外部 Agent 客户端连接器优先研究（复杂任务交接、会话入口、产物、结果未知）；API、本地文件/Git、GitHub 等内置能力用于基础调用、独立核验及恢复。不以工具连接器数量为目标。
+- **安全**：发现/注册能力不意味着授权。插件或外部进程仅获经校验的最小能力；接口封装本身不替代进程隔离。
 
-状态：2026-10-30 按用户确认建立的源码维护目录，当前只有职责说明，尚无产品实现。目录不是运行时数据路径，也不代表独立插件、进程或编译包。
+## 已有子模块
 
-[源码目录与 Windows 数据要求](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
+- [DSH Agent 连接器](dsh/README.md)：连接**独立运行**的 DSH Agent，和 [内置 DSH 原生插件宿主](../dsh/README.md) 平行，互不依赖。
+- 其他 API、本地、GitHub 等入口以仓库已存在的模块为准，正式调用契约和生命周期尚未冻结，不按假设批量创建空目录。
 
-修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
+## 文件与开发规则
 
+每个连接器在自身目录就近保存实现、测试、配置面板和 README；公共连接边界只保留真正跨连接器共用的机制，不能塞进各种特定服务适配代码。必要时修改接口要同时验证真实连接，不能用文档宣称完成。WEX 自有动态插件机制另见 [plugins](../plugins/README.md)，**目前不要求实现**；Cordis 仅用于独立 DSH 插件兼容实验。
 
-## 2026-10-30：首版模块化与 Cordis 研究结论
-
-**决定边界**：首版 API、DSH、GitHub、本地能力即按模块独立维护。Cordis **基础服务注册/依赖/生命周期**列为首版采用的优先技术候选；不等于首版必须上线外部插件安装、包市场、HMR 或 DSH 客户端嵌入。这不是已实现或已集成测试通过的说明。
-
-- 公共 API 能力提供稳定的模型选择、请求、流式结果和错误入口；每个 Provider 的认证、协议编码、流解析、模型发现由独立适配器承担。多个 Provider 与多个连接实例并存，不在公共对话模块中写厂商分支。
-- DSH 是独立运行的外部 Agent：`connections/dsh/` 负责实际支持的连接、任务派发、结果/会话入口和产物引用；不需要把 WEX Context 映射成 DSH 内部对象，也不依赖 WEX 已拥有完整自动调度器。
-- GitHub 与 local 依照自身能力维护，并复用统一的授权和操作回执边界；服务注册的可见性不能代替实际权限。
-- Cordis 可用于可信的内置模块装配，尤其是 `Service`、`inject`、`ctx.plugin` 和 disposer / Fiber 生命周期；不把模块目录、插件实例、连接实例视为同一概念。
-- 连接器可附带专属 UI；主 UI 仅挂载而不包含每个供应商的全部配置代码。客户端动态 UI Slots / Bundles 是后续扩展参考，首版不必先实现完整运行时加载。
-- 首版仍需记录真实连接状态、任务派发结果、产物引用，能在重启后继续查看；插件停用不能删掉 WEX 所有的历史记录。
-- 首版优先内置可编译的连接器；**模块化代码与运行时从目录加载未知插件是两项不同要求**。未来对 DSH 插件生态的复用在该边界上逐步增强。
-
-资料：[DSH 架构](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)、[Cordis 使用说明](https://github.com/deepseek-ai/deepseek-harness/blob/master/vendor/cordis/README.md)、[DSH LLM 服务](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/llm/llm/README.md)、[服务与依赖](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/framework/service.md)。
-
-当前未定：正式 Cordis 依赖版本、许可与 DSH fork 差异、连接器公开函数签名、UI 扩展协议以及安装态动态扩展行为。
-
-
-## 2026-10-30 目录职责补充
-
-目录边界更新：connections/ 仅容纳具体连接能力（api、search、local、dsh，及暂缓开发的 github）；plugins/ 承载 Cordis 基础注册、依赖和生命周期，未来 DSH Bundle/插件兼容也归 plugins/。连接器可注册插件服务但不应自行实现第二套加载器。
+- [当前研究决策摘要](../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)
+- [源码目录和 Windows 数据目录规则](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
