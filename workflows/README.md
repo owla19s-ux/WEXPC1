@@ -9,3 +9,8 @@
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
 
 2026-10-30 技术首选：使用 **React Flow（`@xyflow/react`）MIT 开源基础库**，不依赖 Pro 模板。库提供基础画布交互，不再规划另一套自研「自由画布」。WEX 负责专属节点配置、人与 AI 共编、数据保存及真实任务状态绑定；画布编辑本身不触发执行。一张流程可处理多张任务卡。Hermes Kanban/Dispatcher 仅作交接返工参考，Dify/Flowise/Sim Studio 仅作编辑体验参考。详情见 [Space 与工作流编辑器设计](../docs/WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)；**尚未集成验证**。
+
+
+## React Flow 编辑器模块（2026-10-30）
+
+[编辑器的源码职责、官方 API 对照、数据边界与最小验证方案](editor/README.md)。`workflows/editor/` 只负责 UI 集成，不承载业务协议或执行调度。使用锁定依赖版本，不复制 React Flow 整套源码；具体接口待原型通过后确定。
