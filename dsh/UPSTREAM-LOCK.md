@@ -82,3 +82,18 @@ node dsh/checks/check-package-preflight.mjs
 **状态声明**：依赖扫描器既有 3 个 fixture 测试已在本地 Node 22.16.0 重新执行并通过。新增包清单脚本与测试已提交，但当前会话没有 WEXPC1 的本地完整文件树，新增脚本尚未本地执行，不能报为测试通过。远端文件由 GitHub 接口逐条核对；仍未执行完整 TypeScript 编译、实际 Cordis/Loader 启停测试，也未触发 Actions。
 
 注：此检查仅验证静态文件存在和 workspace 依赖名称；不验证外部 npm 包、版本解析、编译、动态加载、系统安全和运行时兼容。
+
+
+## 第六批：真实运行时冒烟测试入口（2026-10-30）
+
+新增 [checks/smoke-runtime.mjs](checks/smoke-runtime.mjs)，使用**真实构建好的** `@deepseek-ai/cordis` 和 `@deepseek-ai/cordis-plugin-loader`（无 mock），检测：
+1. 关键导出 `Context`/`Service`/`Loader` 是否存在；
+2. Cordis 的 Service 挂载、依赖注入与方法调用；
+3. Loader 能否挂载并提供 `ctx.loader`；
+4. 卸载是否触发注册的清理回调。
+
+执行命令：`node dsh/checks/smoke-runtime.mjs`，需要先把完整依赖 workspace 构建并安装到 Node 可解析的位置。本脚本区分 `IMPORT_FAILURE`（退出码 2）和 `RUNTIME_FAILURE`（退出码 1）。它不验证 DSH Bundle 安装或 Windows Electron 宿主。
+
+**当前环境的真实核查**：Node.js `v22.16.0`、TypeScript `5.8.3` 可用；已有检查器的 fixture 回归测试再次执行，输出 `PASS: baseline, existing relative import, missing relative import (3 cases)`。在本地尝试 `import('@deepseek-ai/cordis')` 返回 `ERR_MODULE_NOT_FOUND`，因为当前容器没有构建/安装的 DSH packages，也无法通过 GitHub DNS 获取完整仓库。因此新的源码运行时冒烟测试**尚未通过、尚未实际执行**。这属于构建环境依赖缺失，不表示 DSH 源码功能失败；不得宣称成功运行了 Cordis Loader。没有使用 GitHub Actions。
+
+下一次可获取完整源树时，先进行 `node dsh/checks/check-package-preflight.mjs`、`node dsh/checks/check-imports.mjs`，再建立完整依赖 workspace，执行 TypeScript 构建和 `node dsh/checks/smoke-runtime.mjs`。WEX 适配器仍不动。
