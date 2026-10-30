@@ -1,5 +1,8 @@
 # 设计文档索引
 
+**当前研究总览（2026-10-30）**：[WEXPC1 当前研究共识与施工边界](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)。统一整理连接器/外部 Agent 优先、DSH 两条路线、React Flow 视图研究、非执行映射图、数据一致性及暂缓事项；此前冲突的技术候选表述，以此处及专门的最新修正规则为准。
+
+
 **现行技术选择**：TypeScript + Electron + React 为 WEXPC1 新实现的优先基线；React Flow 为首期工作流编辑器，DSH 为首期外部连接器，Cordis 为后续扩展优先参考。详见 [运行时方案 §10](WEXPC-RUNTIME-OPTIONS-V0.1.md) 和 [Windows 目录文档 §9](WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)。旧文档中的 Rust/Tauri 首选及全面自研执行器不再约束新实现；正式版本范围未改。
 
 新确认的 Space/Context 目录语义与 React Flow 选型见 [Space 与工作流编辑器设计（2026-10-30）](WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)；它修正旧文档中“所有 Space/Context 实际数据归入公共数据根目录”的泛化表述。
