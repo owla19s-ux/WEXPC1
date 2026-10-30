@@ -62,3 +62,23 @@ node dsh/checks/check-imports.mjs
 - 远端 WEXPC1 仓库没有在本地克隆；因此 `node dsh/checks/check-imports.mjs` 对整套上游源码的真实文件系统扫描仍待运行。GitHub Actions 未启动。
 
 后续优先补最小可运行 workspace、安装锁定依赖并做 Cordis Core+Loader 冒烟验证；在此之前 WEX 适配器仍暂缓。
+
+
+## 第五批：离线构建前置检查（2026-10-30）
+
+新增 `dsh/checks/check-package-preflight.mjs`，无需 npm 或网络即可检查 `cordis`、`loader`、`cosmokit`、`schemastery` 四个包的 `package.json`、`tsconfig.json`、`LICENSE`、`src/index.ts`、根 `tsconfig.base.json` 是否存在，以及四包内 `workspace:` 依赖是否可解析到当前快照。
+
+新增 `dsh/checks/test-package-preflight.mjs`，用临时目录构造三个测试情形：基础清单齐全、缺失 workspace 包、缺失许可证。
+
+执行入口：
+
+```sh
+node dsh/checks/test-check-imports.mjs
+node dsh/checks/test-package-preflight.mjs
+node dsh/checks/check-imports.mjs
+node dsh/checks/check-package-preflight.mjs
+```
+
+**状态声明**：依赖扫描器既有 3 个 fixture 测试已在本地 Node 22.16.0 重新执行并通过。新增包清单脚本与测试已提交，但当前会话没有 WEXPC1 的本地完整文件树，新增脚本尚未本地执行，不能报为测试通过。远端文件由 GitHub 接口逐条核对；仍未执行完整 TypeScript 编译、实际 Cordis/Loader 启停测试，也未触发 Actions。
+
+注：此检查仅验证静态文件存在和 workspace 依赖名称；不验证外部 npm 包、版本解析、编译、动态加载、系统安全和运行时兼容。
