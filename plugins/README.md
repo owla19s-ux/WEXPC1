@@ -31,4 +31,7 @@
 
 本目录是 **WEX 自有插件机制**（插件入口、注册与依赖、生命周期、扩展管理及与连接器的适配），不是 DSH 插件源码存放地，也不应以 DSH 专有接口替代 WEX 公共服务边界。
 
-DSH Harness / Cordis 上游研究统一归 [DSH-Harness/](../DSH-Harness/README.md)；原先已归档的快照保持链接，迁移前不重复存放。WEX 的 API、搜索、本地工具和外部 DSH 连接器属于 [connections/](../connections/README.md)。采用 Cordis 实现某个机制不改变这些目录职责。
+DSH Harness / Cordis 上游研究统一归 [DSH-Harness/](../dsh/README.md)；原先已归档的快照保持链接，迁移前不重复存放。WEX 的 API、搜索、本地工具和外部 DSH 连接器属于 [connections/](../connections/README.md)。采用 Cordis 实现某个机制不改变这些目录职责。
+
+
+运行时安装的 WEX 插件与 DSH 插件分别存放于用户数据根目录的 `plugins/wex/` 与 `plugins/dsh/`（规划）；本源码 `plugins/` 是 WEX 自有插件基础设施，不是插件安装包存储目录。上游机制与适配见 [dsh/](../dsh/README.md)。
