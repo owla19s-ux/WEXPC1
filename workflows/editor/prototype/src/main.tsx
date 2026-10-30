@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import ReactFlow, { Background, Controls, Handle, Position, type NodeProps, type NodeChange, type EdgeChange, type Connection } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
@@ -19,16 +19,17 @@ function WexNodeView({ data }: NodeProps) {
 const nodeTypes = { wex: WexNodeView }
 function App() {
   const [draft, setDraft] = useState<Draft>(readDraft)
+  const currentDraft = useRef(draft)
   const [message, setMessage] = useState('本原型只编辑草稿，不执行任何任务')
   const [name, setName] = useState('')
   const flow = useMemo(() => toFlow(draft), [draft])
   const edit = useCallback((action: Omit<Edit, 'baseRevision'>) => {
     try {
-      setDraft((current) => {
-        const next = applyEdit(current, { ...action, baseRevision: current.revision } as Edit)
-        localStorage.setItem(KEY, JSON.stringify(next))
-        return next
-      })
+      const current = currentDraft.current
+      const next = applyEdit(current, { ...action, baseRevision: current.revision } as Edit)
+      currentDraft.current = next
+      localStorage.setItem(KEY, JSON.stringify(next))
+      setDraft(next)
       setMessage('已修改草稿（未执行）')
     } catch (error) {
       setMessage(error instanceof Error ? error.message : '编辑失败')
@@ -36,7 +37,7 @@ function App() {
   }, [])
   const onNodesChange = useCallback((changes: NodeChange[]) => {
     for (const change of changes) {
-      if (change.type === 'position' && change.position && !change.dragging) edit({kind: 'move-node', nodeId: change.id, position: change.position} as Omit<Edit, 'baseRevision'>)
+      if (change.type === 'position' && change.position) edit({kind: 'move-node', nodeId: change.id, position: change.position} as Omit<Edit, 'baseRevision'>)
       else if (change.type === 'remove') edit({kind: 'remove-node', nodeId: change.id} as Omit<Edit, 'baseRevision'>)
     }
   }, [edit])
@@ -48,7 +49,7 @@ function App() {
   }, [edit])
   const addReview = () => edit({kind:'add-node', node:{id:crypto.randomUUID(), type:'review', title:'新增审查', config:{}, position:{x:450,y:360}}} as Omit<Edit, 'baseRevision'>)
   const rename = () => { if (name.trim()) edit({kind:'rename-node', nodeId:'review', title:name} as Omit<Edit, 'baseRevision'>) }
-  const reset = () => {const next=structuredClone(initialDraft); localStorage.setItem(KEY,JSON.stringify(next));setDraft(next);setMessage('草稿已重置')}
+  const reset = () => {const next=structuredClone(initialDraft); currentDraft.current=next;localStorage.setItem(KEY,JSON.stringify(next));setDraft(next);setMessage('草稿已重置')}
   return <main>
     <header><h1>WEX 工作流编辑器 · 独立验证</h1><span>草稿修订 {draft.revision}</span></header>
     <section className="toolbar">
