@@ -39,3 +39,7 @@ DSH Harness / Cordis 上游研究统一归 [DSH-Harness/](../dsh/README.md)；�
 ## 双插件体系架构基线（2026-10-30）
 
 已确定 WEX 自有插件与 DSH 原生插件**安装管理和机制职责独立**，但可复用 Cordis 的基础生命周期技术；DSH CLI 仅是 DSH 子系统可选管理依赖，非 WEX 主程序启动前置。具体跨机制接口及 Windows/Electron 解析仍待验证。详见 [双插件体系与双机制分层基线](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)。
+
+## 实施路线修正（2026-10-30，优先于早期 Cordis 选型文字）
+
+WEX 前期**连接器优先**：`connections/` 实现可用能力；本目录仅保留未来自有插件机制职责，不要求首期完善插件注册表、第三方安装器或选择 Cordis 作为 WEX 插件运行基础。内置 Cordis Core + Loader 仅面向 `dsh/` 的 DSH 原生插件兼容。详细边界见 [架构基线修订](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md#七2026-10-30-实施优先级修正覆盖前文-cordis-对-wex-插件机制的优先倾向)。
