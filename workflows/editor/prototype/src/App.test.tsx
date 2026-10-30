@@ -28,6 +28,15 @@ describe('editor DOM integration', () => {
     expect(document.querySelectorAll('.react-flow__node').length).toBe(5)
   })
 
+  it('renders each WEX node kind through its own view', () => {
+    render(<App />)
+    for (const [id, kind] of [['start', 'task-pool'], ['execute', 'ai'], ['review', 'review'], ['decision', 'condition']]) {
+      const node = document.querySelector(`[data-id="${id}"].react-flow__node`)
+      expect(node?.querySelector('small')?.textContent).toBe(kind)
+      expect(node?.querySelectorAll('.react-flow__handle').length).toBe(2)
+    }
+  })
+
   it('selects a node and Delete removes the node plus its incident edges', async () => {
     render(<App />)
     const node = document.querySelector('[data-id="execute"].react-flow__node')!
