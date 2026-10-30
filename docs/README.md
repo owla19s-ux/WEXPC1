@@ -26,3 +26,14 @@
 - [audits/WEXPC1-ARCHITECTURE-STRESS-TEST-TASK.md](audits/WEXPC1-ARCHITECTURE-STRESS-TEST-TASK.md)
 
 现有独立实验不等于产品功能；未迁移旧 WEXPC 代码。第二批仅更新对应域 README 与[统一审查 §§6–9](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md#6-第二批整体职责与依赖方向)，记录职责、权威归属、冲突追踪和七个场景，不新增平行架构文档。
+
+## 2026-10-31 专项研究
+
+- [产品功能全景与研究总表](research/PRODUCT-FUNCTION-LANDSCAPE-2026-10-31.md)：从安装到重装恢复的功能树、归属、依赖和实现证据等级；以模块施工、组合验收为后续原则。
+- [Windows 安装与数据生命周期](research/WINDOWS-LIFECYCLE-2026-10-31.md)
+- [外部 Agent 客户端连接能力](research/AGENT-ECOSYSTEM-2026-10-31.md)
+- [安全边界与数据持续性](research/SECURITY-AND-PERSISTENCE-2026-10-31.md)
+- [视图生态与设计—源码—实验核对](research/VIEWS-AND-EVIDENCE-AUDIT-2026-10-31.md)
+
+本组为独立专项研究，不替代当前模块化与契约方法研究，不冻结接口、不调整版本、不迁移或重构产品。官方来源不可访问和未做 Windows/真实模型运行的项目在正文标明。
+
