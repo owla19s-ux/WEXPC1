@@ -1,0 +1,19 @@
+{
+  "upstream": "DeepSeek-AI/deepseek-harness",
+  "sourceCommit": "ce7073d51254c26cd63b22a60835b8f948deb447",
+  "sourceFiles": {
+    "apps/cli/README.md": "b0059efecd0a3cc1aa99c9232283f7902bbd2312",
+    "packages/bundle/headless/README.md": "f9c53e7d2e75989afa77d491d6838fd80bad736c",
+    "packages/bundle/headless/src/startup.ts": "1283d537fcfe99e3572951a63153ad4eb67cf1cd",
+    "packages/bundle/headless/src/index.ts": "d02729c097f53e474061343c4abfa6df1483a644",
+    "packages/bundle/headless/src/json-stream.ts": "fb4b34337a198c61a9a32530f26bdcf17eb1f641",
+    "packages/sdk/server/README.md": "08d99fa160998df261a44d41ec3ed1e33ae3de08",
+    "packages/sdk/protocol/README.md": "f4cc2e90a300685985b5ddf3b4aaab53594f0679"
+  },
+  "publishedPackage": "@deepseek-ai/dsh-headless@0.2.1-rc.5",
+  "publishedSHA256": {
+    "lib/index.js": "5402e990dd82d33bccee722e220b518e7f26f82acb79ed707bfebc8eb5c3bead",
+    "lib/startup.js": "66bb82dc445d5852de776401a00c1ad963276c741e39749d187c4c292b86330b",
+    "cordis.patch.yml": "f4d5f53f070089a7fc5209bd47c9ae4e85b99d042cbe76be88ab1ed63dfb8fc8"
+  }
+}

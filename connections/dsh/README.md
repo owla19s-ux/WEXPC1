@@ -4,10 +4,32 @@
 
 本模块不实现 DSH 客户端，不管理 Cordis 宿主基础设施；仅把 DSH 作为 WEX 的一种可命名外部执行能力。工作流和 Context 不直接依赖 DSH 内部模型；真实回执、结果未知、人工验收等状态由 WEX 保存。
 
-状态：职责入口，尚无连接器实现或 Windows 端到端测试。
+状态：已有独立 headless 进程实验与真实失败回执；尚无成功模型任务或 Windows 端到端验收。
 
 ## 独立验收路线（2026-10-30）
 
 **与内置 DSH Core+Loader 插件宿主并行开发，互不作为启动或交付前置。** 本连接器的最小可用闭环是：配置 DSH 外部运行实例 → 验证连接状态 → 以 DSH 实际公开可行的方式派发任务 → 接收或查询可获得的执行结果、会话入口、产物引用 → 向 WEX 返回真实失败/结果未知回执并由 WEX 持久化。不能预设 DSH 具有尚未证实的外部任务 API，也不能将本连接器当作 DSH 插件运行容器。当前仍只有职责文档，没有完成连接器真实代码和端到端测试。
 
 架构依据：[DSH 双路线验收目标](../../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)。
+
+## 本批实际实验（2026-10-30）
+
+实现位于 `experiment/`，只用 Node 内置进程 API；不依赖本仓 `dsh/` 的 Cordis 宿主。依赖锁定 npm `@deepseek-ai/dsh@0.2.1-rc.5`，源码研究固定 `ce7073d51254c26cd63b22a60835b8f948deb447`；路径/blob 与发布包散列见 `experiment/source-evidence.json`。
+
+实际入口：`dsh --profile headless --json -` 从 stdin 接收任务，stdout 为 NDJSON，stderr 为诊断；每次独立子进程，shell 禁用。SDK profile 支持 JSON-RPC stdio，ACP profile 支持 ACP stdio；本批不实现这两条更复杂路线，不假设 HTTP API。headless 的 `--session-id` 只恢复已持久化且匹配条件的会话，不是随意附着正在运行的 GUI 会话；本实验暂不暴露恢复参数。
+
+```sh
+npm ci --prefix connections/dsh/experiment --ignore-scripts --no-audit --no-fund
+npm test --prefix connections/dsh/experiment
+npm run --prefix connections/dsh/experiment probe
+```
+
+Linux / Node 24.22.1 / npm 11.9.0：锁文件安装通过，13 项进程/协议回归通过。测试中成功输出来自明确标注的子进程替身，不是 DSH 成功任务。
+
+**真实探测**：已启动发布版 DSH，在临时工作目录与 DSH_HOME 中经 stdin 输入 `Reply exactly WEX_DSH_HANDOFF_OK. Do not call tools.`，取得 `session`、turn/step 状态、`turn_end.reason.kind=error`、`MISSING_CREDENTIAL` 和空 `final.text`，进程退出 1。适配器返回 `failed / DSH_TURN_FAILED` 并保留真实 sessionId 与错误原因；probe 也退出 1，不能算成功验收。该探测明确禁用模型 Key，避免调用费用和误用现有 GUI 配置；当前成功任务阻塞为缺少配置完成的模型凭证及其可用网络路线，未要求用户交出 Key。
+
+抓到并修复发布差异：rc.5 的 final 只有 type/text，需读取最后的 turn_end 原因；源码最新版 final 才直接含 sessionId/reason。测试覆盖两种形态、退出码矛盾、会话矛盾、非法/不完整输出、进程信号、超时、输出上限及启动失败。零退出码或助手文本本身不算成功。断连返回 `disconnected` 且 outcome unknown，超时/冲突返回 unknown，均不自动重试；杀掉本地进程不证明外部副作用已撤销，也不承诺清理其全部后代。
+
+模型返回 completed 也只代表外部报告完成，产物核验与最终验收仍归 WEX。后续真机需验证配置真实 Provider 后的成功任务、持久会话恢复、中文路径、长任务断连与 Windows 子进程树清理。Node 以脚本路径启动 CLI，可避开 Windows `.cmd`/shell 引号差异；本批未实测 Windows。
+
+收尾审查修复并验证：后代进程继承管道时，超时会关闭本地管道并立即结束适配器等待，不再等后代退出；半条 NDJSON 后收到退出信号仍记录 disconnected。两项均先复现失败再修复，仍不承诺后代被取消。真实失败记录见 `experiment/probe-result-2026-10-30.json`。

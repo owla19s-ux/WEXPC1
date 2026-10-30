@@ -1,0 +1,12 @@
+{
+  "name": "wex-dsh-headless-experiment",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test headless.test.mjs",
+    "probe": "node probe.mjs"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh": "0.2.1-rc.5"
+  }
+}

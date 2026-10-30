@@ -1,0 +1,24 @@
+{
+  "externalProcess": true,
+  "modelCredentials": false,
+  "exitCode": 1,
+  "signal": null,
+  "stderr": "dsh: all_proxy names a SOCKS proxy, which is not supported; connecting directly for that scheme — set an http:// or https:// proxy URL instead\ndsh: MISSING_CREDENTIAL: llm-deepseek: no API key for provider route \"deepseek-official\"; store DEEPSEEK_API_KEY through the credentials service (the web Models page writes it), or export DEEPSEEK_API_KEY in the launching environment\n",
+  "sessionId": "session-e837f778-9f22-40ad-a34a-1953f3f082ff",
+  "status": "failed",
+  "outcome": "failed",
+  "error": {
+    "code": "DSH_TURN_FAILED",
+    "reason": {
+      "kind": "error",
+      "error": {
+        "message": "llm-deepseek: no API key for provider route \"deepseek-official\"; store DEEPSEEK_API_KEY through the credentials service (the web Models page writes it), or export DEEPSEEK_API_KEY in the launching environment",
+        "code": "MISSING_CREDENTIAL"
+      }
+    }
+  },
+  "probeExitCode": 1,
+  "command": "node connections/dsh/experiment/probe.mjs",
+  "date": "2026-10-30",
+  "environment": "Linux / Node 24.22.1"
+}
