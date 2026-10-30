@@ -1,8 +1,9 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { ReactFlow, Background, Controls, Handle, Position, type NodeProps, type NodeChange, type EdgeChange, type Connection } from '@xyflow/react'
+import { ReactFlow, Background, Controls, type NodeChange, type EdgeChange, type Connection } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import './style.css'
 import { applyEdit, initialDraft, toFlow, type Draft, type Edit } from './model.mjs'
+import { nodeTypes } from './nodes'
 
 type EditAction = { [K in Edit['kind']]: Omit<Extract<Edit, { kind: K }>, 'baseRevision'> }[Edit['kind']]
 
@@ -14,10 +15,6 @@ function readDraft(): Draft {
   } catch { /* invalid saved draft resets to seed */ }
   return structuredClone(initialDraft)
 }
-function WexNodeView({ data }: NodeProps) {
-  return <div className="node"><Handle type="target" position={Position.Left} /><small>{String(data.kind ?? 'step')}</small><strong>{String(data.label ?? '')}</strong><Handle type="source" position={Position.Right} /></div>
-}
-const nodeTypes = { wex: WexNodeView }
 export default function App() {
   const [draft, setDraft] = useState<Draft>(readDraft)
   const currentDraft = useRef(draft)
