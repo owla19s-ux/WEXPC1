@@ -1,19 +1,26 @@
 # WEX React Flow 独立编辑原型
 
-这是**可构建的独立 React/Vite 原型源码**，并非 Electron 主程序、WEX 工作流正式实现或可执行任务的调度器。
+这是隔离的 React/Vite 草稿编辑原型，不是 Electron 主程序或工作流调度器。
+
+## 当前验证（2026-10-30）
+
+已完成锁文件安装、TypeScript/Vite 生产构建、5 个模型测试、5 个 jsdom 组件集成测试，以及构建后 HTML/JS/CSS 的真实 HTTP 预览。React Flow 固定 `12.12.0`，锁文件已提交。
+
+**真实浏览器拖拽、连线、布局与 Electron 尚未通过验收**：环境 Chromium 与浏览器控制工具均启动失败。DOM 测试使用真实 React Flow 组件，但不是浏览器测试。详细命令、故障、修复与模块边界审查见 [验证报告](VERIFICATION-2026-10-30.md)。
 
 ```sh
 cd workflows/editor/prototype
-npm install
+npm ci --ignore-scripts --no-audit --no-fund
 npm test
 npm run build
+npm run test:preview
 npm run dev
 ```
 
-固定 `@xyflow/react@12.12.0`；`npm install` 时需生成并提交锁文件后才可声称可复现安装。当前为隔离原型，不写根目录依赖。
+原型需要支持 Vite 7 的 Node 运行时，本批实测 Node 24.22.1。构建/安装不使用仓库根依赖，不启动 GitHub Actions。`test:preview` 启动并结束本地 40173 端口的预览服务。
 
-功能：4 个初始节点、3 条连线、节点拖动与删除、画布连接、结构化新增/改名、修订号冲突检查、localStorage 草稿保存与恢复。所有手工编辑都通过 `applyEdit`；模拟 AI 只需调用同一结构化操作，并不包含模型服务调用。**不启动任何任务**。
+功能保持原范围：4 个初始节点、3 条连线、草稿新增/改名/移动/删除/连接、修订冲突检查、localStorage 保存与恢复；所有常规编辑通过 `applyEdit`，不执行任务。临时选中状态只存 UI；保存失败不提交隐藏修订。`App.tsx` 管理 UI 适配，`main.tsx` 仅负责挂载。
 
-限制：目前不支持节点移动过程中持续显示位置（仅拖拽结束提交）、业务端口约束、撤销/重做、正式 WEX 存储、角色权限、实际运行状态、Electron 包装；视口仅为种子数据，尚未接实际视口持久化；本原型的 `Draft` 不是已冻结的工作流数据契约。
+`model.mjs` 与 `model.d.mts` 不引用 React Flow；投影返回普通结构数据。未来 AI 可使用同一个模型入口，但目前没有真实模型服务调用或权限服务。重置按钮仅为原型管理操作。
 
-源文件 `src/model.mjs` 可脱离 React Flow 做 Node 单元测试；正式 WEX 数据格式、人工/AI 并发编辑和任务调度另行设计。
+原限制保留：无正式 WEX 数据 schema、磁盘存储、角色权限、运行状态、业务端口约束、撤销/重做或 Electron 集成；viewport 仍为种子字段，未接视口持久化。本原型 Draft 不是已冻结工作流契约。

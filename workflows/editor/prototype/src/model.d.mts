@@ -12,4 +12,4 @@ export type Edit =
   | { kind: 'viewport'; baseRevision: number; viewport: Draft['viewport'] }
 export declare const initialDraft: Draft
 export declare function applyEdit(draft: Draft, edit: Edit): Draft
-export declare function toFlow(draft: Draft): { nodes: import('@xyflow/react').Node[]; edges: import('@xyflow/react').Edge[] }
+export declare function toFlow(draft: Draft): { nodes: { id: string; type: 'wex'; position: Position; data: { label: string; kind: string } }[]; edges: WexEdge[] }
