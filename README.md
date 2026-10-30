@@ -29,17 +29,21 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 | [UI](UI/README.md) | 主 UI、对话／Space／配置页及公共控件 |
 | [space](space/README.md) | Space、Group、Context 组织与关联 |
 | [conversations](conversations/README.md) | 对话及消息业务 |
-| [AI](AI/README.md) | 简单 AI 配置 |
+| [AI](AI/README.md) | AI 配置与 [角色](AI/roles/README.md)，后续可扩充记忆等能力 |
 | [plugins](plugins/README.md) | Cordis 模块注册、依赖和生命周期，未来 DSH 插件兼容 |
 | [connections](connections/README.md) | API、GitHub、本地能力与模块面板 |
 | [workflows](workflows/README.md) | 工作流、调度、运行与模式 |
-| [shared](shared/README.md) | 授权、存储和凭证等共用机制 |
+| [permissions](permissions/README.md) | 独立权限系统与授权策略 |
+| [accounts](accounts/README.md) | 账号与身份体系（仅预留，后续研究） |
+| [shared](shared/README.md) | 存储、凭证及真正共用的技术机制 |
 | [docs](docs/README.md) | 设计文档索引 |
 | [tools](tools/README.md) | 开发检查工具位置 |
 
 2026-10-30：按用户指示建立目录及说明，取代此前“不建立目录”的阶段限制。子文件及具体实现接口仍未冻结；主技术路线已按上文确认，不创建虚假的 main.*、page.* 或构建入口。未采用独立 work、templates、dispatcher、execution 顶层目录。
 
 **目录更新（2026-10-30）**：新增 [plugins](plugins/README.md) 管理 Cordis 基础模块机制；[connections](connections/README.md) 管理具体 API、搜索、本地工具与 DSH 连接器。模块化首版是目标，完整 DSH 插件市场兼容仍为后续研究方向。
+
+**目录补充（2026-10-30）**：权限独立为 `permissions/`，角色配置归 `AI/roles/`，账号体系预留 `accounts/`。三者分别管理授权、AI 角色配置和身份，不能混在一起。账号不构成首版强制登录要求。
 
 ## 研究与历史资料
 
