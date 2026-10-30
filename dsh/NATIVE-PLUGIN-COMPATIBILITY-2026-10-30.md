@@ -50,3 +50,11 @@
 ## 下一步验收门槛
 
 先通过原生 Bundle 的 manifest + patch + 磁盘模块闭环，确认最小可复用部分。成功后再研究服务适配与 WEX 自有安装/权限机制；UI 兼容暂缓。不要根据单个 hello-plugin 推断所有 DSH 插件都兼容。
+
+
+## 2026-10-30：原生 hello Bundle 样本已入仓（**尚未运行验收**）
+
+- 新增 [fixtures-native-bundle/](checks/fixtures-native-bundle/)：依照上游 `publish.zh.md` 的 `dsh.bundle.patch`、`insert` 和裸包名 `dsh-hello-plugin` 编写本地样本；未复制 DSH 发布生态的第三方 npm 包。
+- 新增 [test-native-bundle.mjs](checks/test-native-bundle.mjs)：从真正的 `package.json` 读取 patch 文件、验证示例 insert 条目，在隔离的 `dsh/node_modules/` 建立临时包链接，随后用真实 Core + Loader 以包名加载、判断事件及卸载；finally 清理测试链接和 Core。仅支持这一条简单 `insert` 样本，**不冒充 DSH 完整 Patch 解析器**。
+- 已纳入 [runtime/verify.mjs](runtime/verify.mjs) 的测试入口。下一次在可联网/有本地依赖环境中执行 `npm ci --prefix dsh/runtime --ignore-scripts --no-audit --no-fund && npm run --prefix dsh/runtime build && npm test --prefix dsh/runtime`，修复真实问题后才可宣告通过。
+- 当前普通对话容器缺完整检出与运行依赖；**本批只提交可执行测试源码，未重新执行 npm 构建、真实 Loader 测试，也没有对非示例原生插件完成兼容证明**。不启动 Actions。
