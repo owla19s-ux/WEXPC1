@@ -20,3 +20,8 @@
 `app/` 负责启动装配；业务模块通过已公开的能力接口使用服务；`connections/` 下的具体连接器注册能力，但其协议逻辑留在各自目录。UI 贡献面板随模块维护，主 UI 负责挂载。禁止业务模块为了方便直接导入其他模块私有实现。
 
 参考：[DSH 能力接缝](../references/dsh/01-capability-seams-and-registration.md) · [DSH 生命周期](../references/dsh/03-manifest-loading-lifecycle.md) · [插件管理与边界](../references/dsh/07-plugin-management-and-runtime-boundaries.md)。
+
+
+## 上游机制研究（2026-10-30）
+
+阅读 [DSH / Cordis 原始文件快照与 WEX 适配审查](../references/dsh/source-snapshot/README.md)。这里不存放复制的 DSH 上游源文件；生产模块接线必须基于选定版本及实际测试。
