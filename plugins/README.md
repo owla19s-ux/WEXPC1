@@ -35,3 +35,7 @@ DSH Harness / Cordis 上游研究统一归 [DSH-Harness/](../dsh/README.md)；�
 
 
 运行时安装的 WEX 插件与 DSH 插件分别存放于用户数据根目录的 `plugins/wex/` 与 `plugins/dsh/`（规划）；本源码 `plugins/` 是 WEX 自有插件基础设施，不是插件安装包存储目录。上游机制与适配见 [dsh/](../dsh/README.md)。
+
+## 双插件体系架构基线（2026-10-30）
+
+已确定 WEX 自有插件与 DSH 原生插件**安装管理和机制职责独立**，但可复用 Cordis 的基础生命周期技术；DSH CLI 仅是 DSH 子系统可选管理依赖，非 WEX 主程序启动前置。具体跨机制接口及 Windows/Electron 解析仍待验证。详见 [双插件体系与双机制分层基线](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)。
