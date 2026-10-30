@@ -24,3 +24,11 @@ npm run dev
 `model.mjs` 与 `model.d.mts` 不引用 React Flow；投影返回普通结构数据。未来 AI 可使用同一个模型入口，但目前没有真实模型服务调用或权限服务。重置按钮仅为原型管理操作。
 
 原限制保留：无正式 WEX 数据 schema、磁盘存储、角色权限、运行状态、业务端口约束、撤销/重做或 Electron 集成；viewport 仍为种子字段，未接视口持久化。本原型 Draft 不是已冻结工作流契约。
+
+## 按节点类型分文件（2026-10-30）
+
+节点视图已经从 `App.tsx` 拆到 `src/nodes/`：`TaskPoolNode.tsx`、`AiNode.tsx`、`ReviewNode.tsx`、`ConditionNode.tsx` 各负责对应节点的呈现；`NodeShell.tsx` 只负责所有节点当前共用的标签/标题/左右 Handle；`index.tsx` 是唯一的视图分派与 React Flow nodeTypes 注册点。主画布不应写节点种类分支。现有模型继续通过 `toFlow` 输出统一的 `wex` React Flow type 和独立的业务 `kind`，因此不修改草稿、持久化格式或工作流运行协议。
+
+以后某种节点需要新增独有的配置、标识或展示，优先修改自己的节点文件；只有确有共享需求才改 `NodeShell`，新增节点类型才改 `nodes/index.tsx`。节点可视组件不直接调用连接器、权限或任务执行；编辑仍通过 `applyEdit` 单入口。新增一项 DOM 测试覆盖四种类型及其左右 Handle。
+
+**验证状态**：这一轮是源码重构及回归测试用例提交，尚未重新安装依赖并运行编译或测试；此前报告的 5+5 测试通过指重构之前版本，不能挪用为本轮结果。浏览器鼠标拖拽/连线真实测试仍需可用浏览器或 Windows 真机；Work 环境已证明目前不能执行该项，不作为新增节点文件拆分的阻塞。
