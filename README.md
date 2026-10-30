@@ -30,8 +30,8 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 | [space](space/README.md) | Space、Group、Context 组织与关联 |
 | [conversations](conversations/README.md) | 对话及消息业务 |
 | [AI](AI/README.md) | AI 配置与 [角色](AI/roles/README.md)，后续可扩充记忆等能力 |
-| [plugins](plugins/README.md) | Cordis 模块注册、依赖和生命周期，未来 DSH 插件兼容 |
-| [connections](connections/README.md) | API、GitHub、本地能力与模块面板 |
+| [plugins](plugins/README.md) | WEX 自有插件机制：注册、依赖、生命周期与扩展管理 |
+| [connections](connections/README.md) | WEX 自有连接体系：API、搜索、本地工具、外部 DSH 等 |
 | [workflows](workflows/README.md) | 工作流、调度、运行与模式 |
 | [permissions](permissions/README.md) | 独立权限系统与授权策略 |
 | [accounts](accounts/README.md) | 账号与身份体系（仅预留，后续研究） |
@@ -44,6 +44,8 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 **目录更新（2026-10-30）**：新增 [plugins](plugins/README.md) 管理 Cordis 基础模块机制；[connections](connections/README.md) 管理具体 API、搜索、本地工具与 DSH 连接器。模块化首版是目标，完整 DSH 插件市场兼容仍为后续研究方向。
 
 **目录补充（2026-10-30）**：权限独立为 `permissions/`，角色配置归 `AI/roles/`，账号体系预留 `accounts/`。三者分别管理授权、AI 角色配置和身份，不能混在一起。账号不构成首版强制登录要求。
+
+| [DSH-Harness](DSH-Harness/README.md) | DSH / Cordis 上游资料与源码快照的独立归档入口 |
 
 ## 研究与历史资料
 
@@ -63,3 +65,5 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 
 2026-10-30 新增 [DSH / Cordis 原始文件快照与适配审查](references/dsh/source-snapshot/README.md)：已保留许可证、来源 SHA、原始文档/类型文件，先读源码再设计 WEX 公共契约。
+
+**目录界限更新**：`DSH-Harness/` 是外部上游研究资料存放区；`plugins/` 是 WEX 自己的插件机制；`connections/` 是 WEX 自己的连接体系。上游来源不决定 WEX 的内部职责归属。
