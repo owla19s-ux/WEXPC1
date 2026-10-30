@@ -7,3 +7,7 @@
 [源码目录与 Windows 数据要求](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
+
+## 与独立权限域的边界（2026-10-30）
+
+权限策略、判定和授权归 [permissions/](../permissions/README.md) ；账号与身份归 [accounts/](../accounts/README.md)。shared 仅维护如存储、系统凭证等真正可复用的技术基础，不设第二套权限状态源。此前文档所列 `shared/permissions/` 属旧目录草案，由独立权限域取代。
