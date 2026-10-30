@@ -21,3 +21,9 @@
 
 - [当前研究决策摘要](../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)
 - [源码目录和 Windows 数据目录规则](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
+
+## 最小边界实验（2026-10-30）
+
+`experiment/boundary.mjs` 仅提取 headless 实验需要的装配：连接器描述 `dsh.headless.run`（有副作用、不自动重试、结果可能未知），接受任务引用、通过受控 `readTask` 回调取得本次任务文本，再返回结果或结构化错误。宿主授权外部调用与任务读取，先存 attempt 再派发，最后存 result；连接器拿不到宿主对象、Context 或权限账本。此接口不是系统沙箱或正式公共协议。
+
+实际执行 `node --test connections/experiment/boundary.test.mjs`：5 项通过，覆盖双向交换、两类拒绝、派发前回执写失败、派发后异常与结果写失败（保留 observed 证据）。服务与连接器执行使用测试替身，未声称连接外部服务或实现磁盘回执系统。失败写回不能自动重试副作用请求。B 的真实进程协议与失败证据已足以限定此小原型，但真实模型成功链路仍未验收。
