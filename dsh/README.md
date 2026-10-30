@@ -39,3 +39,7 @@ node --expose-internals dsh/checks/test-loader-runtime.mjs
 - Cordis 同进程插件不提供系统沙箱，安装目录分离不等于权限隔离。
 
 运行时安装位置仍仅为已有规划：用户选择的数据根下 `plugins/wex/`、`plugins/dsh/` 分离，插件包与配置、数据分别管理。本批不实现安装器，不修改 Space、工作流、权限或产品范围。
+
+## 双插件体系架构基线（2026-10-30）
+
+已确定 WEX 自有插件与 DSH 原生插件**安装管理和机制职责独立**，但可复用 Cordis 的基础生命周期技术；DSH CLI 仅是 DSH 子系统可选管理依赖，非 WEX 主程序启动前置。具体跨机制接口及 Windows/Electron 解析仍待验证。详见 [双插件体系与双机制分层基线](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)。
