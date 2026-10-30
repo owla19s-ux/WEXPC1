@@ -32,3 +32,7 @@ npm run dev
 以后某种节点需要新增独有的配置、标识或展示，优先修改自己的节点文件；只有确有共享需求才改 `NodeShell`，新增节点类型才改 `nodes/index.tsx`。节点可视组件不直接调用连接器、权限或任务执行；编辑仍通过 `applyEdit` 单入口。新增一项 DOM 测试覆盖四种类型及其左右 Handle。
 
 **验证状态**：这一轮是源码重构及回归测试用例提交，尚未重新安装依赖并运行编译或测试；此前报告的 5+5 测试通过指重构之前版本，不能挪用为本轮结果。浏览器鼠标拖拽/连线真实测试仍需可用浏览器或 Windows 真机；Work 环境已证明目前不能执行该项，不作为新增节点文件拆分的阻塞。
+
+## 本批重跑（2026-10-30）
+
+基线 `00fa7076feb358b269a4206cb5623fd5b7b52693`，Linux / Node 24.22.1 / npm 11.9.0。实际执行 `npm ci --ignore-scripts --no-audit --no-fund`、`npm test`（5 模型 + 6 DOM，包括四种拆分节点和 Handle）、`npm run build`（TypeScript + Vite 7.3.7）、`npm run test:preview`（HTML/JS/CSS HTTP 200），全部通过。未修改业务/视图结构，未发现需修复的节点拆分回归。构建有上游 `use client` 指令忽略提示，不阻断输出。浏览器鼠标拖拽/连线及 Windows Electron 仍待真机；本批未重试受限浏览器，不启动 Actions。
