@@ -105,3 +105,8 @@ node dsh/checks/check-package-preflight.mjs
 **当前环境的真实核查**：Node.js `v22.16.0`、TypeScript `5.8.3` 可用；已有检查器的 fixture 回归测试再次执行，输出 `PASS: baseline, existing relative import, missing relative import (3 cases)`。在本地尝试 `import('@deepseek-ai/cordis')` 返回 `ERR_MODULE_NOT_FOUND`，因为当前容器没有构建/安装的 DSH packages，也无法通过 GitHub DNS 获取完整仓库。因此新的源码运行时冒烟测试**尚未通过、尚未实际执行**。这属于构建环境依赖缺失，不表示 DSH 源码功能失败；不得宣称成功运行了 Cordis Loader。没有使用 GitHub Actions。
 
 下一次可获取完整源树时，先进行 `node dsh/checks/check-package-preflight.mjs`、`node dsh/checks/check-imports.mjs`，再建立完整依赖 workspace，执行 TypeScript 构建和 `node dsh/checks/smoke-runtime.mjs`。WEX 适配器仍不动。
+
+
+## 2026-10-30：原生 hello 样本测试已实际运行
+
+锁定上游与依赖版本保持不变。已干净重建四包，运行含 test-native-bundle 的完整 npm test，并验证默认/内部 Loader 两条路径及重复执行。样本加载、卸载、同进程重载和清理全部通过；不是原生 Patch/Profile、安装器或第三方已发布插件的兼容证明。具体命令、断言与剩余缺口见 [兼容性研究的实际验收节](NATIVE-PLUGIN-COMPATIBILITY-2026-10-30.md)。

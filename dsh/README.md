@@ -12,6 +12,8 @@
 - 默认 native import fallback 和 `--expose-internals` Node 内部加载路径均已运行。
 - 51 个上游文件逐字节匹配锁定 commit 的 Git blob；依赖版本和 npm integrity 保存在锁文件。
 
+另已实际运行本仓 hello Bundle 样本的裸包名导入、卸载、同进程重加载与清理；配置仅由测试提取单条 insert 子集，详见 [原生包样本验收](NATIVE-PLUGIN-COMPATIBILITY-2026-10-30.md)。
+
 这证明基础机制可以独立构建，不代表已实现 WEX 集成、DSH Bundle/Profile/商店兼容、源码 HMR 或 Windows Electron 验收。Plugin Manager / App Boot / Manifest 仍仅保留先前研究入口，未参与构建。**WEX 适配器与公共契约未开发。**
 
 ## 复现

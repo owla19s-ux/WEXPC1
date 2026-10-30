@@ -39,15 +39,29 @@ try {
   const loader = ctx.loader
   const id = await loader.create({ id: entryId, name: entryName })
   await loader.await()
-  assert.ok(loader.resolve(id).moduleNamespace, 'real package imported')
+  assert.equal(typeof loader.resolve(id).moduleNamespace?.apply, 'function', 'real named-export plugin imported')
   assert.equal(loaded, 1)
   const fiber = loader.resolve(id).fiber
   loader.remove(id)
   await fiber.dispose()
   assert.equal(disposed, 1)
+  assert.throws(() => loader.resolve(id), /cannot resolve entry/, 'removed entry must disappear')
+  const restored = await loader.create({ id: entryId, name: entryName })
+  await loader.await()
+  assert.equal(restored, id)
+  assert.equal(loaded, 2, 'same-process re-load must run apply again')
+  assert.equal(disposed, 1, 're-load must not double-dispose old instance')
+  const replacement = loader.resolve(restored).fiber
+  assert.notEqual(replacement, fiber, 're-load must own a fresh lifecycle')
+  loader.remove(restored)
+  await replacement.dispose()
+  assert.equal(disposed, 2)
   await owner.dispose()
-  console.log('PASS: native Bundle manifest -> insert patch -> bare package name -> real Loader -> unload')
+  assert.equal(ctx.loader, undefined, 'Loader service must be removed')
+  console.log('PASS: sample Bundle manifest -> insert subset -> bare package import -> unload -> same-process re-load -> cleanup')
 } finally {
-  await ctx.fiber.dispose()
-  fs.rmSync(link, { force: true })
+  try { await ctx.fiber.dispose() } finally { fs.rmSync(link, { force: true }) }
 }
+
+assert.ok(!fs.existsSync(link), 'fixture package link must be removed after cleanup')
+console.log('PASS: temporary package link removed')
