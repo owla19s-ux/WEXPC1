@@ -24,3 +24,8 @@
 资料：[DSH 架构](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)、[Cordis 使用说明](https://github.com/deepseek-ai/deepseek-harness/blob/master/vendor/cordis/README.md)、[DSH LLM 服务](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/llm/llm/README.md)、[服务与依赖](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/framework/service.md)。
 
 当前未定：正式 Cordis 依赖版本、许可与 DSH fork 差异、连接器公开函数签名、UI 扩展协议以及安装态动态扩展行为。
+
+
+## 2026-10-30 目录职责补充
+
+目录边界更新：connections/ 仅容纳具体连接能力（api、search、local、dsh，及暂缓开发的 github）；plugins/ 承载 Cordis 基础注册、依赖和生命周期，未来 DSH Bundle/插件兼容也归 plugins/。连接器可注册插件服务但不应自行实现第二套加载器。
