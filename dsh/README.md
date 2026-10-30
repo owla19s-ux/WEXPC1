@@ -51,3 +51,11 @@ node --expose-internals dsh/checks/test-loader-runtime.mjs
 ## 本阶段交付目标（2026-10-30）
 
 本目录独立目标是 **DSH 插件宿主达到 Windows 真机可操作的兼容测试状态**：Core+Loader 可启动，能载入、执行、卸载真实插件并观察错误。现有 Linux 构建和 hello Bundle 通过不等于真机验收。完整插件市场、Agent 引擎和 WEX 自有动态插件机制不作为前置。独立 DSH Agent 连接器职责见 [connections/dsh/](../connections/dsh/README.md)，不应依赖本宿主运行。具体边界见 [双路线验收](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md#八dsh-双路线验收目标2026-10-30-最新确认)。
+
+## 第二批：依赖缺失与职责限制
+
+[独立生命周期入口](runtime/README.md#独立进程生命周期入口2026-10-30)已在 Linux 验证 hello 加载/卸载、启动抛错和缺失模块；这只证明基础宿主机制，不证明依赖 `sessions`、`tools`、`llm` 或 UI 的任意 DSH 插件可运行。
+
+插件依赖不满足时由宿主记录未就绪/失败及缺少的服务，停止发布依赖该插件的可用能力，不能伪造服务或宣称兼容。应根据实际需求选择补充已验证的最小服务、改用独立外部 DSH，或明确不支持；选择仍属后续个案，不默认搬入完整 Agent 引擎。
+
+宿主拥有插件加载/停止及服务就绪观察；`connections` 宿主边界拥有对 WEX 暴露能力的授权与操作回执；`workflows` 拥有任务、核验与验收。插件内部调用 Cordis Service 不自动经过 WEX 权限边界，不能将其误称为已授权的 WEX 内部调用。完整隔离能力待平台实验，同进程 Loader 不是沙箱。
