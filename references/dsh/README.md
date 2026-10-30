@@ -103,3 +103,8 @@ DSH `ui-plugin-manager` 的实证插槽：`plugins.item`、`plugins.bundle.confi
 - `app/`：Electron 启动、插件装配、主窗口、进程 IPC；不承担具体连接器实现。
 
 **研究状态**：本节为上游官方文档与既有代码组织的研究核对，未执行 WEX 在 Electron 上动态加载/卸载 DSH 插件的实测，未触发 Actions，未变更产品代码及正式版本范围。
+
+
+## 插件机制原始文件
+
+[2026-10-30 原始快照、许可证、逐层适配审查](source-snapshot/README.md)。快照是只读研究资产，不是已接入插件引擎。
