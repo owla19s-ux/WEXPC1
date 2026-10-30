@@ -1,0 +1,261 @@
+{
+  "repository": "DeepSeek-AI/deepseek-harness",
+  "commit": "f3803c96974ad4a94195fb97e5c637e9c2a3afe3",
+  "files": [
+    {
+      "path": "LICENSE",
+      "gitBlob": "c1f7a78e89e4e4dc7b86664c3b3c76eb5eee1785",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/boot/app-boot/src/index.ts",
+      "gitBlob": "acab24ebe456ec5b9ee116827eb6eb2371413781",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/boot/plugin-manager/src/index.ts",
+      "gitBlob": "271e6af0d35b50459777dcd2f0ffeb353e572e08",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/util/package-manifest/src/types.ts",
+      "gitBlob": "392b20b3ef0b80d84d9169c468d15c50b8d1f73a",
+      "mode": "100644"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "gitBlob": "8f6b6ed9aab3b4be67a5ffca76f03a27c9c1bf73",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/README.md",
+      "gitBlob": "53b89254c06ceff3c4daa1f2d6b6809db717cb43",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/LICENSE",
+      "gitBlob": "9fdec8c979b135b9433ad31949828f42a8eaa8a6",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/README.md",
+      "gitBlob": "ad3e290a540f437d7576e217b910e9714959f430",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/bin.js",
+      "gitBlob": "e5ee5224f7b2cd12e636dabb0da6b1d12b0c1c86",
+      "mode": "100755"
+    },
+    {
+      "path": "vendor/cordis/package.json",
+      "gitBlob": "f34bceadc236c8d72b85254744f634e44c582540",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/context.ts",
+      "gitBlob": "0488423088e4da284d28c2d2cef887a5c69ed0f5",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/events.ts",
+      "gitBlob": "c7bf42632e5468b19c4a846bfdda5daaa2d3c27a",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/fiber.ts",
+      "gitBlob": "d4aed3158f65b3a9881536d97669c25587872b04",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/index.ts",
+      "gitBlob": "5c27008b44d50b8319ab3828ba02bd94adc5aa16",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/logger.ts",
+      "gitBlob": "7038ecc20249500b5bef1dda60644fa8c9752a10",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/reflect.ts",
+      "gitBlob": "7bbe1ae9919b930230844ec3d4365466a78e90a8",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/registry.ts",
+      "gitBlob": "478cf036cb2339fcd6c092ee0cb6f2babc500014",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/service.ts",
+      "gitBlob": "dc5742f8c22d338e6aee874b5bca51b3e3031165",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/src/utils.ts",
+      "gitBlob": "024d21f5e025290b2fd01277ea83ad2128908bfa",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cordis/tsconfig.json",
+      "gitBlob": "c7357481fd113a3437b253c7c55cd4c545562df3",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/LICENSE",
+      "gitBlob": "9fdec8c979b135b9433ad31949828f42a8eaa8a6",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/README.md",
+      "gitBlob": "7cdc1d17041051782955f3394068f7f7c807cd46",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/package.json",
+      "gitBlob": "ed563fc5c5a3c3dfaaa1cfca2549da3c5849aaaf",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/array.ts",
+      "gitBlob": "18ed5e407fe6932b2ca9eb2267d63deffca3a8cf",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/index.ts",
+      "gitBlob": "b6b7144168ae62cf1242fe051baa4ba35babcaa7",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/misc.ts",
+      "gitBlob": "11ed0a8597b12314f99cf39db10fec71cede8067",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/string.ts",
+      "gitBlob": "6f7084488196e9d73075dfcdb72cd5998ba6dfe6",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/time.ts",
+      "gitBlob": "6f9065493e56e8a5592704858a51a5d25f605a88",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/types.ts",
+      "gitBlob": "0aab4420c16776750ae4c5891ec3d6c3a1a8231b",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/src/volatile.ts",
+      "gitBlob": "a64c35f253e1619c20b8f95ee32fab0e1eb2684b",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/cosmokit/tsconfig.json",
+      "gitBlob": "b7411f94f27115c67c45e5fbff0bdf5ea85d450e",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/LICENSE",
+      "gitBlob": "9fdec8c979b135b9433ad31949828f42a8eaa8a6",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/README.md",
+      "gitBlob": "de94a32fdbf2451d881eb45b09508193208469f5",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/package.json",
+      "gitBlob": "af9f462e56b6bace8b1836c9fb7687845c491d20",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/config/diff.ts",
+      "gitBlob": "e97d53e5adeaa0fce38927a6d3b321148c3b0ab3",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/config/entry.ts",
+      "gitBlob": "5f819367ee11bc5d0a86988ceaa4dc2fc757a2c9",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/config/group.ts",
+      "gitBlob": "15d4d49e4b55e7c4a92a9d2c484a163ecfd94253",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/config/isolate.ts",
+      "gitBlob": "e2fd5391576b0e7b1bd41541b2360cccb92d1af5",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/config/tree.ts",
+      "gitBlob": "0ac369af969f089041dc35488fe7a4e979577e94",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/config/utils.ts",
+      "gitBlob": "8e28be0c4c58b716fd99ff869b3f864080a2ff16",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/index.ts",
+      "gitBlob": "51d36260a848ec9103f478aab8aefc6007970e67",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/internal.ts",
+      "gitBlob": "322fbceb6aaa5df3cbad9d6b32043870bd810802",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/src/resolve.ts",
+      "gitBlob": "6d5aadcf8beb56c883f955d287fd2326152a34ce",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/tsconfig.json",
+      "gitBlob": "341a8f0949c0c642c2a0a1bdd159f344889ec9ea",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/loader/tsdown.config.ts",
+      "gitBlob": "b1e43952f2e52fab4081d08136202d2cf2a62037",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/schemastery/LICENSE",
+      "gitBlob": "9fdec8c979b135b9433ad31949828f42a8eaa8a6",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/schemastery/README.md",
+      "gitBlob": "54972ce4c60825f2b7ea78d51b06ab4b467f10c4",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/schemastery/package.json",
+      "gitBlob": "89623bb7b9aaaf723b5a3c015ca247c986b5e630",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/schemastery/src/index.ts",
+      "gitBlob": "6edc132c49e2d0a2d845ddd00a8dae7d2d525380",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/schemastery/tsconfig.json",
+      "gitBlob": "b25fa05af7693ab62b91d8242e21ed00598677f0",
+      "mode": "100644"
+    },
+    {
+      "path": "vendor/schemastery/tsdown.config.ts",
+      "gitBlob": "3b3349847dce5becd716789188e3cfcfd76eee28",
+      "mode": "100644"
+    }
+  ]
+}

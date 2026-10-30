@@ -2,6 +2,10 @@
 
 来源固定为 [f3803c96974](https://github.com/DeepSeek-AI/deepseek-harness/commit/f3803c96974ad4a94195fb97e5c637e9c2a3afe3)，2026-10-30 审查。已复制文件与缺口见 [UPSTREAM-LOCK.md](UPSTREAM-LOCK.md)。
 
+## 当前验证补充（2026-10-30）
+
+第一层 Core + Loader 独立构建已完成：四包原源码与原包清单保持不变；TypeScript 实际编译并生成 JS，再打包和加载。已通过真实 Loader 磁盘插件、Service 异步初始化、依赖注入等待/恢复、配置重载、卸载及同 ID 重加载。见 [验收报告](BUILD-VERIFICATION-2026-10-30.md)。WEX 公共契约及适配器未进入开发；下文的早期环境阻塞和“这批未完成”段落为历史记录。
+
 ## 已在实际源码中观察到的实现
 
 1. **Cordis Core（`vendor/cordis/src/`）**：Context/Service、注册表、事件和 Fiber 生命周期是可复用的基础；DSH 本地 Fiber 对重入清理与卸载有额外修订。WEX 应优先保留原生命周期语义，而不是重新写一套 disposer。

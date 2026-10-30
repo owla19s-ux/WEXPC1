@@ -1,5 +1,13 @@
 # DSH 上游源码锁定记录（2026-10-30）
 
+## 当前验收状态（本批覆盖下方历史状态）
+
+2026-10-30 已完成 Core + Loader 独立 TypeScript/JS 构建与真实磁盘插件加载、Service/依赖/生命周期、卸载及重加载验证。上游锁定 SHA 不变；完整四包及另外 6 个研究/根文件共 51 个，逐字节匹配上游 Git blob，见 [机器可读清单](upstream-files.json)。补齐源码/许可证/原构建配置，所有 WEX 构建装配与修复仅在 `runtime/`、`checks/`。
+
+依赖精确锁：[runtime/package-lock.json](runtime/package-lock.json)。实际命令、故障与未验收范围：[构建验收报告](BUILD-VERIFICATION-2026-10-30.md)。根 LICENSE 已纳入 `upstream/`，四包许可证完整保留。没有移植整个 DSH 客户端，没有开发 WEX 适配器。Plugin Manager/App Boot 仍为部分研究快照。
+
+以下为先前各批记录，诸如“未克隆/未编译/尚无运行环境”的说明仅描述当时状态，以本节及验收报告为准。
+
 ## 来源与版本
 - 上游仓库：https://github.com/DeepSeek-AI/deepseek-harness
 - 本批锁定提交：`f3803c96974ad4a94195fb97e5c637e9c2a3afe3`

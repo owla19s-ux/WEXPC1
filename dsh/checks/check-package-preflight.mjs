@@ -29,7 +29,11 @@ for (const [name, pkg] of manifests) {
     ...pkg.dependencies, ...pkg.peerDependencies,
   })) {
     if (typeof version === 'string' && version.startsWith('workspace:') && !manifests.has(dep)) {
-      errors.push(name + ' requires unavailable workspace package ' + dep)
+      if (!pkg.dependencies?.[dep] && pkg.peerDependenciesMeta?.[dep]?.optional) {
+        warnings.push(name + ' optional peer omitted from minimal runtime: ' + dep)
+      } else {
+        errors.push(name + ' requires unavailable workspace package ' + dep)
+      }
     }
   }
 }

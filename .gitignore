@@ -36,3 +36,6 @@ tmp/
 *.key
 secrets.*
 credentials.*
+
+# Standalone DSH validation artifacts
+/dsh/runtime/.build/

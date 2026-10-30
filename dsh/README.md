@@ -1,75 +1,39 @@
-# dsh — DSH 插件机制复用与 WEX 适配
+# dsh — DSH 插件机制独立构建与验证
 
-本目录专门承载准备从 **DeepSeek Harness** 引入、打包和维护的插件基础机制及其 WEX 适配代码。目录名称统一使用小写 `dsh/`，不再采用 `DSH-Harness/`。
+本目录保存版本锁定的 DSH 插件基础机制。WEX 自有插件机制在 [plugins/](../plugins/README.md)，外部 DSH Agent 连接器在 [connections/dsh/](../connections/dsh/README.md)，两者不由本目录替代。
 
-## 职责和边界
+## 当前状态（2026-10-30）
 
-- **引入上游机制**：研究并复用适用的 Cordis Core、Loader、插件清单、Bundle/Profile 以及相关生命周期机制；按需分批纳入，不复制整个 DSH 应用、Agent Loop、会话或 UI。
-- **WEX 适配器**：在 DSH 插件宿主与 WEX 的能力注册、权限、存储、UI 面板之间建立明确的适配边界；不直接修改上游内部 API 以假装两者原生兼容。
-- **WEX 自有插件机制**：独立位于 [plugins/](../plugins/README.md)，不得被本目录替代。
-- **WEX 自有连接体系**：独立位于 [connections/](../connections/README.md)；其中 [connections/dsh/](../connections/dsh/README.md) 负责连接外部运行的 DSH Agent 客户端，和这里承载的 DSH 插件机制是两种不同功能。
-- **上游资料与版权**：已保存的源码与许可证仍在 [references/dsh/source-snapshot/](../references/dsh/source-snapshot/README.md)，以其作为导入和对照依据。已在 `upstream/` 导入同一上游 commit 的部分实际源码（见下）；尚未集成可运行插件引擎，不把部分源码快照视为生产依赖。
+已在 Linux / Node 24.22.1 上完成 **Cordis Core + Loader 的真实独立编译与模块加载验证**：
 
-## 规划中的安装/运行数据
+- 四个完整 vendored 包：cosmokit、schemastery、Cordis Core、Loader；源码/原包清单不改写。
+- TypeScript 项目编译生成 JS、声明及 source maps，再由独立 esbuild 入口打包，保留原包 exports 和 schemastery 的 ESM/CJS 输出形式。
+- 真实磁盘插件通过 Loader 导入，验证 Service 注册、异步初始化、依赖等待与恢复、调用、配置重载、卸载、相同 ID 重新加载与清理。
+- 默认 native import fallback 和 `--expose-internals` Node 内部加载路径均已运行。
+- 51 个上游文件逐字节匹配锁定 commit 的 Git blob；依赖版本和 npm integrity 保存在锁文件。
 
-用户选择的 WEX 公共数据根目录下，扩展存放位置分开管理：
+这证明基础机制可以独立构建，不代表已实现 WEX 集成、DSH Bundle/Profile/商店兼容、源码 HMR 或 Windows Electron 验收。Plugin Manager / App Boot / Manifest 仍仅保留先前研究入口，未参与构建。**WEX 适配器与公共契约未开发。**
 
-```text
-<WEX_DATA>/
-└── plugins/
-    ├── wex/     # WEX 自有插件安装包
-    └── dsh/     # DSH 兼容插件安装包
+## 复现
+
+要求 Node >=24.9.0、npm、可访问 npm registry；从仓库根目录执行：
+
+```sh
+npm ci --prefix dsh/runtime --ignore-scripts --no-audit --no-fund
+npm run --prefix dsh/runtime build
+npm test --prefix dsh/runtime
+node --expose-internals dsh/checks/test-loader-runtime.mjs
 ```
 
-这是**运行时安装目录的逻辑规划，不是本仓源码目录**。安装包、插件配置与插件数据应隔离；未来需确定安装清单、加载和卸载、权限、兼容性、版本与回滚。只创建目录不意味着所有 DSH 插件都能运行。
+构建入口和锁文件在 [runtime/](runtime/README.md)；生成内容在忽略的 `runtime/.build/`，包解析链接在忽略的 `dsh/node_modules/`。不直接对含 `workspace:~` 的上游 package.json 执行 npm install。这里的构建器是 WEX 维护的独立验证工具，不是 DSH 原 monorepo 构建系统。
 
-## 首版安排
+## 来源、边界与升级
 
-先确定可复用的 Cordis/DSH 组件、其真实许可与依赖范围，构建可运行的最小集成试验，再设计 DSH 插件服务到 WEX 的适配接口。优先保证 WEX API、搜索、本地工具和外部 DSH 连接器不依赖 DSH 插件生态才能启动。
+- 固定来源：`DeepSeek-AI/deepseek-harness@f3803c96974ad4a94195fb97e5c637e9c2a3afe3`。
+- [版本与历史](UPSTREAM-LOCK.md)、[逐文件 blob 清单](upstream-files.json)、[源码审查](PLUGIN-MECHANISM-REVIEW.md)、[实际构建报告](BUILD-VERIFICATION-2026-10-30.md)。
+- `upstream/` 保持原路径、源码、许可证、包清单和构建配置；WEX 构建工具与测试单独维护。未复制 DSH Agent 客户端。
+- Cordis 的可选 include peer 与 Loader 的可选 native addon 未安装；本阶段不运行需要 include 的 Core CLI，不依赖 native addon。
+- 更新时先锁定完整新 commit、比较源码/依赖/许可证，再更新 blob 清单与依赖锁、干净重建并运行兼容测试。测试失败时保留原版本，不凭接口未变承诺适配器兼容。
+- Cordis 同进程插件不提供系统沙箱，安装目录分离不等于权限隔离。
 
-研究归档：[上游快照与逐层审查](../references/dsh/source-snapshot/README.md)。
-
-
-## 上游同步与适配器稳定策略（2026-10-30）
-
-**采用方向**：将 DSH 插件机制作为版本锁定的上游依赖/源码快照，尽可能原样保存；WEX 通过单独维护的适配器把插件服务映射到 WEX 的业务机制，避免修改上游源码内部接口。WEX 自有 `plugins/` 与 `connections/` 始终保持独立。不是承诺所有 DSH 插件无需适配就能使用。
-
-### 版本和来源
-
-- 每次导入应在 `dsh/` 中记录上游仓库、**完整 Git commit SHA**、包清单、依赖锁定、许可证与所包含文件；不能用浮动 `main` 或 `latest` 表示已经引入的版本。
-- 2026-10-30 查询上游最近提交时查到 `f3803c96974ad4a94195fb97e5c637e9c2a3afe3`（`release(dsh): 0.2.2-alpha.2`，上游提交时间 2026-10-27 UTC）；这是**已观察到的提交**，并不等于已将该版本完整复制进 WEX，也不保证查询覆盖所有分支更新。实际导入时再次核实默认分支 HEAD 并锁定。
-- `references/dsh/source-snapshot/` 中现存的文件是**不同时间独立读取的研究快照**，不能直接视作一个可构建的上游版本，更不应误报已集成。
-- 上游文件尽量不就地修改。必须修复时以 WEX 自有补丁记录差异、原因、适用版本及回退办法，避免未来难以更新。
-
-### 适配器与升级流程
-
-1. 冻结一个可构建的上游 DSH/Cordis 插件机制版本，并明确**最小依赖闭包**；不要复制整个 DSH Agent 产品。
-2. 在 WEX 边界单独实现服务适配：服务注册、插件身份与作用域、能力暴露、权限授权、UI 扩展、运行态状态到 WEX 数据的映射。优先保留 DSH 原服务与 Bundle/Manifest 语义，不以随意改名模拟兼容。
-3. 建立可复用的兼容测试样本：Cordis 生命周期/卸载、依赖缺失、Provider 注册与调用、异常和清理、Bundle 激活状态、权限拒绝、插件安装目录隔离，以及至少一个真实 DSH 插件。
-4. 更新时先比对上游 commit 的变更、依赖、许可证、运行环境和公开/隐含行为；在独立分支或可回退的测试环境替换源文件、重跑适配器契约测试，再推进到 WEX 主程序。不要求每次更新都改适配器；**失败时维持原版本并报告兼容断点**。
-5. 即使 TypeScript 接口未变，也关注实际行为变化：异步加载、Scope 生命周期、Loader 配置顺序、插件状态、事件与 UI 载入。只有测试通过才宣布“不需要改适配器”。
-6. 外部第三方插件代码不等于可信；Cordis 同进程插件机制不提供文件/网络/凭证隔离。安装目录分离不是安全沙箱，未来必须单独审查权限与隔离。
-
-### 安装目录与源码隔离
-
-- WEX 公共数据目录下 `plugins/wex/` 是 WEX 插件包，`plugins/dsh/` 是 DSH 兼容插件包。
-- 源码 `dsh/` 是上游机制与适配代码（未来实现）；源码 `plugins/` 是 WEX 自有模块机制；**两类运行时插件数据和配置应与安装包分开存放**。
-- `connections/dsh/` 仍是连接外部 DSH Agent 客户端的独立连接器，不等同于插件宿主。
-
-### 目前未完成
-
-尚未将一个**统一 commit、可构建、依赖完整**的 DSH 插件机制复制至 `dsh/`；适配器、兼容测试和 Windows Electron 实测也均未完成。后续优先确定上游最小机制依赖集合并验证能否独立构建，再定义 WEX 内部公共契约。
-
-
-## 2026-10-30：真实上游源码已开始导入
-
-- [上游版本锁定与已复制文件清单](UPSTREAM-LOCK.md)
-- [Cordis / Loader / Manifest / DSH Boot 首轮源码审查](PLUGIN-MECHANISM-REVIEW.md)
-- [固定版本的上游源码目录](upstream/)
-
-本批统一读取 DeepSeek Harness `f3803c96974ad4a94195fb97e5c637e9c2a3afe3` 并复制 25 个代表性源码/许可证/包文件。**仍为不完整依赖快照，尚不能宣称独立构建成功、上游最新版本已完整移植或适配器已运行。** 接下来需要补齐依赖闭包、构建和加载测试。
-
-
-## 源码依赖补齐进展
-
-第二批已补齐 Core/Loader 的构建配置、cosmokit 和 schemastery 的声明与代表性源文件及许可证，以及 Loader 遗漏的 config/diff.ts。完整清单与验证缺口见 [UPSTREAM-LOCK.md](UPSTREAM-LOCK.md)。仍没有完整构建或 Windows Electron 实测；WEX 适配器未动。
+运行时安装位置仍仅为已有规划：用户选择的数据根下 `plugins/wex/`、`plugins/dsh/` 分离，插件包与配置、数据分别管理。本批不实现安装器，不修改 Space、工作流、权限或产品范围。

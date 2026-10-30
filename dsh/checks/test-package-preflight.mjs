@@ -31,12 +31,23 @@ try {
   const missingDep = run()
   assert.notEqual(missingDep.status, 0)
   assert.match(missingDep.stderr, /unavailable workspace package/)
+  fs.writeFileSync(loader, JSON.stringify({
+    name: '@deepseek-ai/loader',
+    peerDependencies: { '@deepseek-ai/optional': 'workspace:~' },
+    peerDependenciesMeta: { '@deepseek-ai/optional': { optional: true } },
+  }))
+  const optionalPeer = run()
+  assert.equal(optionalPeer.status, 0, 'missing optional workspace peer must not block Core+Loader')
+  fs.writeFileSync(loader, JSON.stringify({
+    name: '@deepseek-ai/loader', peerDependencies: { '@deepseek-ai/required': 'workspace:~' },
+  }))
+  assert.notEqual(run().status, 0, 'missing required workspace peer must still fail')
   fs.writeFileSync(loader, JSON.stringify({name:'@deepseek-ai/loader'}))
   fs.rmSync(path.join(root, 'vendor', 'loader', 'LICENSE'))
   const missingLicense = run()
   assert.notEqual(missingLicense.status, 0)
   assert.match(missingLicense.stderr, /LICENSE/)
-  console.log('PASS: manifest baseline, missing workspace dependency, missing license (3 cases)')
+  console.log('PASS: manifest baseline, missing workspace dependency, optional peer, required peer, missing license (5 cases)')
 } finally {
   fs.rmSync(tmp, { recursive: true, force: true })
 }

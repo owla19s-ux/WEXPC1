@@ -1,0 +1,13 @@
+# 独立 Core + Loader 验证工具
+
+此处仅维护 WEX 自有构建装配，不修改 `../upstream/`。完整命令见 [工程入口](../README.md)，真实结果见 [验收报告](../BUILD-VERIFICATION-2026-10-30.md)。
+
+`build.mjs` 先验证上游 blob，随后清空 `.build/`，从四个原始 package tsconfig 派生独立项目：只重定向输出、项目引用、四包 source aliases、Node/Standard Schema 类型解析。继承上游编译规则，TypeScript 真正编译全部源文件；不关闭类型检查或吞掉错误。生成 JS 再经 esbuild 打包到原清单的公开入口，复制原 package.json 和 LICENSE，并建立本地包解析链接。
+
+固定依赖：TypeScript 5.9.3、@types/node 24.10.0、esbuild 0.25.12、@standard-schema/spec 1.1.0。前三者为验证工具选择，不冒称上游 monorepo 的原工具锁；Standard Schema 版本满足上游声明的 `^1.1.0`。npm 锁文件记录具体 tarball 与 integrity。实际运行时包闭包只有四个 vendored 包，Standard Schema 只用于类型，未引入 Agent/Boot/Client。
+
+安装使用 `--ignore-scripts`，本轮 Linux 的 esbuild 平台二进制由锁定可选包提供，已实测可运行；其他 OS/架构需另验。生成 manifest 保留 `workspace:` 字段，只作本地解析，不将 `.build/` 当成可发布 npm 包。Core CLI 原样保留用于完整性，但依赖可选 include，不在本轮运行入口内。原 tsdown 配置作为上游资料保留，独立构建不安装 tsdown 或其 monorepo 构建链。
+
+`verify.mjs` 为每个检查创建独立 Node 进程并设 30 秒上限，失败立即退出。`smoke-runtime` 保留原基本检查；`test-loader-runtime` 覆盖真实文件导入与依赖/生命周期变化，无 mock。配置重载和相同模块重新挂载已经测试，编辑源码后清除 ESM cache 的 HMR 尚未测试。
+
+生成目录及链接均被 git 忽略。删除 `dsh/runtime/.build/` 与 `dsh/node_modules/` 后可从锁文件重建；测试不启动 GitHub Actions，也不接触 WEX 业务数据。
