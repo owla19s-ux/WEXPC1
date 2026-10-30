@@ -8,7 +8,7 @@
 - **WEX 适配器**：在 DSH 插件宿主与 WEX 的能力注册、权限、存储、UI 面板之间建立明确的适配边界；不直接修改上游内部 API 以假装两者原生兼容。
 - **WEX 自有插件机制**：独立位于 [plugins/](../plugins/README.md)，不得被本目录替代。
 - **WEX 自有连接体系**：独立位于 [connections/](../connections/README.md)；其中 [connections/dsh/](../connections/dsh/README.md) 负责连接外部运行的 DSH Agent 客户端，和这里承载的 DSH 插件机制是两种不同功能。
-- **上游资料与版权**：已保存的源码与许可证仍在 [references/dsh/source-snapshot/](../references/dsh/source-snapshot/README.md)，以其作为导入和对照依据。尚未集成可运行插件引擎，不把研究快照视为生产依赖。
+- **上游资料与版权**：已保存的源码与许可证仍在 [references/dsh/source-snapshot/](../references/dsh/source-snapshot/README.md)，以其作为导入和对照依据。已在 `upstream/` 导入同一上游 commit 的部分实际源码（见下）；尚未集成可运行插件引擎，不把部分源码快照视为生产依赖。
 
 ## 规划中的安装/运行数据
 
@@ -59,3 +59,12 @@
 ### 目前未完成
 
 尚未将一个**统一 commit、可构建、依赖完整**的 DSH 插件机制复制至 `dsh/`；适配器、兼容测试和 Windows Electron 实测也均未完成。后续优先确定上游最小机制依赖集合并验证能否独立构建，再定义 WEX 内部公共契约。
+
+
+## 2026-10-30：真实上游源码已开始导入
+
+- [上游版本锁定与已复制文件清单](UPSTREAM-LOCK.md)
+- [Cordis / Loader / Manifest / DSH Boot 首轮源码审查](PLUGIN-MECHANISM-REVIEW.md)
+- [固定版本的上游源码目录](upstream/)
+
+本批统一读取 DeepSeek Harness `f3803c96974ad4a94195fb97e5c637e9c2a3afe3` 并复制 25 个代表性源码/许可证/包文件。**仍为不完整依赖快照，尚不能宣称独立构建成功、上游最新版本已完整移植或适配器已运行。** 接下来需要补齐依赖闭包、构建和加载测试。
