@@ -1,5 +1,8 @@
 # 设计文档索引
 
+**代码目录同步**：现有工作流实验仍在 [workflows/editor/](../workflows/editor/README.md)，广义专业视图后续源码归属在 [views/](../views/README.md)；内外连接/适配边界在 [connections/](../connections/README.md)，WEX 动态插件研究在 [plugins/](../plugins/README.md)，内置 DSH 原生插件测试在 [dsh/](../dsh/README.md)。这些 README 是就近维护的职责说明，并非已实现功能。
+
+
 **当前研究总览（2026-10-30）**：[WEXPC1 当前研究共识与施工边界](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)。统一整理连接器/外部 Agent 优先、DSH 两条路线、React Flow 视图研究、非执行映射图、数据一致性及暂缓事项；此前冲突的技术候选表述，以此处及专门的最新修正规则为准。
 
 
