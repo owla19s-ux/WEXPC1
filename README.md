@@ -45,7 +45,7 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 **目录补充（2026-10-30）**：权限独立为 `permissions/`，角色配置归 `AI/roles/`，账号体系预留 `accounts/`。三者分别管理授权、AI 角色配置和身份，不能混在一起。账号不构成首版强制登录要求。
 
-| [DSH-Harness](DSH-Harness/README.md) | DSH / Cordis 上游资料与源码快照的独立归档入口 |
+| [dsh](dsh/README.md) | DSH 插件机制复用包与 WEX 适配入口 |
 
 ## 研究与历史资料
 
@@ -66,4 +66,7 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 2026-10-30 新增 [DSH / Cordis 原始文件快照与适配审查](references/dsh/source-snapshot/README.md)：已保留许可证、来源 SHA、原始文档/类型文件，先读源码再设计 WEX 公共契约。
 
-**目录界限更新**：`DSH-Harness/` 是外部上游研究资料存放区；`plugins/` 是 WEX 自己的插件机制；`connections/` 是 WEX 自己的连接体系。上游来源不决定 WEX 的内部职责归属。
+**目录界限更新**：`dsh/` 是外部上游研究资料存放区；`plugins/` 是 WEX 自己的插件机制；`connections/` 是 WEX 自己的连接体系。上游来源不决定 WEX 的内部职责归属。
+
+
+**安装插件目录约定（规划）**：用户选择的 WEX 数据根目录下分离 `plugins/wex/` 与 `plugins/dsh/` 两类安装包；源码 `plugins/` 是 WEX 自有插件机制，源码 `dsh/` 是 DSH 机制复用和适配；两者不可混为一谈。尚未实现安装器或插件引擎。
