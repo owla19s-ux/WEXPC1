@@ -68,3 +68,8 @@
 - [固定版本的上游源码目录](upstream/)
 
 本批统一读取 DeepSeek Harness `f3803c96974ad4a94195fb97e5c637e9c2a3afe3` 并复制 25 个代表性源码/许可证/包文件。**仍为不完整依赖快照，尚不能宣称独立构建成功、上游最新版本已完整移植或适配器已运行。** 接下来需要补齐依赖闭包、构建和加载测试。
+
+
+## 源码依赖补齐进展
+
+第二批已补齐 Core/Loader 的构建配置、cosmokit 和 schemastery 的声明与代表性源文件及许可证，以及 Loader 遗漏的 config/diff.ts。完整清单与验证缺口见 [UPSTREAM-LOCK.md](UPSTREAM-LOCK.md)。仍没有完整构建或 Windows Electron 实测；WEX 适配器未动。
