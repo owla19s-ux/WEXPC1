@@ -3,7 +3,7 @@
 **当前研究决策摘要（2026-10-30）**：[连接器、DSH、视图引擎与持续数据的阶段边界](docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)。首期以连接器为主体，外部 Agent 执行能力优先研究；React Flow 为实验性的视图交互组件，DSH Core+Loader 仅供 DSH 原生插件兼容实验，WEX 自有插件机制暂不定型。本文下方早期 Cordis 优先候选及源码目录描述如有矛盾，以此最新共识为准。
 
 
-本仓保存设计研究、实验和用户确认的源码维护目录。目前新增目录只有职责说明，尚未形成可运行 WEXPC 应用；旧 WEXPC 产品代码未迁移。
+本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。大多数功能域只有职责说明，尚未形成可运行 WEXPC 应用；旧 WEXPC 产品代码未迁移。
 
 ## 当前技术基线（2026-10-30 已确认）
 
@@ -46,7 +46,7 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 2026-10-30：按用户指示建立目录及说明，取代此前“不建立目录”的阶段限制。子文件及具体实现接口仍未冻结；主技术路线已按上文确认，不创建虚假的 main.*、page.* 或构建入口。未采用独立 work、templates、dispatcher、execution 顶层目录。
 
-**目录更新（2026-10-30）**：新增 [plugins](plugins/README.md) 管理 Cordis 基础模块机制；[connections](connections/README.md) 管理具体 API、搜索、本地工具与 DSH 连接器。模块化首版是目标，完整 DSH 插件市场兼容仍为后续研究方向。
+**现行目录边界（2026-10-30）**：[plugins](plugins/README.md) 只保留 WEX 自有插件机制研究；[connections](connections/README.md) 管理内部/公共受控边界与具体连接器；内置连接器可由可信宿主直接装配，不要求 Cordis 或插件加载器。
 
 **目录补充（2026-10-30）**：权限独立为 `permissions/`，角色配置归 `AI/roles/`，账号体系预留 `accounts/`。三者分别管理授权、AI 角色配置和身份，不能混在一起。账号不构成首版强制登录要求。
 
@@ -61,7 +61,7 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 - [需求对冲架构](需求对冲架构/README.md)
 - [旧资料](旧资料/README.md)
 
-实验原位保留，不冒充正式实现。本次未重跑实验；历史实验结果以各自报告的范围为准。
+实验原位保留，不冒充正式实现。上一批已实际重跑编辑器与 DSH 宿主，外部 DSH 仅取得真实失败回执；本批为架构静态审查，不将历史运行结果外推为新架构已实现。
 
 安装目录、用户数据根目录和源码目录不同。主要数据遵循用户选择的位置，系统凭证等为明确例外；重装后接回数据是待实现和验证的要求。
 
@@ -70,10 +70,16 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 2026-10-30 新增 [DSH / Cordis 原始文件快照与适配审查](references/dsh/source-snapshot/README.md)：已保留许可证、来源 SHA、原始文档/类型文件，先读源码再设计 WEX 公共契约。
 
-**目录界限更新**：`dsh/` 是外部上游研究资料存放区；`plugins/` 是 WEX 自己的插件机制；`connections/` 是 WEX 自己的连接体系。上游来源不决定 WEX 的内部职责归属。
+**目录界限更新**：`dsh/` 保存上游资料及独立插件宿主实验；`plugins/` 为 WEX 自有插件机制预留；`connections/` 是 WEX 连接体系与外部 Agent 交接实验。上游来源不决定内部职责归属。
 
 
 **安装插件目录约定（规划）**：用户选择的 WEX 数据根目录下分离 `plugins/wex/` 与 `plugins/dsh/` 两类安装包；源码 `plugins/` 是 WEX 自有插件机制，源码 `dsh/` 是 DSH 机制复用和适配；两者不可混为一谈。尚未实现安装器或插件引擎。
 
 
-**DSH 机制导入进展（2026-10-30）**：已把固定提交 `f3803c9` 下的 Cordis Core、Loader、Manifest、Plugin Manager、App Boot 代表性源文件放入 [`dsh/upstream/`](dsh/upstream/)，详见 [导入版本锁](dsh/UPSTREAM-LOCK.md) 与 [源码审查](dsh/PLUGIN-MECHANISM-REVIEW.md)。这是部分源码、并非可独立构建的完整 DSH 插件引擎，适配器尚未实现。
+**DSH 机制导入进展（2026-10-30）**：已把固定提交 `f3803c9` 下的 Cordis Core、Loader、Manifest、Plugin Manager、App Boot 代表性源文件放入 [`dsh/upstream/`](dsh/upstream/)，详见 [导入版本锁](dsh/UPSTREAM-LOCK.md) 与 [源码审查](dsh/PLUGIN-MECHANISM-REVIEW.md)。Core+Loader 四包已可独立构建；Plugin Manager / App Boot / Manifest 等代表性文件仍是部分快照，不是完整 DSH 引擎或产品适配器。
+
+## 第二批：整体架构细化与边界审查
+
+[统一职责、数据权威、七个场景与契约门槛](docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md#6-第二批整体职责与依赖方向)。各功能域 README 保存对应施工边界，本页不再复制整套设计。架构 → 场景验证 → 业务契约 → 实现契约 → 工程施工；本批完成前两项的静态检查，不宣布运行验收。
+
+最小修正：权限统一归 `permissions/`；连接器不经 `plugins/` 强制注册；任务/流程状态归 `workflows/`，操作尝试与回执归 `connections/` 宿主边界；Context 放置与本体分开，关联不复制、不扩权；视图映射不变成执行依赖。方案未冻结签名、IPC、数据表或插件包协议。

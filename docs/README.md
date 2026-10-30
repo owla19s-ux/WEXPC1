@@ -25,4 +25,4 @@
 - [audits/WEXPC-SOURCE-BOUNDARY-READONLY-2026-10-28.md](audits/WEXPC-SOURCE-BOUNDARY-READONLY-2026-10-28.md)
 - [audits/WEXPC1-ARCHITECTURE-STRESS-TEST-TASK.md](audits/WEXPC1-ARCHITECTURE-STRESS-TEST-TASK.md)
 
-本轮仅建立目录说明，尚未实现产品功能；未迁移旧 WEXPC 代码。
+现有独立实验不等于产品功能；未迁移旧 WEXPC 代码。第二批仅更新对应域 README 与[统一审查 §§6–9](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md#6-第二批整体职责与依赖方向)，记录职责、权威归属、冲突追踪和七个场景，不新增平行架构文档。
