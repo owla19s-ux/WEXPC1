@@ -25,3 +25,17 @@
 3. 上游更新先固定新 commit，比对上游差异；重新同步对应文件，不混用两个 ref 的半更新。运行契约、权限边界、版本与生命周期回归后再切换。
 4. WEX `plugins/` 保存自己的插件机制；WEX `connections/` 保存 API/搜索/本地/外部 DSH 连接器；`dsh/` 保存引入的 DSH 机制及桥接实现。安装包分别放 WEX 数据根目录下 `plugins/wex/` 与 `plugins/dsh/`。
 5. 在可实际安装运行之前，不承诺任意 DSH Bundle 或 UI 插件与 WEX 兼容。
+
+
+## 2026-10-30 第二批补充（同一锁定提交）
+
+本批继续从 `f3803c96974ad4a94195fb97e5c637e9c2a3afe3` 导入：
+- `vendor/cordis/tsconfig.json`、`vendor/loader/tsconfig.json` 与 `tsconfig.base.json`。
+- `vendor/loader/src/config/diff.ts`，为实际 `entry.ts` 引用的必要文件。
+- `vendor/cosmokit/{package.json,tsconfig.json,LICENSE}` 和 `src/{index,array,types,misc,string,time,volatile}.ts`。
+- `vendor/schemastery/{package.json,tsconfig.json,LICENSE}` 和 `src/index.ts`。
+- 原版 `vendor/cordis/README.md` 与 `vendor/loader/README.md`。
+
+按已复制源码静态 import 关系，Cordis Core 依赖 cosmokit 与外部 `@standard-schema/spec`；Loader 依赖 Cordis、cosmokit、schemastery，以及 Node 运行环境。Loader 原始包声明了可选 `node-addon-require-builtin`，构建与运行时行为必须具体测试。工作区包声明仍含 `workspace:~`，不能直接把当前快照当作独立 npm 安装包。
+
+**验证进度**：已人工读取核心、Loader 入口与直接导入关系，并补齐已知直接源文件；目前尚未建立完整上游 workspace、锁文件与构建脚本，也未运行 TypeScript 编译/加载测试，不能认定所有传递依赖闭合。上游 DSH Plugin Manager / App Boot 仅有入口文件，仍不是完整包。后续应优先完成最小 Core+Loader 构建试点，不提前设计 WEX 公共契约。
