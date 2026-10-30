@@ -11,3 +11,11 @@
 `verify.mjs` 为每个检查创建独立 Node 进程并设 30 秒上限，失败立即退出。`smoke-runtime` 保留原基本检查；`test-loader-runtime` 覆盖真实文件导入与依赖/生命周期变化，无 mock。配置重载和相同模块重新挂载已经测试，编辑源码后清除 ESM cache 的 HMR 尚未测试。
 
 生成目录及链接均被 git 忽略。删除 `dsh/runtime/.build/` 与 `dsh/node_modules/` 后可从锁文件重建；测试不启动 GitHub Actions，也不接触 WEX 业务数据。
+
+## 独立进程生命周期入口（2026-10-30）
+
+构建后执行 `node dsh/runtime/host-process.mjs hello`：打印 started/loaded/unloaded/stopped，并确认根 Loader 已释放。`throw`、`missing` 两个模式分别真实导入启动抛错插件、缺失模块，打印 failed、disposed=true，退出 1。仅允许这三个受控模式，不接任意第三方插件路径。
+
+`node --test dsh/checks/test-host-process.mjs` 的三项真实子进程测试已通过并纳入 `npm test --prefix dsh/runtime`。本批重跑锁文件安装、四包 TypeScript/打包、原有全部检查及 `node --expose-internals dsh/checks/test-loader-runtime.mjs` 均通过。上游 51 文件 blob 完整性仍匹配 f3803c9；未修改上游源码。
+
+这是独立短周期启动/停止验证入口，不是持续后台插件服务器；测试插件真实导入、真实执行和释放，hello 是仓库已有样本而非市场兼容性证明。Windows 待验：包解析与路径/链接、平台构建二进制、启动抛错后的退出/资源释放、Electron 通过独立 worker/子进程托管。未把任何第三方插件装入 Electron 主进程。
