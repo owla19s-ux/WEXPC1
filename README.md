@@ -70,3 +70,6 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 
 **安装插件目录约定（规划）**：用户选择的 WEX 数据根目录下分离 `plugins/wex/` 与 `plugins/dsh/` 两类安装包；源码 `plugins/` 是 WEX 自有插件机制，源码 `dsh/` 是 DSH 机制复用和适配；两者不可混为一谈。尚未实现安装器或插件引擎。
+
+
+**DSH 机制导入进展（2026-10-30）**：已把固定提交 `f3803c9` 下的 Cordis Core、Loader、Manifest、Plugin Manager、App Boot 代表性源文件放入 [`dsh/upstream/`](dsh/upstream/)，详见 [导入版本锁](dsh/UPSTREAM-LOCK.md) 与 [源码审查](dsh/PLUGIN-MECHANISM-REVIEW.md)。这是部分源码、并非可独立构建的完整 DSH 插件引擎，适配器尚未实现。
