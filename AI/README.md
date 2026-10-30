@@ -7,3 +7,7 @@
 [源码目录与 Windows 数据要求](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
+
+## 角色配置目录
+
+[roles/](roles/README.md) 专门维护角色配置；未来记忆及其他 AI 能力可在本目录按需扩展。角色的实际操作授权由独立 [permissions/](../permissions/README.md) 处理。
