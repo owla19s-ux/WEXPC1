@@ -29,3 +29,12 @@
 ## 这批未完成的内容
 
 没有下载并集成完整 DSH monorepo；没有证明本快照可编译、可以安装 DSH 商店插件或在 Windows Electron 环境正常加载。下阶段先补齐 Core/Loader 的完整依赖文件，再做加载和行为测试，之后才能合理冻结 WEX 的公共契约。
+
+
+## 第二批静态依赖核查
+
+从已导入的 `cordis/src/index.ts` 可看到直接依赖 `context/events/fiber/logger/registry/service/utils`；其中 `context.ts` 还依赖 `reflect.ts`。Loader 的 `src/index.ts` 需要 `internal.ts` 和 `config/{entry,group,isolate,tree,utils}.ts`，`entry.ts` 引用 `config/diff.ts`，`tree.ts` 引用 `resolve.ts`。本批已补这些路径。
+
+实际包图：`@deepseek-ai/cordis` → `@deepseek-ai/cosmokit`；`@deepseek-ai/cordis-plugin-loader` → Cordis / cosmokit / schemastery；schemastery 另依赖 `@standard-schema/spec`。需要实际 Node 与包构建验证，而非仅确认文件存在。
+
+**当前卡点**：本环境没有从 GitHub 下载整个工作区的网络路径；仓库连接器逐文件复制可以用于审查和补档，但无法直接证明完整依赖图可编译。下一步优先确定构建所需的最小 workspace/锁文件和可运行的 Cordis 加载冒烟测试，不编写 WEX 桥接适配器。
