@@ -39,3 +39,7 @@ credentials.*
 
 # Standalone DSH validation artifacts
 /dsh/runtime/.build/
+
+# Isolated Python experiment caches
+__pycache__/
+*.pyc
