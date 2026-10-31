@@ -24,7 +24,7 @@
 - [全局架构：双插件体系边界](../docs/architecture/DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)
 - [运行时扩展契约研究](../docs/architecture/RUNTIME-EXTENSION-CONTRACT-V0.1.md)
 - [研究决策](../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)
-- [DSH 能力差距审计](../docs/audits/DSH-WEXPCeasy-GAP-MATRIX-V0.1.md)
+- [DSH 能力差距审计](../docs/audits/DSH-WEXPC1-GAP-MATRIX-V0.1.md)
 - [第六批准备度](../docs/batch6/READINESS.md)
 
 本目录当前为预留机制或独立实验，不等于完整产品模块已获施工准入。研究/实验结果只证明其明确记录的范围；不得外推为完整 WEX 集成、Windows 实机或生产可用性。
