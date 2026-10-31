@@ -8,10 +8,11 @@ paths = [f'{domain}/{name}' for domain in domains for name in ['README.md','CONT
 paths += ['README.md','AI/roles/README.md','shared/storage/README.md','shared/credentials/README.md',
           'connections/dsh/README.md','workflows/runtime/README.md','workflows/editor/README.md',
           'dsh/README.md','dsh/runtime/README.md','plugins/README.md','accounts/README.md',
-          'docs/README.md','docs/MODULE-CONTRACTS.md','docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md',
-          'docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md',
-          'docs/research/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md',
-          'docs/research/APP-FOUNDATIONS-GAP-AUDIT-2026-10-31.md','tools/README.md']
+          'docs/README.md','docs/MODULE-CONTRACTS.md','docs/decisions/RESEARCH-DECISIONS-2026-10-30.md',
+          'docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md',
+          'docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md',
+          'docs/audits/APP-FOUNDATIONS-GAP-AUDIT-2026-10-31.md','docs/architecture/README.md',
+          'docs/decisions/README.md','docs/research/README.md','docs/audits/README.md','tools/README.md']
 files = {ROOT/name for name in paths}
 files.update((ROOT/'docs/batch6').glob('*.md'))
 files.update((ROOT/'docs/architecture').glob('*.md'))
@@ -46,5 +47,18 @@ expected = {f'L{i:02d}' for i in range(1,13)}|{f'H{i:02d}' for i in range(1,22)}
 if set(rows) != expected or len(rows)!=33: errors.append('33 baseline sample matrix changed')
 if set(re.findall(r'^### (H\d\d) ',stress,re.M)) != {f'H{i}' for i in range(22,31)}:
     errors.append('H22–H30 changed')
+
+# Module-to-global documentation navigation contract.
+for domain in domains:
+    contract = (ROOT/domain/'CONTRACT.md').read_text()
+    readme = (ROOT/domain/'README.md').read_text()
+    if '## 文档关联与施工入口' not in contract:
+        errors.append(f'missing documentation map: {domain}/CONTRACT.md')
+    if '文档关联与施工入口' not in readme or 'docs/README.md' not in readme:
+        errors.append(f'missing documentation entry: {domain}/README.md')
+for domain in ['plugins','dsh','accounts']:
+    if '## 文档入口与证据边界' not in (ROOT/domain/'README.md').read_text():
+        errors.append(f'missing reserved-domain evidence boundary: {domain}/README.md')
+
 if errors: raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(files)} Markdown files, {links} file targets, 11 domain entries, F01–F09/X01–X09, original 33+9 samples; anchors and semantics not certified')

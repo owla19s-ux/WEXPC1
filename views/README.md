@@ -16,7 +16,7 @@
 
 ## 边界与参考
 
-- [当前研究共识](../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)
+- [当前研究共识](../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)
 - [工作流领域](../workflows/README.md)：业务流程、任务状态、调度与执行，不管理所有非执行图。
 - [Space / Context](../space/README.md)：对象所属组织及范围；视图不是新的 Context。
 - [WEX 编辑器原型边界](../workflows/editor/README.md)
@@ -43,7 +43,7 @@
 
 覆盖样本 L08/L12。公开行为候选是视图配置/映射、按获准来源生成投影和发起领域编辑，不提供直接设置 Task 正式状态的出口。用领域投影替身验证旧版本、撤权、来源失联与同名不同语义；图形库/组件和布局算法保持可替换，不把 React Flow 类型泄漏到通用领域。
 
-契约就近、公开出口/依赖约束、分层测试和模块施工方法见[统一研究](../docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)。本段只给制定契约的依据，不表示公开接口已实现或所有建议已获采纳。
+契约就近、公开出口/依赖约束、分层测试和模块施工方法见[统一研究](../docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)。本段只给制定契约的依据，不表示公开接口已实现或所有建议已获采纳。
 
 
 
@@ -55,3 +55,12 @@
 ### 第六批施工准备度（2026-10-31）
 
 **绿（仅布局配置包）**：按本目录[CONTRACT第六批条款](CONTRACT.md)执行上述稳定范围；C/D未决能力继续暂缓，绿色不代表全域实现/验收完成。[全域矩阵](../docs/batch6/READINESS.md)、[实验结果](../docs/batch6/EXPERIMENTS.md)、[施工顺序](../docs/batch6/NEXT.md)。
+
+
+## 文档入口
+
+- [本域契约及关联依据](CONTRACT.md#文档关联与施工入口)
+- [WEXPC1 文档体系总索引](../docs/README.md)
+- [全模块契约索引](../docs/MODULE-CONTRACTS.md)
+
+全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。

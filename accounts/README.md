@@ -8,3 +8,13 @@
 
 
 第六批：[最新准备度/证据及限制](../docs/batch6/READINESS.md)。原生Core+Loader实验、WEX外部DSH连接和Windows实机证据分别验收；预留平台不因局部实验通过进入正式施工。
+
+
+## 文档入口与证据边界
+
+- [文档体系总索引](../docs/README.md)
+- [全局契约地图](../docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)
+- [研究决策与当前边界](../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)
+- [第六批准备度与待决边界](../docs/batch6/READINESS.md)
+
+本目录当前为预留机制或独立实验，不等于完整产品模块已获施工准入。研究/实验结果只证明其明确记录的范围；不得外推为完整 WEX 集成、Windows 实机或生产可用性。

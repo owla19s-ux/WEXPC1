@@ -16,7 +16,7 @@
 
 现有构建/测试报告及待真机验证范围由 [原型 README](editor/prototype/README.md) 说明。多视图关系、三维、正式模板节点协议和多项目并发引擎均**暂缓到 PC 真机使用研究后**，本次不预建实现目录。
 
-参考：[当前研究共识](../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md) · [Space/Context 设计](../space/README.md)。
+参考：[当前研究共识](../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md) · [Space/Context 设计](../space/README.md)。
 
 ## 第二批：工作、执行、验收分别维护
 
@@ -39,7 +39,7 @@
 
 覆盖样本 L06/L07/L09/L10。围绕 Task/工作轮次、分配、证据接收/验收和恢复决策归并契约，连接执行与操作观察只作为依赖。可以在执行/判权/存储替身上验证真实任务行为，再与真实提供方组合；不能把 L06 整条链路分散实现成各域共管任务状态。
 
-契约就近、公开出口/依赖约束、分层测试和模块施工方法见[统一研究](../docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)。本段只给制定契约的依据，不表示公开接口已实现或所有建议已获采纳。
+契约就近、公开出口/依赖约束、分层测试和模块施工方法见[统一研究](../docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)。本段只给制定契约的依据，不表示公开接口已实现或所有建议已获采纳。
 
 
 
@@ -51,3 +51,12 @@
 ### 第六批施工准备度（2026-10-31）
 
 **黄**：按本目录[CONTRACT第六批条款](CONTRACT.md)执行上述稳定范围；C/D未决能力继续暂缓，绿色不代表全域实现/验收完成。[全域矩阵](../docs/batch6/READINESS.md)、[实验结果](../docs/batch6/EXPERIMENTS.md)、[施工顺序](../docs/batch6/NEXT.md)。
+
+
+## 文档入口
+
+- [本域契约及关联依据](CONTRACT.md#文档关联与施工入口)
+- [WEXPC1 文档体系总索引](../docs/README.md)
+- [全模块契约索引](../docs/MODULE-CONTRACTS.md)
+
+全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
