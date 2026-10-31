@@ -1,0 +1,1 @@
+PASS: 51 Markdown files, 375 file targets, 11 domain entries, F01–F09/X01–X09, original 33+9 samples; anchors and semantics not certified

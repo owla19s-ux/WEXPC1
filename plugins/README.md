@@ -13,3 +13,6 @@
 当前不新建 runtime/、registry/、market/ 等空壳目录。已有早期关于 Cordis 作为 WEX 模块基础的设想保留在 Git 历史和研究资料中，不再作为当前施工决策。
 
 详见 [本阶段研究共识](../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md) 与 [DSH 双路线架构说明](../docs/WEXPC1-DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)。
+
+
+第六批：[最新准备度/证据及限制](../docs/batch6/READINESS.md)。原生Core+Loader实验、WEX外部DSH连接和Windows实机证据分别验收；预留平台不因局部实验通过进入正式施工。

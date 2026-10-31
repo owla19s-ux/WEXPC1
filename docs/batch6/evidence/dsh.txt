@@ -1,0 +1,36 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node verify.mjs
+
+PASS: 51 upstream files match DeepSeek-AI/deepseek-harness@f3803c96974ad4a94195fb97e5c637e9c2a3afe3
+PASS: baseline, existing relative import, missing relative import (3 cases)
+PASS: manifest baseline, missing workspace dependency, optional peer, required peer, missing license (5 cases)
+Scanned source files: 26; relative imports: 65
+External specifiers: @deepseek-ai/cordis, @deepseek-ai/cosmokit, @deepseek-ai/schemastery, @standard-schema/spec
+PASS: relative import paths are present. Build and runtime unverified.
+DSH pinned vendor preflight: checked 4/4 package manifests
+NOTE: @deepseek-ai/cordis optional peer omitted from minimal runtime: @deepseek-ai/cordis-plugin-include
+NOTE: External registry packages, workspace install and TS compilation are NOT validated.
+NOTE: Plugin Manager / App Boot are partial snapshots and are not checked here.
+PASS: basic vendored package manifests and required file paths present (static only)
+PASS: Cordis service registration, injection, Loader mount, disposal
+Loader module path: native import fallback
+PASS: native disk module import, async Service init, dependency activation and call
+PASS: config reload cleans old service and reactivates injected consumer
+PASS: unload removes service/entry and suspends dependent
+PASS: same-id re-load, final unload and Loader service disposal
+PASS: sample Bundle manifest -> insert subset -> bare package import -> unload -> same-process re-load -> cleanup
+PASS: temporary package link removed
+✔ real isolated Loader process: hello (87.753009ms)
+✔ real isolated Loader process: throw (86.492901ms)
+✔ real isolated Loader process: missing (86.291732ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 268.690923
+PASS: two real injected consumers, selective dispose, dependency suspension, in-flight late result, new generation and cleanup

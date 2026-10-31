@@ -1,11 +1,18 @@
 """Checks batch-six file links/coverage only; does not certify architecture semantics."""
 from pathlib import Path
 import re
-import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-changed = subprocess.check_output(['git','diff','--name-only'],cwd=ROOT,text=True).splitlines()
-files = {ROOT/name for name in changed if name.endswith('.md')}
+domains = ['app','space','AI','conversations','connections','workflows','permissions','shared','views','workflows/modes','UI']
+paths = [f'{domain}/{name}' for domain in domains for name in ['README.md','CONTRACT.md']]
+paths += ['README.md','AI/roles/README.md','shared/storage/README.md','shared/credentials/README.md',
+          'connections/dsh/README.md','workflows/runtime/README.md','workflows/editor/README.md',
+          'dsh/README.md','dsh/runtime/README.md','plugins/README.md','accounts/README.md',
+          'docs/README.md','docs/MODULE-CONTRACTS.md','docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md',
+          'docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md',
+          'docs/research/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md',
+          'docs/research/APP-FOUNDATIONS-GAP-AUDIT-2026-10-31.md','tools/README.md']
+files = {ROOT/name for name in paths}
 files.update((ROOT/'docs/batch6').glob('*.md'))
 files.add(ROOT/'experiments/contract-readiness-spike/README.md')
 errors = []; links = 0

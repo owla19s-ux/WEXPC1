@@ -19,3 +19,6 @@
 `node --test dsh/checks/test-host-process.mjs` 的三项真实子进程测试已通过并纳入 `npm test --prefix dsh/runtime`。本批重跑锁文件安装、四包 TypeScript/打包、原有全部检查及 `node --expose-internals dsh/checks/test-loader-runtime.mjs` 均通过。上游 51 文件 blob 完整性仍匹配 f3803c9；未修改上游源码。
 
 这是独立短周期启动/停止验证入口，不是持续后台插件服务器；测试插件真实导入、真实执行和释放，hello 是仓库已有样本而非市场兼容性证明。Windows 待验：包解析与路径/链接、平台构建二进制、启动抛错后的退出/资源释放、Electron 通过独立 worker/子进程托管。未把任何第三方插件装入 Electron 主进程。
+
+
+第六批：[最新准备度/证据及限制](../../docs/batch6/EXPERIMENTS.md)。原生Core+Loader实验、WEX外部DSH连接和Windows实机证据分别验收；预留平台不因局部实验通过进入正式施工。

@@ -37,3 +37,8 @@
 边界：数据根、技术锁和迁移基础由shared提供；具体连接可用性由connections/适配器提供；插件生命周期由对应宿主负责；授权由permissions决定；Task与Operation分别由workflows/connections维护。更新应用程序、迁移数据格式、更新DSH插件是不同责任，不能合并成一个无条件副作用操作。应用聚合的健康状态只能引用来源证据，不可反写业务完成结果。
 
 后续验收须至少涵盖同一数据根重复启动、子进程残留、renderer/main进程崩溃、启动循环安全恢复、更新失败及旧数据回接、部分依赖缺失时的降级。当前无Windows实机证据，不能据文档宣称这些能力已可用。
+
+
+### 第六批施工准备度（2026-10-31）
+
+**黄**：按本目录[CONTRACT第六批条款](CONTRACT.md)执行上述稳定范围；C/D未决能力继续暂缓，绿色不代表全域实现/验收完成。[全域矩阵](../docs/batch6/READINESS.md)、[实验结果](../docs/batch6/EXPERIMENTS.md)、[施工顺序](../docs/batch6/NEXT.md)。

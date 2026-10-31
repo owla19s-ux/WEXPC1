@@ -1,0 +1,11 @@
+{
+  "baseline": "aeca0ec7b8e574732d74b03e828e603584f2fdad",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "sqlite": "3.53.1",
+  "node": "v24.22.1",
+  "windows_available": false,
+  "dependency_setup": "reused existing local dsh/runtime/node_modules; rebuilt from pinned vendored source; no fresh registry install",
+  "paid_services": false,
+  "actions_invoked": false
+}

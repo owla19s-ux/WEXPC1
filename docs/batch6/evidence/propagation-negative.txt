@@ -1,0 +1,14 @@
+test_F03_second_transform_cannot_broaden_source_targets (__main__.Mechanisms.test_F03_second_transform_cannot_broaden_source_targets) ... FAIL
+
+======================================================================
+FAIL: test_F03_second_transform_cannot_broaden_source_targets (__main__.Mechanisms.test_F03_second_transform_cannot_broaden_source_targets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/9cd06e177716/WEXPC1/experiments/contract-readiness-spike/test_mechanisms.py", line 106, in test_F03_second_transform_cannot_broaden_source_targets
+    self.assertFalse(m.send(self.db, z, 'D'))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

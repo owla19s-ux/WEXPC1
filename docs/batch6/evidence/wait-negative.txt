@@ -1,0 +1,14 @@
+test_F01_cycle_persists_independent_work_and_safe_recovery (__main__.Mechanisms.test_F01_cycle_persists_independent_work_and_safe_recovery) ... FAIL
+
+======================================================================
+FAIL: test_F01_cycle_persists_independent_work_and_safe_recovery (__main__.Mechanisms.test_F01_cycle_persists_independent_work_and_safe_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/9cd06e177716/WEXPC1/experiments/contract-readiness-spike/test_mechanisms.py", line 33, in test_F01_cycle_persists_independent_work_and_safe_recovery
+    self.assertFalse(m.independent(self.db, 'P'), 'B release must not free A unknown hold')
+AssertionError: True is not false : B release must not free A unknown hold
+
+----------------------------------------------------------------------
+Ran 1 test in 0.047s
+
+FAILED (failures=1)
