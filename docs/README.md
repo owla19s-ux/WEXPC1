@@ -17,6 +17,7 @@ AI/协作者进入仓库时，先读根目录 [README](../README.md) 了解产�
 
 | 类型 | 位置 | 内容与维护原则 |
 |---|---|---|
+| 产品需求基线 | [product/](product/README.md) | F01–F15 基础功能、交互语义、UI 映射边界与需求对冲；不替代模块契约或版本计划 |
 | 模块职责与业务契约 | 各功能域的 `README.md`、`CONTRACT.md` | 模块自己维护；全局索引只负责导航 |
 | 全局架构 | [architecture/](architecture/README.md) | 跨模块结构、边界、运行与宿主设计 |
 | 决策记录 | [decisions/](decisions/README.md) | 已确认约束、候选、实验门槛、用户待决事项 |
@@ -34,7 +35,8 @@ AI/协作者进入仓库时，先读根目录 [README](../README.md) 了解产�
 - 最近完成批次：[第八批交付报告](batch8/REPORT.md)。第八批任务书是历史范围记录，不是当前待执行任务。
 - 基础能力规格：[G1–G7 落地映射](planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。这是跨模块能力归属和验收依据，不是完整产品功能表，也不是 0.1.1 版本计划。
 - 既有[阶段路线图](planning/PHASE-ROADMAP-2026-10-31.md)和[后续施工计划](planning/CONSTRUCTION-PLAN-2026-10-31.md)保留作研究/历史规划参考；在重新核对并建立新的正式规划前，不把它们或旧批次任务书直接当作当前派工依据。
-- **待建立：** 正式产品功能表、0.1.1 版本计划，以及据此形成的阶段任务总表和施工卡。
+- **产品需求基线已建立首轮稿：** [F01–F15 基础功能总表](product/PRODUCT-FUNCTION-CATALOG-2026-11-01.md)、[交互与 UI 边界](product/INTERACTION-AND-UI-BOUNDARY-2026-11-01.md)、[需求对冲与遗漏审查](product/REQUIREMENT-REVIEW-2026-11-01.md)。仍需第二轮逐项评审和用户确认；不代表 0.1.1 范围已批准。
+- **待建立：** 0.1.1 版本计划，以及据此形成的阶段任务总表和施工卡。
 - [全模块业务契约索引](MODULE-CONTRACTS.md)：模块职责、公开能力、依赖与现有实现状态。
 - [基础能力完整性审查](audits/FOUNDATION-CAPABILITY-COMPLETENESS-REVIEW-2026-10-31.md)：基本动作遗漏与复杂组合检查。
 - [第六批准备度与实验记录](batch6/README.md)：历史审查依据和实验结果。
