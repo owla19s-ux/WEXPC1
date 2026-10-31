@@ -35,3 +35,9 @@
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+## G2/G7：工具往返与输入附件
+
+Conversations 管逻辑生成和输入/输出来源；工具意图须经 permissions 与 connections 受控边界，工具结果关联原 Operation 后才能回注本轮。文本、文件选择/拖入/粘贴及附件预览属于输入体验；临时附件不自动成为 Context 长期资料，生成输入派发后不可被后续编辑改写。
+
+新对话可读取历史与 Task 检查点，但不能恢复模型隐藏上下文或假定旧生成仍运行。跨域落地见[基础能力映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

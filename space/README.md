@@ -51,3 +51,9 @@ Context 可以保存自己的资料和组合配置；引用的对话、任务、
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+## G1/G5：Context 资源与查询入口
+
+Space 只保存 Context 对外部资源、WEX 持久资料和其他领域对象的获准引用/组合关系；不接管文件正文，不把路径当永久身份，不因引用自动授权。Context 是跨对话重新读取长期资料的入口，不是某次聊天总结。内部查询只返回本域获准组织/引用投影，全文内容由资源 owner 提供。
+
+跨域落地和持续工作验收见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)及[本域契约补充](CONTRACT.md)。

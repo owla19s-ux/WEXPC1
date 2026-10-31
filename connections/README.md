@@ -80,3 +80,9 @@
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+## G1/G2/G4/G5/G6：基础连接闭环
+
+连接器解析真实资源并提供来源/版本观察；宿主边界维护 Operation/attempt/结果未知与外部回执；连接器按实际能力声明查询、进度、取消和接续支持。普通 API 工具意图由 Conversations 协调，不由连接器自行执行或授权。外部 Search/Fetch 与 WEX 内部检索分离；连接配置只保存凭证引用，不保存秘密值。
+
+跨对话恢复必须查询原 Operation 和真实外部状态，不能用新会话重发或 timeout 推断未执行。详细要求见[基础能力映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

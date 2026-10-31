@@ -116,3 +116,20 @@
 - 每个批次至少持续完成一个有实质产物的工作单元，不因一次工具调用就停止；发现缺陷应在授权范围内修复并复测。
 - 代码、契约、报告、测试证据必须同步；报告不得把历史测试数冒充最新结果。
 - 发生产品范围、权限政策、目录结构、持久化格式或用户待决事项变化时，先记录影响并交用户裁决。
+
+## 6. G1–G7 基础能力与跨对话持续工作补充
+
+[基础能力落地映射与跨对话持续工作规格](FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)是本计划的跨批次验收补充，不是新增七个施工批次，也不改变既有批次顺序和 owner。
+
+执行时必须遵循：
+
+1. G1–G7 按映射归入现有模块；施工范围落在对应 owner 目录，不创建万能资源、搜索、配置、Agent 或状态中心。
+2. G3 是真实副作用入口的前置门槛。当前非对话入口 `entry_policy_unresolved` 保持阻断；Task/Local/GitHub/外部回调不得用伪造 Conversation ID 或继承对话授权绕过。
+3. 第十、十一、十五批共同完成跨对话持续工作：Conversation 保存交互/输入依据，Workflows 保存 Task 检查点，Connections 保存 Operation/外部观察。任何一方不得复制另一方的权威状态。
+4. 新 Conversation/模型/Agent 接手时，先读取 Task 当前修订、核对资源版本、查询原 Operation、复核权限和冲突，再决定是否派发；不允许通过重发消息或整任务重跑替代恢复。
+5. G4 的连接器能力按实际声明 query/progress/cancel/resume；取消请求不等于停止确认，unknown 不自动重试。
+6. G5 内部检索由各 owner 提供获准查询，UI 聚合；外部 Search/Fetch 仍归 `connections/search`。
+7. G6 配置归各模块、凭证归 `shared/credentials`、诊断技术入口归 Shared/App；Operation、授权审计、Task/验收证据仍由原 owner 保存。
+8. G7 文件选择/拖入/粘贴与附件预览属于 UI 输入体验；真实文件访问经 App/Connections 窄能力，Renderer 不获得任意文件系统权限。
+
+本计划后续每批任务书必须从上述映射提取本批相关条目，并写明本批实现范围、未实现项、真实消费者及组合验收。不能把文档回写、隔离实验或替身测试描述为产品闭环完成。
