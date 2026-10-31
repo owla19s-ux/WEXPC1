@@ -5,13 +5,19 @@ export interface ModuleDiagnostic {readonly module:string;readonly reason:'depen
 export interface StopResult {readonly status:'stopped'|'incomplete';readonly failed:readonly string[]}
 export interface Host {readonly status:'ready'|'degraded'|'failed';readonly diagnostics:readonly ModuleDiagnostic[];stop():Promise<StopResult>}
 export async function assemble(definitions:readonly ModuleDefinition[],options:{required:readonly string[];timeoutMs:number}):Promise<Host>{
- const diagnostics:ModuleDiagnostic[]=[];const active=new Map<string,Instance>();let stopPromise:Promise<StopResult>|undefined;
- const lateFailures:string[]=[];const initializing=new Set<string>();
+ const diagnostics:ModuleDiagnostic[]=[];const active=new Map<string,Instance>();const pendingReleases=new Map<string,Instance>();let stopPromise:Promise<StopResult>|undefined;
+ const initializing=new Set<string>();
+ const recordReleaseFailure=(id:string)=>{if(!diagnostics.some(d=>d.module===id&&d.reason==='release_failed'))diagnostics.push({module:id,reason:'release_failed'});};
  const stop=()=>{if(stopPromise)return stopPromise;
  const job=(async()=>{
- const failed=[...lateFailures,...initializing];for(const [id,instance] of [...active].reverse()){
- try{await instance.stop();}catch{failed.push(id);lateFailures.push(id);}
- }active.clear();return Object.freeze({status:failed.length?'incomplete' as const:'stopped' as const,failed:Object.freeze([...new Set(failed)])});
+ const failed=[...initializing];
+ for(const [id,instance] of [...active].reverse()){
+ try{await instance.stop();active.delete(id);}catch{failed.push(id);recordReleaseFailure(id);}
+ }
+ for(const [id,instance] of [...pendingReleases].reverse()){
+ try{await instance.stop();pendingReleases.delete(id);}catch{failed.push(id);recordReleaseFailure(id);}
+ }
+ return Object.freeze({status:failed.length?'incomplete' as const:'stopped' as const,failed:Object.freeze([...new Set(failed)])});
  })();
  stopPromise=job;void job.then(r=>{if(r.status==='incomplete')stopPromise=undefined;});return job;};
  const modules=new Map(definitions.map(d=>[d.id,d]));
@@ -32,7 +38,7 @@ export async function assemble(definitions:readonly ModuleDefinition[],options:{
  const controller=new AbortController();let expired=false;let timer:NodeJS.Timeout|undefined;
  initializing.add(d.id);
  const pending=Promise.resolve().then(()=>d.start(dependencies,controller.signal));
- const late=pending.then(async instance=>{if(expired){try{await instance.stop();}catch{lateFailures.push(d.id);diagnostics.push({module:d.id,reason:'release_failed'});}}}).finally(()=>{initializing.delete(d.id);});
+ const late=pending.then(async instance=>{if(expired){try{await instance.stop();}catch{pendingReleases.set(d.id,instance);recordReleaseFailure(d.id);}}}).finally(()=>{initializing.delete(d.id);});
  void late.catch(()=>{});
  try{
  const outcome=await Promise.race([pending,new Promise<'timeout'>(r=>{timer=setTimeout(()=>{expired=true;controller.abort();r('timeout');},options.timeoutMs);})]);

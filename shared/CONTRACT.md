@@ -150,3 +150,9 @@ shared提供限定技术提交/回读、根身份/锁与日志凭证机制，不
 - `createDiagnostics` 只允许技术 code/module/level 白名单，不接受自由消息正文、任意字段或业务证据；sink失败明确返回 failed。普通诊断不是 Operation、权限审计或 Task/Artifact/Verification 账本。没有日志文件轮转/保留策略实现。
 
 测试：`npm run test:shared`。真实 SQLite 与测试专用内存替身共用 `shared/tests/store-contract.mjs` 向量；ACK丢失通过真实 COMMIT 后的传输端口异常注入，另有真实只读与跨进程锁竞争。不以替身证明持久性。SH03–05 的完整备份/Windows凭证/ACL/重装关系恢复均未实现，C/D保留。
+
+## 第七批收尾修复（2026-10-31）
+
+inspectRoot 在读取根身份标记前通过 lstat 检查，拒绝符号链接和非普通文件；缺失、损坏和不兼容仍按既有结果分类。该检查不是句柄级原子操作，不承诺抵抗同用户恶意并发换链。
+
+createDirectoryLock 提供可注入文件系统端口用于故障测试，默认 directoryLock 行为不变。创建锁目录后若owner写入失败，只在owner内容与本次随机token完全一致时删除该文件，并仅尝试删除空目录；若内容未知、清理失败或目录非空，保留锁并返回unavailable，避免误删其他执行者的占用。

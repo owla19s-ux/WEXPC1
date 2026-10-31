@@ -76,3 +76,15 @@ permissions真实实现分别消费SQLite及共享存储替身；app消费者与
 本地通过GitHub连接器读取/写入，提交前复核main；新提交以上述固定基线为父，更新ref携带expected SHA避免覆盖。未创建PR/分支/Release；未触发Actions，提交带skip ci且当前仓库无工作流。
 
 最终main SHA由本报告所属Git提交及交付回执提供（避免自引用提交哈希）；见 [main提交记录](https://github.com/owla19s-ux/WEXPC1/commits/main)。本批文档与代码同一提交交付。
+
+## 第七批收尾修复（2026-10-31）
+
+本次针对首轮验收后的三处可靠性缺口追加局部修复，不改变模块owner、权限语义、存储格式或Windows/Electron未决结论。
+
+- **app停机重试**：assemble 保留释放失败的活动实例；迟到初始化的释放失败也进入待清理集合。stop 返回 incomplete 后允许再次执行，重试未确认的释放；只有释放确认成功才移除实例。startFoundations 外层不再永久缓存 incomplete，provider停机或root lease释放失败后可重试。根锁仍只在所有provider停止确认后释放。
+- **shared锁创建回滚**：owner写入失败时，只删除内容与本次随机token完全一致的owner；只尝试移除空锁目录。无法确认所有权或目录含未知内容时保持阻断，不做宽泛递归删除。
+- **根身份标记**：inspectRoot 先 lstat 检查 .wex-root.json，拒绝符号链接与非普通文件。此举不构成句柄级原子防护，不能夸大为抵御同用户恶意并发换链。
+
+新增回归测试覆盖：provider关闭瞬时失败后重试、root lease释放瞬时失败后重试、模块stop失败重试、迟到实例清理重试、身份标记符号链接/目录拒绝、owner写入确认丢失后的安全回滚，以及未知owner内容保留并持续阻断。
+
+**验证边界**：本次通过GitHub源码写入接口提交变更；当前执行环境没有仓库工作树且无法解析外部GitHub/npm网络，因此未在本轮运行Node/TypeScript测试。新增测试已写入对应测试入口，须在可用Node >=24.9.0环境执行 npm test、npm run typecheck；不以静态审查冒充运行通过。本轮不触发GitHub Actions。

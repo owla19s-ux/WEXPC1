@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp, mkdir, symlink,writeFile,rm} from 'node:fs/promises';
+import {mkdtemp, mkdir, symlink,writeFile,rm,lstat,readFile,unlink,rmdir} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import * as api from '../../dist/shared/src/index.js';
@@ -44,4 +44,37 @@ test('unknown existing root lock is never cleaned and foreign owner cannot relea
 });
 test('diagnostic sink failure is observable without rewriting business results',()=>{
  assert.equal(api.createDiagnostics(()=>{throw Error('full');}).emit({module:'shared',code:'storage_unavailable',level:'error'}).status,'failed');
+});
+
+test('root marker must be a regular non-symlink file',async()=>{
+ const dir=await mkdtemp(join(tmpdir(),'wex-marker-'));
+ try{
+ const root=join(dir,'root');await mkdir(root);
+ const target=join(dir,'trusted-marker');await writeFile(target,JSON.stringify({format:1,id:'marker'}));
+ await symlink(target,join(root,'.wex-root.json'));
+ assert.equal((await api.inspectRoot(root)).reason,'corrupt');
+ await rm(join(root,'.wex-root.json'));
+ await mkdir(join(root,'.wex-root.json'));
+ assert.equal((await api.inspectRoot(root)).reason,'corrupt');
+ }finally{await rm(dir,{recursive:true,force:true});}
+});
+
+test('failed owner write cleans its exact token and leaves unknown lock contents untouched',async()=>{
+ const makeRoot=async(label)=>{
+  const dir=await mkdtemp(join(tmpdir(),label));await writeFile(join(dir,'.wex-root.json'),JSON.stringify({format:1,id:label}));
+  const probe=await api.inspectRoot(dir,label);assert.equal(probe.status,'available');return {dir,root:probe.root};
+ };
+ const first=await makeRoot('wex-lock-ack-');
+ try{
+  const injected=api.createDirectoryLock({mkdir,readFile,unlink,rmdir,writeFile:async(path,data,options)=>{await writeFile(path,data,options);throw Error('simulated write acknowledgement loss');}});
+  assert.equal((await injected.acquire(first.root)).status,'unavailable');
+  await assert.rejects(()=>lstat(join(first.dir,'.wex-write-lock')),{code:'ENOENT'});
+  const normal=await api.directoryLock.acquire(first.root);assert.equal(normal.status,'acquired');await normal.release();
+ }finally{await rm(first.dir,{recursive:true,force:true});}
+ const second=await makeRoot('wex-lock-foreign-');
+ try{
+  const injected=api.createDirectoryLock({mkdir,readFile,unlink,rmdir,writeFile:async(path)=>{await writeFile(path,'foreign-owner',{flag:'wx'});throw Error('simulated foreign owner content');}});
+  assert.equal((await injected.acquire(second.root)).status,'unavailable');
+  assert.equal((await api.directoryLock.acquire(second.root)).status,'blocked');
+ }finally{await rm(second.dir,{recursive:true,force:true});}
 });

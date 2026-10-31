@@ -32,12 +32,16 @@ export async function startFoundations(options:FoundationOptions):Promise<Founda
  }}
  ],{required:['shared','permissions'],timeoutMs:1000});
  let stopPromise:ReturnType<Host['stop']>|undefined;
- const stop=()=>stopPromise??=(async()=>{
+ const stop=()=>{
+ if(stopPromise)return stopPromise;
+ const job=(async()=>{
  const result=await host.stop();
  // Keep root occupied when provider shutdown cannot confirm release.
  if(result.status==='incomplete')return result;
  try{await release();return result;}catch{return {status:'incomplete' as const,failed:['root-lock']};}
  })();
+ stopPromise=job;void job.then(result=>{if(result.status==='incomplete')stopPromise=undefined;});return job;
+ };
  if(host.status==='failed')await stop();
  const current=permissions;
  return Object.freeze({...host,...(current?{permissions:current}:{}),stop});

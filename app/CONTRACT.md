@@ -139,3 +139,7 @@ app继续只拥有可信装配、实例/生命周期事实与恢复协调。应�
 该入口验证基础装配，不是Electron应用或完整WEX闭环。没有Electron窗口、preload/IPC、React UI、后台常驻、开机启动或窗口关闭策略；未对这些未来接口建空实现。Electron/Windows接线及E4仍未验证，不冻结打包器/平台协议。D04与全部D01–D07未代裁。
 
 测试：`npm run test:app`。提供方生命周期测试使用故障模块；消费方同一权限reader向量对照真实与替身；集成真实根/锁/SQLite/permissions，覆盖撤销持久化、缺模块/存储、链接逃逸和不确定释放。
+
+## 第七批收尾修复（2026-10-31）
+
+app/src/assembly.ts 对未确认释放的模块实例保留引用；stop 返回 incomplete 后允许再次调用，重试失败实例和迟到初始化实例的清理。成功释放的实例才从待清理集合移除，历史 release_failed 诊断保留。startFoundations 外层仅缓存进行中的stop；provider关闭或root lease释放未确认时清除缓存，下一次stop重新执行必要步骤。root lease 仅在所有provider停止确认后释放。相关行为由 app host 与真实SQLite集成测试覆盖。

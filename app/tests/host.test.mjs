@@ -24,9 +24,11 @@ test('late initialization cannot register and its resources are released',async(
  resolve({value:{},stop:async()=>{releases++;}});await new Promise(r=>setTimeout(r,5));
  assert.equal(releases,1);assert.equal(h.status,'degraded');await h.stop();
 });
-test('release failure stays observable and does not prevent other cleanup',async()=>{
- let cleaned=false;const h=await api.assemble([{id:'a',requires:[],start:async()=>({value:1,stop:async()=>{cleaned=true;}})},{id:'b',requires:['a'],start:async()=>({value:2,stop:async()=>{throw Error('secret');}})}],{required:[],timeoutMs:50});
+test('release failure stays observable, cleans other modules, and can be retried',async()=>{
+ let cleaned=false,attempts=0;const h=await api.assemble([{id:'a',requires:[],start:async()=>({value:1,stop:async()=>{cleaned=true;}})},{id:'b',requires:['a'],start:async()=>({value:2,stop:async()=>{if(++attempts===1)throw Error('secret');}})}],{required:[],timeoutMs:50});
  const result=await h.stop();assert.equal(cleaned,true);assert.equal(result.status,'incomplete');assert.deepEqual(result.failed,['b']);
+ assert.equal(h.diagnostics.some(d=>d.module==='b'&&d.reason==='release_failed'),true);
+ assert.equal((await h.stop()).status,'stopped');assert.equal(attempts,2);
 });
 test('dependency cycles and duplicate module IDs fail without starting modules',async()=>{
  let starts=0;const start=async()=>{starts++;return {value:1,stop:async()=>{}};};

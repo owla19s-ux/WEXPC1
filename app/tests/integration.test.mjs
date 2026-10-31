@@ -59,3 +59,30 @@ test('unconfirmed provider close retains root lease and exposes incomplete shutd
  assert.equal((await h.stop()).status,'incomplete');assert.equal(released,0);assert.equal((await h.stop()).status,'incomplete');assert.equal(released,0);
  }finally{await rm(root,{recursive:true,force:true});}
 });
+
+test('foundation shutdown retries a transient provider close failure before releasing the root lease',async()=>{
+ const root=await mkdtemp(join(tmpdir(),'wex-close-retry-'));await writeFile(join(root,'.wex-root.json'),JSON.stringify({format:1,id:'close-retry'}));
+ let closeAttempts=0,releaseAttempts=0;
+ try{
+  const h=await api.startFoundations({dataRoot:root,trust,
+   lock:{acquire:async()=>({status:'acquired',release:async()=>{releaseAttempts++;}})},
+   openStore:(path,ns)=>{const real=openSqliteStore(path,ns);return {...real,close(){if(++closeAttempts===1)throw Error('temporary close failure');real.close();}};}
+  });
+  assert.equal(h.status,'ready');
+  assert.equal((await h.stop()).status,'incomplete');assert.equal(releaseAttempts,0);
+  assert.equal((await h.stop()).status,'stopped');assert.equal(closeAttempts,2);assert.equal(releaseAttempts,1);
+ }finally{await rm(root,{recursive:true,force:true});}
+});
+
+test('foundation shutdown retries root lease release after providers have stopped',async()=>{
+ const root=await mkdtemp(join(tmpdir(),'wex-root-release-retry-'));await writeFile(join(root,'.wex-root.json'),JSON.stringify({format:1,id:'root-release-retry'}));
+ let releaseAttempts=0;
+ try{
+  const h=await api.startFoundations({dataRoot:root,trust,
+   lock:{acquire:async()=>({status:'acquired',release:async()=>{if(++releaseAttempts===1)throw Error('temporary lease release failure');}})}
+  });
+  assert.equal(h.status,'ready');
+  assert.equal((await h.stop()).status,'incomplete');assert.equal(releaseAttempts,1);
+  assert.equal((await h.stop()).status,'stopped');assert.equal(releaseAttempts,2);
+ }finally{await rm(root,{recursive:true,force:true});}
+});

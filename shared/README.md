@@ -55,9 +55,9 @@
 - `Store.read/commit/query`：一个命名空间聚合快照及原意图记录；期望修订 CAS；明确 committed / not_committed / unknown。成功及意图记录在同一 SQLite 事务；命名空间在构造时由可信宿主绑定，消费者不取得 DB 句柄。读取故障抛错，不能冒充空库。
 - 意图作用域为同一数据库、命名空间及 intent；原提交包含 expectedRevision 与规范 JSON 内容，完全一致重送返回原修订，不同内容冲突。原意图记录当前不自动过期、不提供清理；跨重启保留。unknown 后通过原 intent query/权威记录回读，未确认不重建外部动作。
 - `openSqliteStore/createSqliteStore` 为可替换 Node SQLite 适配；`SqlitePort` 是技术驱动接口；对外不承诺跨库/文件/服务原子性。不将本批适配器冻结为全产品存储选型。当前使用 Node 24.22.1 内建 SQLite，未验证 Electron 的 Node 版本适配。
-- `inspectRoot` 只读现存 `.wex-root.json`（format=1、id非空）；不自动初始化、移动、修复旧根。诊断 missing_path / missing_volume（需平台 ENODEV/ENXIO 证据）/ permission_denied / corrupt / incompatible / identity_conflict / unavailable；ENOENT 不推断缺盘。
+- `inspectRoot` 只读现存 `.wex-root.json`（format=1、id非空）；先用 `lstat` 拒绝符号链接及非普通文件，不自动初始化、移动、修复旧根。检查仍是路径观察，不是抗同用户恶意并发换链的句柄级能力。诊断 missing_path / missing_volume（需平台 ENODEV/ENXIO 证据）/ permission_denied / corrupt / incompatible / identity_conflict / unavailable；ENOENT 不推断缺盘。
 - `resolveWithin` 重新核根身份并用 realpath + relative 检查现存路径；拒绝绝对路径与链接逃逸。结果只是当时定位观察，不是抗同用户恶意换链的文件操作凭证；未来真正读写/删除出口仍需句柄级平台校验。
-- `RootLock` 可替换。默认 `directoryLock` 是保守合作目录锁：原子 mkdir、随机 owner、释放核对、不自动清旧锁。进程崩溃会留下锁并阻断，尚无安全自动回收；不是 Windows OS 活性锁/ACL/沙箱证明。
+- `RootLock` 可替换。默认 `directoryLock` 是保守合作目录锁：原子 mkdir、随机 owner、释放核对、不自动清旧锁。owner写入失败时仅清理由本次调用创建且内容精确匹配随机token的owner；仅在目录为空时尝试移除锁目录，任何未知内容均保留并继续阻断。进程崩溃会留下锁并阻断，尚无安全自动回收；不是 Windows OS 活性锁/ACL/沙箱证明。
 - `createDiagnostics` 只允许技术 code/module/level 白名单，不接受自由消息正文、任意字段或业务证据；sink失败明确返回 failed。普通诊断不是 Operation、权限审计或 Task/Artifact/Verification 账本。没有日志文件轮转/保留策略实现。
 
 测试：`npm run test:shared`。真实 SQLite 与测试专用内存替身共用 `shared/tests/store-contract.mjs` 向量；ACK丢失通过真实 COMMIT 后的传输端口异常注入，另有真实只读与跨进程锁竞争。不以替身证明持久性。SH03–05 的完整备份/Windows凭证/ACL/重装关系恢复均未实现，C/D保留。
