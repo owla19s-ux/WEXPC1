@@ -73,6 +73,7 @@ for domain in ['plugins','dsh','accounts']:
 
 
 submodules = {
+    'shared/permissions/README.md': 'permissions/CONTRACT.md',
     'UI/components/README.md': 'UI/CONTRACT.md',
     'UI/conversation/README.md': 'UI/CONTRACT.md',
     'UI/settings/README.md': 'UI/CONTRACT.md',
