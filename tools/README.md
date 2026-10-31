@@ -1,8 +1,8 @@
 # tools
 
-开发与结构检查工具。当前未新增测试脚本或构建工具，后续按实际需要添加。
+开发与结构检查工具（非运行时产品模块）。当前已实现：`tools/build-module.mjs` 按 `shared`、`permissions`、`app` 的公开入口编译必要依赖闭包；`tools/check-boundaries.mjs` 使用 TypeScript AST 检查源码导入、公开出口、Renderer 特权依赖及文件/模块循环；`tools/tests/boundaries.test.mjs` 提供正反例。对应根脚本为 `build:shared`、`build:permissions`、`build:app`、`check:boundaries`，并由 `npm test` 纳入边界回归。
 
-状态：2026-10-30 按用户确认建立的源码维护目录，当前只有职责说明，尚无产品实现。目录不是运行时数据路径，也不代表独立插件、进程或编译包。
+状态：开发检查工具已有实际实现；它们不是运行时数据路径、独立插件、进程或产品业务模块。自有 AST 检查器的覆盖范围与限制见第八批报告；下方 dependency-cruiser 片段仍是候选方案，不代表已安装该工具。
 
 [源码目录与 Windows 数据要求](../docs/architecture/SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
@@ -29,7 +29,7 @@
 
 ### 可执行规则的落实方法
 
-未来门禁分两步：dependency-cruiser解析文件图并运行规则，再按模块归属折叠图检查模块级SCC。文件环检查不替代模块环。解析包含type-only/re-export/字面量动态import及实际tsconfig别名；无法解析报错。computed import、注册配置和IPC使用另维护显式消费登记与装配样例，不声称静态图穷尽动态能力。
+本节提出的 dependency-cruiser 方案仍是未来候选：它可解析文件图并运行更完整的规则，再按模块归属折叠图检查模块级 SCC。当前已实现的是本仓自有 TypeScript AST 检查器，文件环与模块环分别检查；文件环检查不替代模块环。解析包含type-only/re-export/字面量动态import及实际tsconfig别名；无法解析报错。computed import、注册配置和IPC使用另维护显式消费登记与装配样例，不声称静态图穷尽动态能力。
 
 下面是**示例配置片段**，不创建rules文件、不承诺命令现在可运行。假设经评审决定各域以`public.ts`为唯一跨域出口；若实际出口不是它，须根据评审清单精确生成规则，不能为了测试绿而扩大到整个目录。
 
@@ -66,7 +66,7 @@ module.exports = {
 | DEP-05 | 通用workflows不依赖具体模式/节点UI；connections公共边界不依赖DSH厂商实现以外的域私有对象；shared不依赖业务域 | mode→通用公开能力可；通用→software-development拒绝；shared→Task拒绝 |
 | DEP-06 | 公共出口/协议/锁配置变更求反向影响集合；加上动态注册/IPC消费者 | 只改private不强迫全仓跑；变更unknown语义即使TS兼容也触发相关消费样例 |
 
-未来已安装工具后可使用`depcruise --config <已评审规则> --output-type err <真实源码根>`；JSON输出必须解析`summary.error/violations`，不能只看退出0。不能把缺真实源码/空图当通过。SCC检查器尚未实现，未有结果前不得声明DEP-03门禁成立。
+未来已安装工具后可使用`depcruise --config <已评审规则> --output-type err <真实源码根>`；JSON输出必须解析`summary.error/violations`，不能只看退出0。不能把缺真实源码/空图当通过。当前自有 AST 检查器已覆盖文件环与按顶层目录折叠的模块环；dependency-cruiser 候选片段尚未安装，且自有检查器尚未覆盖本表全部 DEP 规则。
 
 例外记录就近放在真实规则旁（当前不创建空清单），每条需具体from/to/环境/能力、owner、理由、批准证据、兼容影响、到期或撤销条件及替代路径；禁止全局忽略type-only、entire directory、全部测试或所有app。测试夹具确需直达内部时限本模块test→本模块internal，不能让消费者测试绕开公开契约。规则修改须包含失效例外与反例回归，提交审查单独报告，不让配置改动掩盖架构环。
 

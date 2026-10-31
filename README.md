@@ -4,11 +4,11 @@
 
 **最近工程交付：[第八批基础复验与 Electron / React 宿主最小验证](docs/batch8/REPORT.md)**：基础完整测试50/50，独立编译与边界检查通过；隔离Electron实验真实SQLite重启回读、React/Preload/IPC与释放重试通过。Linux E2，Windows E4未通过；不是正式桌面产品交付。
 
-**当前施工入口：[阶段路线图](docs/planning/PHASE-ROADMAP-2026-10-31.md)** · [后续施工计划](docs/planning/CONSTRUCTION-PLAN-2026-10-31.md) · [第八批任务书](docs/batch8/PLAN.md)。
+**阶段规划入口：[阶段路线图](docs/planning/PHASE-ROADMAP-2026-10-31.md)** · [后续施工计划](docs/planning/CONSTRUCTION-PLAN-2026-10-31.md)。**最近完成：[第八批交付报告](docs/batch8/REPORT.md)**；第八批任务书仅作为历史范围记录。
 
 **当前研究决策摘要（2026-10-30）**：[连接器、DSH、视图引擎与持续数据的阶段边界](docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)。首期以连接器为主体，外部 Agent 执行能力优先研究；React Flow 为实验性的视图交互组件，DSH Core+Loader 仅供 DSH 原生插件兼容实验，WEX 自有插件机制暂不定型。本文下方早期 Cordis 优先候选及源码目录描述如有矛盾，以此最新共识为准。
 
-本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。三个基础域已有无窗口可运行装配，其余大多数功能域仍只有职责说明；尚未形成完整 WEXPC 桌面应用，旧产品代码未迁移。
+本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。shared、permissions、app 三个基础域已有实际产品代码与无窗口装配；UI 只有隔离的 Electron/React 宿主实验，其他大多数业务域已有业务契约设计但尚无产品实现。尚未形成完整 WEXPC 桌面应用，旧产品代码未迁移。
 
 ## 当前技术基线（2026-10-30 已确认）
 
@@ -78,6 +78,7 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 - [第五批：复杂业务契约压力审查](docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)
 - [第六批：契约收敛与模块施工准备度](docs/batch6/README.md)
 - [第七批：基础模块首轮独立施工与验收](docs/batch7/REPORT.md)
+- [第八批：基础模块复验与 Electron / React 宿主最小验证](docs/batch8/REPORT.md)
 
 ## 工程入口
 

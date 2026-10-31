@@ -1,8 +1,8 @@
 # WEXPC1 文档体系索引
 
-**最近工程交付：[第八批基础复验与 Electron / React 宿主最小验证](batch8/REPORT.md)** · [开发与测试说明](batch7/DEVELOPMENT.md)。
+**最近工程交付：[第八批基础复验与 Electron / React 宿主最小验证](batch8/REPORT.md)** · [Electron / React 实验复现说明](../experiments/electron-host-spike/README.md)。
 
-**当前规划入口：[阶段路线图](planning/PHASE-ROADMAP-2026-10-31.md)** · [后续施工计划](planning/CONSTRUCTION-PLAN-2026-10-31.md) · [第八批任务书](batch8/PLAN.md)。
+**阶段规划入口：[阶段路线图](planning/PHASE-ROADMAP-2026-10-31.md)** · [后续施工计划](planning/CONSTRUCTION-PLAN-2026-10-31.md)。最近完成批次：[第八批报告](batch8/REPORT.md)；[第八批任务书](batch8/PLAN.md)仅保留历史范围。
 
 本页是仓库设计、架构、研究、审查、阶段规划与批次交付的统一入口。源码功能域仍按模块就近维护；这里不复制模块私有契约。
 
@@ -26,7 +26,7 @@
 
 - [阶段路线图](planning/PHASE-ROADMAP-2026-10-31.md)：明确当前工程阶段、首版目标和后置范围。
 - [后续施工计划](planning/CONSTRUCTION-PLAN-2026-10-31.md)：第八批至第十九批的依赖、交付和验收。
-- [第八批任务书](batch8/PLAN.md) · [实际报告](batch8/REPORT.md)：基础复验及隔离Electron实验，Windows E4未通过。
+- [第八批交付报告](batch8/REPORT.md) · [实验复现入口](../experiments/electron-host-spike/README.md)：基础复验及隔离 Electron 实验，Windows E4 未通过；[任务书](batch8/PLAN.md)仅保留历史范围。
 - [全模块业务契约索引](MODULE-CONTRACTS.md)：11 个功能域的职责、公开能力与依赖导航。
 - [第六批总览](batch6/README.md)：F01–F09 收敛、九类机制实验、模块准备度与限制。
 - [模块准备度矩阵](batch6/READINESS.md)：明确绿/黄/红施工范围。

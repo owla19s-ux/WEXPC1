@@ -1,7 +1,7 @@
 # permissions — 策略、授权决定与撤权
 
 **当前：第七批基础产品实现已落地；稳定实现与限制见本文“第七批实际实现”及[验收报告](../docs/batch7/REPORT.md)。下方阶段描述保留为历史依据。**
-状态：第二批架构细化；尚无产品授权引擎。此处是唯一的权限业务域；[shared/permissions](../shared/permissions/README.md) 仅保留旧入口指引，不再承担另一套授权服务。
+历史初始状态（第二批）：当时尚无产品授权引擎；第七批已实现本域基础授权服务。此处仍是唯一的权限业务域；[shared/permissions](../shared/permissions/README.md) 仅保留旧入口指引，不再承担另一套授权服务。
 
 ## 判断什么
 

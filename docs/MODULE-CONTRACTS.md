@@ -5,9 +5,26 @@
 
 2026-10-31，上海时间。设计基线 `a62996af9863e60b15e4513389c7654719907920`；本轮只设计文档，不做产品代码、迁移、依赖安装、正式IPC/schema或Actions。链路用于需求提取与组合验收，施工单位始终是模块。
 
+> **阅读提示：** 本索引保留第四批的业务契约设计基线与历史 A/B/C/D 状态；下表补充当前代码/实验事实，不把实验提升为产品能力，也不自动批准任何 B 或 D。
+
+## 当前实现与证据状态（2026-10-31，第八批后）
+
+| 功能域 | 当前代码/实验事实 | 明确未完成或证据边界 |
+|---|---|---|
+| [shared](../shared/README.md) | 已有公开 TypeScript 出口、SQLite 技术存储、根身份/路径检查、技术诊断；第八批在 Electron 45.2.1 内嵌 Node 24.22.1/Linux 中完成真实建库、事务、关闭与独立进程重启回读 | 完整备份/恢复、Windows ACL/句柄级锁、凭证生命周期与重装恢复未验收 |
+| [permissions](../permissions/README.md) | 已有公开授权服务、持久化授权/撤销、修订复核与拒绝默认；真实 SQLite 与替身共用行为样例 | 非对话入口策略仍待决；真实 Windows 主体认证、产品 IPC 身份绑定、撤权竞态未验收 |
+| [app](../app/README.md) | 已有可信模块装配、生命周期释放/重试、无窗口诊断入口；第八批隔离 Electron 实验真实消费公开出口并验证启动/退出与占锁重试 | 正式 Electron 启动器、首次选根、正式 IPC 契约、安装升级及 Windows E4 未交付 |
+| [UI](../UI/README.md) | 隔离 React Renderer 已验证窄 Preload 状态查询、错误反馈与无 Node 集成 | 完整产品页面、正式 IPC/页面协议、Windows 交互验收未实现 |
+| [connections](../connections/README.md) | 有受控交换/协议夹具与 DSH headless 局部实验 | 完整产品级公共连接协议、真实 DSH 成功任务与恢复/停止闭环未验收 |
+| [workflows](../workflows/README.md) | 有独立 React Flow 编辑原型与机制实验 | 正式工作流/Task/调度/验收产品代码未实现 |
+| [space](../space/README.md)、[AI](../AI/README.md)、[conversations](../conversations/README.md)、[views](../views/README.md) | 已有职责与业务契约设计 | 尚无对应完整产品业务实现 |
+| [plugins](../plugins/README.md)、[dsh](../dsh/README.md)、[accounts](../accounts/README.md) | 分别保留 WEX 插件机制研究、DSH 原生 Core+Loader 独立兼容实验、账号身份预留 | DSH 原生插件实验不等于 WEX 插件系统或外部 DSH Agent 连接器已产品化 |
+
+基础模块第八批证据与限制见[交付报告](batch8/REPORT.md)。本表描述 WEXPC1 当前实现状态；契约正文中的 A/B/C/D 等级仍按原定义解释，不能因代码或实验通过而自动升级。
+
 ## 1. 依据与决定等级
 
-已核对最新main根README与所有现有主要域/子域README、[研究摘要](decisions/RESEARCH-DECISIONS-2026-10-30.md)、[模块化方法与L01–L12](architecture/GLOBAL-CONTRACT-MAP-V0.1.md)、[五份专项研究](README.md#2026-10-31-专项研究)、DSH/Cordis加载及原生Bundle报告、headless/boundary源码、ReactFlow模型/验证报告；旧WEXPC `faf11f31d44e4fc4788e766074b8db6b83ab4a1b` [产品基线](https://github.com/owla19s-ux/wexpc/blob/faf11f31d44e4fc4788e766074b8db6b83ab4a1b/docs/PC-PRODUCT-AND-TECH-BASELINE.md)仅继承仍有效的需求/权限/重装规则，不继承Rust/Tauri实现。基线根AGENTS.md不存在；协作依据是用户本批任务、既有README/第三批建议和已确认main协作原则，不虚构AGENTS授权。
+已核对最新main根README与所有现有主要域/子域README、[研究摘要](decisions/RESEARCH-DECISIONS-2026-10-30.md)、[模块化方法与L01–L12](architecture/GLOBAL-CONTRACT-MAP-V0.1.md)、[专项研究索引](research/README.md)、DSH/Cordis加载及原生Bundle报告、headless/boundary源码、ReactFlow模型/验证报告；旧WEXPC `faf11f31d44e4fc4788e766074b8db6b83ab4a1b` [产品基线](https://github.com/owla19s-ux/wexpc/blob/faf11f31d44e4fc4788e766074b8db6b83ab4a1b/docs/PC-PRODUCT-AND-TECH-BASELINE.md)仅继承仍有效的需求/权限/重装规则，不继承Rust/Tauri实现。基线根AGENTS.md不存在；协作依据是用户本批任务、既有README/第三批建议和已确认main协作原则，不虚构AGENTS授权。
 
 | 等级 | 可以据此做什么 | 不可以据此做什么 |
 |---|---|---|
@@ -24,17 +41,17 @@ A的主要依据：TS/Electron/React；Context独立/多处引用/模板可选�
 
 | 模块/就近规格 | 唯一维护与公开能力摘要 | 明确不维护 | 准备程度与后续依赖 |
 |---|---|---|---|
-| [app](../app/CONTRACT.md) | 可信启动装配、数据根接入/诊断、退出恢复协调、安装升级重装屏障 | 各域业务状态/授权政策/主UI布局 | 语义稿；可先验证装配与缺盘诊断；Windowsprofile/安装关系/退出C/D未关闭 |
+| [app](../app/CONTRACT.md) | 可信启动装配、数据根接入/诊断、退出恢复协调、安装升级重装屏障 | 各域业务状态/授权政策/主UI布局 | 基础装配与生命周期已实现并通过第七/八批验证；首次选根、Windows profile、安装关系及恢复 C/D 未关闭 |
 | [space](../space/CONTRACT.md) | 本体/放置/组合引用、组织配置、可见查询；独立删除单列 | 职责、会话背景、授权、外部文件 | 组织/引用可审阅；消费权限/存储/目标最小投影；实际删除与多目录迁移待C/D |
 | [AI与roles](../AI/CONTRACT.md) | 可复用配置、职责关联、可见投影、当前工作依据与历史解释 | Key/外部循环/Task分配/Context选择 | 可先配置/职责/查询；消费连接元数据、权限/存储；历史依据保留与并发C/D |
 | [conversations](../conversations/CONTRACT.md) | 消息/段落版本、背景、逻辑生成、追加重发分支、定稿/恢复、显式转任务 | Provider协议/Operation权威/Task验收 | 无Context/Task可用；依赖连接/权限/存储；流与派发崩溃窗口待C |
 | [connections](../connections/CONTRACT.md) | 连接/能力、准入派发、Operation尝试/观察、查询控制与最小回调 | Task状态/权限政策/全局角色 | 宿主与适配分验；判权/存储/秘密/资源协调就绪后组合；DSH成功及控制C |
 | [workflows/runtime](../workflows/CONTRACT.md) | 定义/Task/轮次、推进、资源协调、产物核验与验收、恢复投影 | 厂商协议/Operation正式状态 | 定义任务核验可先本域；派发恢复依赖连接/授权/协调证据；自动验收D |
-| [permissions](../permissions/CONTRACT.md) | 资格复核、审批授权/撤销、许可与审计查询 | AI职责/Context/Task/凭证秘密 | 拒绝/不可判定/当前范围可审阅；非对话三层映射D，有限次数及在途竞态C |
-| [shared/storage与credentials](../shared/CONTRACT.md) | 限定技术读写/提交、备份恢复基础、受限秘密与使用关系机制 | Task/Operation/权限业务意义 | 技术结果可审阅；驱动/原子范围/备份/Windows凭证C；不反向导入业务域 |
+| [permissions](../permissions/CONTRACT.md) | 资格复核、审批授权/撤销、许可与审计查询 | AI职责/Context/Task/凭证秘密 | 基础授权账本、CAS、撤销/复核及真实 SQLite 消费测试已实现；非对话入口映射仍为 D，OS 身份/IPC 与在途竞态仍为 C |
+| [shared/storage与credentials](../shared/CONTRACT.md) | 限定技术读写/提交、备份恢复基础、受限秘密与使用关系机制 | Task/Operation/权限业务意义 | SQLite 单库事务及 Electron/Linux 运行时兼容已验证；备份恢复、Windows 凭证/ACL 与句柄级路径保护仍为 C |
 | [views](../views/CONTRACT.md) | 呈现映射/布局筛选、获准投影、领域编辑转交、草稿传播 | 专业关系/执行依赖/任务真相 | 单图实验仅参考；配置投影可先替身；多图/撤权/布局竞争C，专业模型D |
 | [workflows/modes](../workflows/modes/CONTRACT.md) | 可选组合、专业对象/关系/规则身份、预设实例化/调整建议 | 通用Task/权限/连接/第二套Context | 软件开发为先验案例；先窄组合；跨域部分成功/版本升级C/D，不建完整市场 |
-| [UI](../UI/CONTRACT.md) | 导航、面板、临时输入/选择、窄桥动作与证据反馈 | 业务/回执/授权/验收真相 | 桥接替身可验交互；真实renderer IPC/Windows/撤权缓存C |
+| [UI](../UI/CONTRACT.md) | 导航、面板、临时输入/选择、窄桥动作与证据反馈 | 业务/回执/授权/验收真相 | 隔离 React/Preload/IPC 最小实验已通过；正式产品页面/IPC、Windows 与撤权缓存仍未验收 |
 | [plugins](../plugins/README.md) / [dsh](../dsh/README.md) / [accounts](../accounts/README.md) | 自有扩展研究 / 独立原生插件实验 / 未来身份预留 | 三者不承载所有连接器，也不是普通聊天/启动前置 | 仅边界与进一步证据门槛；本批不生成完整产品契约 |
 
 准备度仅评价设计输入，不是代码完成度。表中“可先”均需该范围B语义采纳、消费方核对后才进入实现接口；本任务没有授权正式业务施工。遇到影响行为的D不能让施工者自行猜值。
