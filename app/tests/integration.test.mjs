@@ -54,7 +54,7 @@ test('unconfirmed provider close retains root lease and exposes incomplete shutd
  const root=await mkdtemp(join(tmpdir(),'wex-close-'));await writeFile(join(root,'.wex-root.json'),JSON.stringify({format:1,id:'close'}));let released=0;
  try{
  const h=await api.startFoundations({dataRoot:root,trust,lock:{acquire:async()=>({status:'acquired',release:async()=>{released++;}})},openStore:(path,ns)=>{
- const real=openSqliteStore(path,ns);return {...real,close(){real.close();throw Error('unconfirmed close');}};
+ const real=openSqliteStore(path,ns);let closed=false;return {...real,close(){if(!closed){real.close();closed=true;}throw Error('unconfirmed close');}};
  }});
  assert.equal((await h.stop()).status,'incomplete');assert.equal(released,0);assert.equal((await h.stop()).status,'incomplete');assert.equal(released,0);
  }finally{await rm(root,{recursive:true,force:true});}
