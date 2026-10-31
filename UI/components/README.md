@@ -7,3 +7,12 @@
 [源码目录与 Windows 数据要求](../../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
+
+
+## 上级契约与文档入口
+
+- **上级契约：** [UI/CONTRACT.md](../../UI/CONTRACT.md)
+- **全局文档总索引：** [docs/README.md](../../docs/README.md)
+- [桌面应用基础能力审计](../../docs/audits/APP-FOUNDATIONS-GAP-AUDIT-2026-10-31.md)
+
+本目录负责页面/面板局部组织，不拥有领域业务状态、权限或验收事实；业务语义以对应 owner 契约为准。

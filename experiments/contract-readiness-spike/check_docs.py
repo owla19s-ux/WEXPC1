@@ -70,6 +70,13 @@ for domain in ['plugins','dsh','accounts']:
 
 
 submodules = {
+    'UI/components/README.md': 'UI/CONTRACT.md',
+    'UI/conversation/README.md': 'UI/CONTRACT.md',
+    'UI/settings/README.md': 'UI/CONTRACT.md',
+    'UI/space/README.md': 'UI/CONTRACT.md',
+    'connections/api/UI/README.md': 'connections/CONTRACT.md',
+    'connections/github/UI/README.md': 'connections/CONTRACT.md',
+    'workflows/modes/software-development/UI/README.md': 'workflows/modes/CONTRACT.md',
     'AI/roles/README.md': 'AI/CONTRACT.md',
     'shared/storage/README.md': 'shared/CONTRACT.md',
     'shared/credentials/README.md': 'shared/CONTRACT.md',
