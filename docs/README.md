@@ -28,6 +28,7 @@
 - [后续施工计划](planning/CONSTRUCTION-PLAN-2026-10-31.md)：第八批至第十九批的依赖、交付和验收。
 - [第八批交付报告](batch8/REPORT.md) · [实验复现入口](../experiments/electron-host-spike/README.md)：基础复验及隔离 Electron 实验，Windows E4 未通过；[任务书](batch8/PLAN.md)仅保留历史范围。
 - [全模块业务契约索引](MODULE-CONTRACTS.md)：11 个功能域的职责、公开能力与依赖导航。
+- [基础能力完整性审查与能力组合矩阵](audits/FOUNDATION-CAPABILITY-COMPLETENESS-REVIEW-2026-10-31.md)：从基本动作盘点功能遗漏，区分基础能力与复杂组合。
 - [第六批总览](batch6/README.md)：F01–F09 收敛、九类机制实验、模块准备度与限制。
 - [模块准备度矩阵](batch6/READINESS.md)：明确绿/黄/红施工范围。
 - [第六批施工顺序](batch6/NEXT.md)：按模块组织施工，不按复杂业务链路拆工程包。
