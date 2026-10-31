@@ -161,3 +161,18 @@ createDirectoryLock 提供可注入文件系统端口用于故障测试，默认
 ## 第八批验证补充（2026-10-31）
 
 当前存储/根锁源码与契约不变；现有SQLite驱动已在Electron45.2.1内嵌Node24.22.1真实建库、事务提交、关闭、独立进程重启回读。无需为本批增加驱动适配；不是Windows锁/ACL/迁移恢复验收。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。
+
+## G1/G6 技术基础与跨对话持久性补充（2026-10-31）
+
+本节对应基础能力 G1/G6；完整 owner 与实现状态见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。
+
+**G1：持久资料的技术存储边界。** Shared 提供受限技术存储、路径定位、提交修订和未来备份/恢复原语；不拥有资源正文的业务含义、Space 引用关系、Conversation 附件语义、Task/Artifact/Verification 或统一资源索引。外部文件仍在原位置；WEX 管理的持久副本必须明确写入用户选择的数据根并由单一资源 owner 管理，不能将附件字节塞进 shared 的通用聚合快照。
+
+**G6：配置、凭证、日志三者分离。**
+- 配置：各模块拥有字段含义、默认值、校验、启停和迁移策略；Shared 只提供经证明必要的技术保存原语，不建立全局配置中心。
+- 凭证：`shared/credentials` 负责平台秘密保管与受控引用；实际使用目标和授权由 connections/permissions 决定，持有或可解密 Key 不代表获权。
+- 日志/诊断：当前 `shared/src/diagnostics.ts` 是受限字段的诊断 sink，不是持久化运行日志、日志查询/轮转/导出平台。后续可评估技术日志写入能力，但不得混同 Connections Operation、Permissions 授权审计或 Workflows 任务/验收证据。
+
+**跨对话持续性。** Shared 只保证其实际存储原语所声明的提交/回读语义；不解释 Task 检查点、不决定恢复、不承诺跨多个数据库/文件/外部服务原子提交。持久工作状态由各业务 owner 写入自己的命名空间；应用重启后按 owner 查询，不通过复制全局快照建立第二份业务权威。
+
+本补充不表示 Windows DPAPI、系统凭证、完整备份恢复、日志持久化/轮转或安装重装关系已经实现；按现有 C/D 门槛逐项验证。

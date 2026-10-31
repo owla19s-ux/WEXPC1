@@ -148,3 +148,15 @@ app/src/assembly.ts 对未确认释放的模块实例保留引用；stop 返回 
 ## 第八批验证补充（2026-10-31）
 
 当前产品装配源码与公开契约不变；隔离Electron实验真实消费app公开出口，验证ready、窗口关闭至停机、incomplete占锁/重试及启动pending退出。实验先等待初始化所有权再释放，不把故障注入/测试探针升级为产品入口。正式Electron启动器、首次选根及Windows E4仍未交付。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。
+
+## G3/G6 与跨对话恢复的宿主边界补充（2026-10-31）
+
+本节对应基础能力 G3/G6 与跨对话组合验收；详细映射见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。
+
+**可信入口。** App 为内置模块装配提供可信宿主事实和窄能力注入点；Renderer、插件、模型文本和外部回调自报的 subject/entry/Context 均不能直接成为权限事实。非对话入口的策略仍由 permissions 决定；App 不能用“已装配/已登录/已有 Key”替代授权。
+
+**跨对话恢复协调。** App 在启动、退出和数据根接回时协调模块初始化、存储可用性和生命周期屏障；它不读取/改写 Task 业务状态，不复制 Operation 账本，也不自动 submit 未完成工作。启动后由 Workflows 查询 Task 检查点、Connections 核对原 Operation、资源 owner 核对真实版本、Permissions 重新判权。UI 关闭、窗口关闭或应用进程退出不等于外部 Agent/进程已停止。
+
+**G6：诊断入口。** App 可以装配日志/诊断查看与导出入口，但不能把诊断 sink 当成完整日志产品；导出必须由各 owner 提供获准、脱敏的记录，不能从数据库或文件系统任意扫描并暴露秘密。Operation、授权审计、Task/Verification 各自保持原 owner。
+
+**运行保证边界。** 新对话/新模型/新 Agent 可在恢复流程完成后接续持久工作；这不代表 App 关闭期间后台持续运行。后台驻留、关窗行为、系统关机策略仍按 D04 用户决策，不在此自动承诺。

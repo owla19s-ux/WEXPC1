@@ -98,3 +98,13 @@ A：配置/职责/选择/授权/运行分离、兼任不合权、在途来源不
 - **实验与验证证据**：[第六批实验总表](../docs/batch6/EXPERIMENTS.md) · [可复现实验入口](../experiments/contract-readiness-spike/README.md)
 
 维护规则：模块职责/业务行为修改在本域 README/CONTRACT；跨模块架构或政策变更更新对应全局文档；每次实验只更新证据，不改写未批准的决策。施工批次结束后，先回写模块契约，再更新本节关联；不得把批次历史报告当作模块当前状态的替代品。
+
+## G2/G6 与跨对话持续工作补充（2026-10-31）
+
+本节明确 AI 配置在基础对话与长期工作的边界；完整映射见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。
+
+**G6：模块配置归属。** AI/roles 拥有角色描述、提示、模型/连接引用、职责关联及其修订；不保存 Provider Key、权限许可、Conversation 历史、Task 检查点或 Operation 状态。AI 配置可被多个 Context 选择，但每次实际工作必须绑定当时采用的配置/职责修订；配置更新不静默改变在途任务的身份与输入。
+
+**G2：工具循环边界。** AI 配置提供模型/角色选择和行为描述，不拥有原生 API 的逻辑工具往返状态机。Conversation 组织本轮输入、工具意图、结果回注与定稿；connections/api 处理 Provider 协议；permissions 和 connections 负责授权与真实调用。外部 DSH/Hermes 的内部循环不由 WEX AI 配置接管。
+
+**跨对话持续性。** 角色配置可在新对话中重新选用，但不代表角色记忆或模型隐藏上下文自动延续。长期工作进度、执行历史和下一步依据归 Workflows；需要共享的角色经验/公共策略库仍是长期研究，不在本补充中默认启用或创建第二份记忆账本。

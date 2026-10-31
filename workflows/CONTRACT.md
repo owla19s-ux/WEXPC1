@@ -194,3 +194,28 @@ runtime窄配额owner仍B候选；同池原子预留、unknown不退、对账差
 - **实验与验证证据**：[第六批实验总表](../docs/batch6/EXPERIMENTS.md) · [可复现实验入口](../experiments/contract-readiness-spike/README.md)
 
 维护规则：模块职责/业务行为修改在本域 README/CONTRACT；跨模块架构或政策变更更新对应全局文档；每次实验只更新证据，不改写未批准的决策。施工批次结束后，先回写模块契约，再更新本节关联；不得把批次历史报告当作模块当前状态的替代品。
+
+## G1/G4/G5 与跨对话持续工作补充（2026-10-31）
+
+本节把 Task 资料引用、操作结果关联、内部检索和持久检查点归入 Workflows；详细 owner 矩阵见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。
+
+**G1：Task 输入与产物引用。** Task 可引用 Context 资料、外部文件/仓库、会话输入、其他 Task 产物和核验依据。Workflows 保存引用及使用时的来源版本/观察，不复制来源正文或接管外部文件。Artifact 记录产物身份、来源 Task/轮次、输入与规则依据、实际定位及版本观察；实际字节由对应资源 owner/连接器管理。Verification 必须绑定具体 Artifact、输入清单、规则版本和核验环境。
+
+**G4：Task 与 Operation 分离。** Workflows 拥有 Task、工作轮次、等待/阻塞、责任交接、Requirement、Artifact、Review、Verification 和 Acceptance。Connections 独占 Operation/attempt/外部观察/取消结果；Task 仅引用 Operation 并据其证据推进。Operation 的“完成”不等于 Task 完成，Task 的“暂停/取消”也不证明外部执行停止。
+
+**G5：本域检索。** 提供获准的 Task、定义、轮次、Requirement、Artifact、Verification、阻塞/待核对项查询；不创建跨域全文搜索服务。搜索投影必须区分 Task 状态、Operation 观察、核验和最终验收；打开时重查当前来源和权限。
+
+**跨对话检查点（核心要求）。** Task 必须能在不依赖原 Conversation、原模型上下文或原 Agent 实例的条件下，保存并读取足以判断“下一步能否安全继续”的持久工作状态。检查点至少覆盖：
+- 目标、范围、验收条件及对应修订；
+- 当前阶段/轮次、已完成项、未完成项和明确阻塞；
+- 任务输入引用及其来源版本/观察；
+- 相关 Operation 引用及其已知/未知状态（不复制 Operation 账本）；
+- Artifact、Review、Verification 及适用的 Acceptance 依据；
+- 当前责任主体/执行配置修订与交接记录；
+- 下一步建议动作及其前置条件。
+
+检查点不是 AI 自由文本总结，也不包含 API Key、永久授权、模型隐藏状态或“保证 Agent 仍在运行”的断言。阶段边界、重要产物提交、执行者交接、阻塞/恢复前应形成可回读检查点；保存结果 unknown 时按原意图查询，不另建 Task 或重复推进。
+
+**恢复顺序。** 新对话或新执行者接手时：读取 Task 当前修订 → 核对输入资源版本 → 查询原 Operation/外部状态 → 检查产物及验证依据是否仍适用 → 重新判定权限和资源冲突 → 决定继续观察、继续本地工作、请求人工裁决或建立新轮次。任何未决副作用未核对前，不得向同一冲突资源盲目派发。恢复只恢复工作事实，不承诺应用关闭期间持续执行。
+
+本节不冻结检查点字段、存储格式、周期策略或调度算法；Task 语义仍由本域唯一拥有。
