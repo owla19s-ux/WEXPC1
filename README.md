@@ -1,8 +1,8 @@
-# WEXPCeasy — WEXPC 结构设计与实现准备
+# WEX — PC 端工程设计与实现准备
 
-> 仓库现名：`WEXPCeasy`（原仓库名：`WEXPC1`；提交历史与默认分支保持不变）。
+> 仓库地址：`owla19s-ux/WEXPCeasy`（仓库标识，仅用于区分其他仓库；产品名称仍为 **WEX**）。
 
-**文档索引：** [WEXPCeasy 文档体系](docs/README.md) —— 模块契约、全局架构、决策、研究、审查、阶段规划与批次交付的统一入口。
+**文档索引：** [WEX 文档体系](docs/README.md) —— 模块契约、全局架构、决策、研究、审查、阶段规划与批次交付的统一入口。
 
 **最近工程交付：[第八批基础复验与 Electron / React 宿主最小验证](docs/batch8/REPORT.md)**：基础完整测试50/50，独立编译与边界检查通过；隔离Electron实验真实SQLite重启回读、React/Preload/IPC与释放重试通过。Linux E2，Windows E4未通过；不是正式桌面产品交付。
 
@@ -10,11 +10,11 @@
 
 **当前研究决策摘要（2026-10-30）**：[连接器、DSH、视图引擎与持续数据的阶段边界](docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)。首期以连接器为主体，外部 Agent 执行能力优先研究；React Flow 为实验性的视图交互组件，DSH Core+Loader 仅供 DSH 原生插件兼容实验，WEX 自有插件机制暂不定型。本文下方早期 Cordis 优先候选及源码目录描述如有矛盾，以此最新共识为准。
 
-本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。shared、permissions、app 三个基础域已有实际产品代码与无窗口装配；UI 只有隔离的 Electron/React 宿主实验，其他大多数业务域已有业务契约设计但尚无产品实现。尚未形成完整 WEXPC 桌面应用，旧产品代码未迁移。
+本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。shared、permissions、app 三个基础域已有实际产品代码与无窗口装配；UI 只有隔离的 Electron/React 宿主实验，其他大多数业务域已有业务契约设计但尚无产品实现。尚未形成完整 WEX PC 桌面应用，旧产品代码未迁移。
 
 ## 当前技术基线（2026-10-30 已确认）
 
-WEXPCeasy 新实现以 **TypeScript 单主语言 + Electron Windows 桌面宿主 + React UI** 为优先技术路线；**React Flow 是首期重点工作流编辑器**，**DSH 连接器是首期外部施工入口**。SQLite + 用户选择的文件目录为持久化优先候选；Electron Forge 为打包候选。Cordis / DSH 插件体系是重要的长期扩展技术来源，不要求首期完成接入。此处为已确认技术方向，尚非代码已实现、Windows 安装已验证或 WEXPC 主仓版本修改。
+WEX PC 端新实现以 **TypeScript 单主语言 + Electron Windows 桌面宿主 + React UI** 为优先技术路线；**React Flow 是首期重点工作流编辑器**，**DSH 连接器是首期外部施工入口**。SQLite + 用户选择的文件目录为持久化优先候选；Electron Forge 为打包候选。Cordis / DSH 插件体系是重要的长期扩展技术来源，不要求首期完成接入。此处为已确认技术方向，尚非代码已实现、Windows 安装已验证或旧版 WEX PC 主仓版本修改。
 
 WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，连接器按公开接口派发任务并关联产物，**不将 DSH 客户端或运行时搬入 WEX**。保留原 Space / Context、任务卡、权限、目录与长期需求。旧 Rust/Tauri 仅作历史代码、行为及测试参考，不强制迁移。
 
