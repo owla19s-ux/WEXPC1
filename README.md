@@ -1,11 +1,12 @@
 # WEXPC1 — WEXPC 结构设计与实现准备
 
-**文档索引：** [WEXPC1 文档体系](docs/README.md) —— 模块契约、全局架构、决策、研究、审查与批次交付的统一入口。
+**文档索引：** [WEXPC1 文档体系](docs/README.md) —— 模块契约、全局架构、决策、研究、审查、阶段规划与批次交付的统一入口。
 
-**最新阶段：[第七批基础模块首轮实现与验收](docs/batch7/REPORT.md)**：shared、permissions、app已有TypeScript产品实现、独立测试与最小真实装配。完整DSH链路、Electron窗口及Windows实机仍未验证。
+**最近工程交付：[第七批基础模块首轮实现与验收](docs/batch7/REPORT.md)**：shared、permissions、app 已有 TypeScript 产品实现、独立测试与最小真实装配。第七批最后收尾修复仍需在当前 HEAD 重新执行完整测试；Electron 窗口、完整 DSH 链路及 Windows 实机尚未验证。
+
+**当前施工入口：[阶段路线图](docs/planning/PHASE-ROADMAP-2026-10-31.md)** · [后续施工计划](docs/planning/CONSTRUCTION-PLAN-2026-10-31.md) · [第八批任务书](docs/batch8/PLAN.md)。
 
 **当前研究决策摘要（2026-10-30）**：[连接器、DSH、视图引擎与持续数据的阶段边界](docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)。首期以连接器为主体，外部 Agent 执行能力优先研究；React Flow 为实验性的视图交互组件，DSH Core+Loader 仅供 DSH 原生插件兼容实验，WEX 自有插件机制暂不定型。本文下方早期 Cordis 优先候选及源码目录描述如有矛盾，以此最新共识为准。
-
 
 本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。三个基础域已有无窗口可运行装配，其余大多数功能域仍只有职责说明；尚未形成完整 WEXPC 桌面应用，旧产品代码未迁移。
 
@@ -20,13 +21,12 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 ## 当前依据
 
 - [Space 层级、两种目录接入与 React Flow 工作流共编（2026-10-30）](docs/architecture/SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)
-
 - [源码目录与 Windows 安装、数据存放要求（2026-10-30）](docs/architecture/SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 - [产品需求重新理解与工程偏差审查](docs/research/PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md)
 
 **规划核对原则**：先核对用户需求、已确认技术选型及已有实现，再列 WEX 真正需要开发的缺口；不能因为旧版本文档仍写「自由画布」就重复规划自研画布。技术已选定不等于工程已实现。详见 [产品需求重新理解与工程偏差审查](docs/research/PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md) §7。
 
-用户描述的使用需求应归并为可复用能力，不按每个名词建立系统。Space 是组织与组合；软件开发是一种工作流模式；前期 AI 只做简单配置。UI 按实际页面组织，模块专属面板随模块。
+用户描述的使用需求应归并为可复用能力，不按每个名词建立独立系统。Space 是组织与组合；软件开发是一种工作流模式；前期 AI 只做简单配置。UI 按实际页面组织，模块专属面板随模块。
 
 ## 源码维护入口
 
@@ -54,7 +54,6 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 
 **目录补充（2026-10-30）**：权限独立为 `permissions/`，角色配置归 `AI/roles/`，账号体系预留 `accounts/`。三者分别管理授权、AI 角色配置和身份，不能混在一起。账号不构成首版强制登录要求。
 
-
 ## 研究与历史资料
 
 - [模型协调实验](experiments/model-coordination-spike/README.md)
@@ -65,50 +64,25 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 - [需求对冲架构](需求对冲架构/README.md)
 - [旧资料](旧资料/README.md)
 
-实验原位保留，不冒充正式实现。上一批已实际重跑编辑器与 DSH 宿主，外部 DSH 仅取得真实失败回执；本批为架构静态审查，不将历史运行结果外推为新架构已实现。
+实验原位保留，不冒充正式实现。实验回归、外部 Agent 真实执行与 Windows 实机证据分别记录，不相互代替。
 
-安装目录、用户数据根目录和源码目录不同。主要数据遵循用户选择的位置，系统凭证等为明确例外；重装后接回数据是待实现和验证的要求。
+安装目录、用户数据根目录和源码目录不同。主要数据遵循用户选择的位置，系统凭证等为明确例外；重装后接回普通数据但重新配置凭证/授权是待实现和验证的要求。
 
-产品版本范围仍参考 [WEXPC 正式基线](https://github.com/owla19s-ux/wexpc/blob/main/docs/PC-PRODUCT-AND-TECH-BASELINE.md)，本次不改变版本排期或迁移主仓代码。
+产品版本范围仍参考 [WEXPC 正式基线](https://github.com/owla19s-ux/wexpc/blob/main/docs/PC-PRODUCT-AND-TECH-BASELINE.md)；本路线图不改变产品范围或正式版本排期。
 
+## 已完成的设计与施工批次
 
-2026-10-30 新增 [DSH / Cordis 原始文件快照与适配审查](references/dsh/source-snapshot/README.md)：已保留许可证、来源 SHA、原始文档/类型文件，先读源码再设计 WEX 公共契约。
+- [第二批：整体架构细化与边界审查](docs/decisions/RESEARCH-DECISIONS-2026-10-30.md#6-第二批整体职责与依赖方向)
+- [第三批：模块化施工与契约方法研究](docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)
+- [第四批：模块业务契约](docs/MODULE-CONTRACTS.md)
+- [第五批：复杂业务契约压力审查](docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)
+- [第六批：契约收敛与模块施工准备度](docs/batch6/README.md)
+- [第七批：基础模块首轮独立施工与验收](docs/batch7/REPORT.md)
 
-**目录界限更新**：`dsh/` 保存上游资料及独立插件宿主实验；`plugins/` 为 WEX 自有插件机制预留；`connections/` 是 WEX 连接体系与外部 Agent 交接实验。上游来源不决定内部职责归属。
+## 工程入口
 
+- [阶段路线图](docs/planning/PHASE-ROADMAP-2026-10-31.md)
+- [后续施工计划](docs/planning/CONSTRUCTION-PLAN-2026-10-31.md)
+- [当前任务：第八批](docs/batch8/PLAN.md)
+- [开发与测试说明](docs/batch7/DEVELOPMENT.md)
 
-**安装插件目录约定（规划）**：用户选择的 WEX 数据根目录下分离 `plugins/wex/` 与 `plugins/dsh/` 两类安装包；源码 `plugins/` 是 WEX 自有插件机制，源码 `dsh/` 是 DSH 机制复用和适配；两者不可混为一谈。尚未实现安装器或插件引擎。
-
-
-**DSH 机制导入进展（2026-10-30）**：已把固定提交 `f3803c9` 下的 Cordis Core、Loader、Manifest、Plugin Manager、App Boot 代表性源文件放入 [`dsh/upstream/`](dsh/upstream)，详见 [导入版本锁](dsh/UPSTREAM-LOCK.md) 与 [源码审查](dsh/PLUGIN-MECHANISM-REVIEW.md)。Core+Loader 四包已可独立构建；Plugin Manager / App Boot / Manifest 等代表性文件仍是部分快照，不是完整 DSH 引擎或产品适配器。
-
-## 第二批：整体架构细化与边界审查
-
-[统一职责、数据权威、七个场景与契约门槛](docs/decisions/RESEARCH-DECISIONS-2026-10-30.md#6-第二批整体职责与依赖方向)。各功能域 README 保存对应施工边界，本页不再复制整套设计。架构 → 场景验证 → 业务契约 → 实现契约 → 工程施工；本批完成前两项的静态检查，不宣布运行验收。
-
-最小修正：权限统一归 `permissions/`；连接器不经 `plugins/` 强制注册；任务/流程状态归 `workflows/`，操作尝试与回执归 `connections/` 宿主边界；Context 放置与本体分开，关联不复制、不扩权；视图映射不变成执行依赖。方案未冻结签名、IPC、数据表或插件包协议。
-
-## 第三批：模块化施工与契约方法研究
-
-[统一方法研究](docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)已按 Theia、Backstage、Spring Modulith、Nx/dependency-cruiser 和 CDC 的官方文档/固定源码修订：包含 L01–L12 覆盖矩阵、按模块归并的能力、契约归属/分层、依赖检查、独立测试及多 AI 协作建议。链路只用于分析与组合验收，施工按模块组织；本批未写产品代码、正式接口或协议，外部机制和本批建议不自动成为 WEX 已确认架构。
-
-
-
-## 第四批：按模块维护业务契约
-
-[全模块契约索引](docs/MODULE-CONTRACTS.md)连接11个成熟功能域的就近业务契约、接口/通信边界、独立施工验收与依赖检查建议；公开能力是可评审设计，不是已实现API。保留A既定约束、B推荐未批准、C待实验、D待用户决策，不强迫所有模块接口/协议一次性定稿。链路仅用于需求分析与组合验收，后续施工按模块进行。
-
-
-## 第五批：复杂业务契约压力审查
-
-[33条覆盖矩阵、9类冲突、H22–H30与再审查结论](docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)。候选修正就近写回各模块契约及DSH说明，覆盖等待/定义实例/资料传播/双插件/非软件业务/预算/外部变化/桌面基础。完整链路最高证据E0；没有把历史局部实验升级为组合验收，B/C/D仍未自动批准或关闭。未施工产品、未触发Actions。
-
-
-## 第六批更新（2026-10-31）
-
-[最新收敛、实验及施工准备度](docs/batch6/README.md)取代上述历史准备度结论；F01–F09均有处置，11域分范围准入。B/C/D仍分离，完整业务组合与Windows实机未通过。
-
-
-## 基础工程开发
-
-Node >=24.9；`npm ci` → `npm test`，严格类型检查 `npm run typecheck`，各模块 `npm run test:shared` / `test:permissions` / `test:app`。本批实际环境与限制见[开发说明](docs/batch7/DEVELOPMENT.md)。
