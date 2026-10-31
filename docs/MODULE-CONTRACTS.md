@@ -1,10 +1,13 @@
 # 第四批：模块业务契约与施工准备索引
 
+**文档入口：** [文档体系总索引](README.md) · [架构文档](architecture/README.md) · [决策记录](decisions/README.md) · [研究资料](research/README.md) · [审查报告](audits/README.md)
+
+
 2026-10-31，上海时间。设计基线 `a62996af9863e60b15e4513389c7654719907920`；本轮只设计文档，不做产品代码、迁移、依赖安装、正式IPC/schema或Actions。链路用于需求提取与组合验收，施工单位始终是模块。
 
 ## 1. 依据与决定等级
 
-已核对最新main根README与所有现有主要域/子域README、[研究摘要](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)、[模块化方法与L01–L12](WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)、[五份专项研究](README.md#2026-10-31-专项研究)、DSH/Cordis加载及原生Bundle报告、headless/boundary源码、ReactFlow模型/验证报告；旧WEXPC `faf11f31d44e4fc4788e766074b8db6b83ab4a1b` [产品基线](https://github.com/owla19s-ux/wexpc/blob/faf11f31d44e4fc4788e766074b8db6b83ab4a1b/docs/PC-PRODUCT-AND-TECH-BASELINE.md)仅继承仍有效的需求/权限/重装规则，不继承Rust/Tauri实现。基线根AGENTS.md不存在；协作依据是用户本批任务、既有README/第三批建议和已确认main协作原则，不虚构AGENTS授权。
+已核对最新main根README与所有现有主要域/子域README、[研究摘要](decisions/RESEARCH-DECISIONS-2026-10-30.md)、[模块化方法与L01–L12](architecture/GLOBAL-CONTRACT-MAP-V0.1.md)、[五份专项研究](README.md#2026-10-31-专项研究)、DSH/Cordis加载及原生Bundle报告、headless/boundary源码、ReactFlow模型/验证报告；旧WEXPC `faf11f31d44e4fc4788e766074b8db6b83ab4a1b` [产品基线](https://github.com/owla19s-ux/wexpc/blob/faf11f31d44e4fc4788e766074b8db6b83ab4a1b/docs/PC-PRODUCT-AND-TECH-BASELINE.md)仅继承仍有效的需求/权限/重装规则，不继承Rust/Tauri实现。基线根AGENTS.md不存在；协作依据是用户本批任务、既有README/第三批建议和已确认main协作原则，不虚构AGENTS授权。
 
 | 等级 | 可以据此做什么 | 不可以据此做什么 |
 |---|---|---|
@@ -165,7 +168,7 @@ A的主要依据：TS/Electron/React；Context独立/多处引用/模板可选�
 
 ## 9. 第五批执行结果与当前入口（2026-10-31）
 
-上文§8保留第四批的场景输入及当时“尚未执行”状态；第五批已完成的是其**E0静态压力审查**，不是运行测试。[33条覆盖矩阵、F01–F09冲突与H22–H30](research/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)记录逐样本分类/去重、完整补样、提供/消费者差异、按模块回写和再推演。各CONTRACT末尾第五批补充是可评审B，历史A边界不变，C/D未关闭；DSH继续就近维护README，不生成虚假的成熟产品接口。
+上文§8保留第四批的场景输入及当时“尚未执行”状态；第五批已完成的是其**E0静态压力审查**，不是运行测试。[33条覆盖矩阵、F01–F09冲突与H22–H30](audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)记录逐样本分类/去重、完整补样、提供/消费者差异、按模块回写和再推演。各CONTRACT末尾第五批补充是可评审B，历史A边界不变，C/D未关闭；DSH继续就近维护README，不生成虚假的成熟产品接口。
 
 新增待决D06为受限衍生内容审查降级/跨Context发布权限，D07为预算硬软承诺/超额处置/共享池优先级。预算纳管与预留归runtime只是B建议，费用观察归connections、技术容量归shared，未成为已确认架构。新增实验门槛见第五批§6，成熟度/接口顺序见§8；不替换原有D01–05或C01–08。
 

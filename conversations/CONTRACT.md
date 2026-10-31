@@ -51,7 +51,7 @@ space 仅提供获准背景引用/定位与关系修订，实际资料正文、�
 
 ## 第五批复杂压力审查补充（2026-10-31）
 
-依据：[第五批覆盖、冲突与再审查记录](../docs/research/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)。以下细化均为 **B 推荐未批准、E0 静态审查**；A 仅沿用原有 owner/边界。C 实验与 D 政策不因本节入仓而关闭，未冻结接口或新增首版能力。
+依据：[第五批覆盖、冲突与再审查记录](../docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)。以下细化均为 **B 推荐未批准、E0 静态审查**；A 仅沿用原有 owner/边界。C 实验与 D 政策不因本节入仓而关闭，未冻结接口或新增首版能力。
 
 ### 输入、定稿与工具提议：衍生内容和跨入口使用（F03/F07）
 
@@ -71,3 +71,21 @@ space 仅提供获准背景引用/定位与关系修订，实际资料正文、�
 可先做无Task会话、消息/段落版本、背景/逻辑生成/来源记录。本域替身必须包含输入已提交ACK丢失、旧生成迟到、来源缺失/撤权，不以重发调用恢复unknown。X03二次摘要限制继承与文件/outbox通过；真实模型/网络发送、流式崩溃窗口和追加UX/片段保留仍C/D05。
 
 本域独立输入/输出、取消/失败/超时/unknown及双方替身样例沿用上文；下一批先真实本域测试，再真实提供/消费与装配，不用实验替代。[全域准备度与独立入口](../docs/batch6/READINESS.md)、[局部证据与未验证条件](../docs/batch6/EXPERIMENTS.md)、[集中待决](../docs/batch6/DECISIONS.md)。
+
+
+## 文档关联与施工入口
+
+本节是本域施工者的最小阅读入口；模块业务语义以本文件为准，全局文档提供约束/背景，批次与实验记录提供阶段状态和证据。**文档中的 A/B/C/D 不得互相升级：实验通过不自动批准候选，用户待决事项不得由施工者代裁。**
+
+- **模块导航**：[全模块契约索引](../docs/MODULE-CONTRACTS.md) · [文档体系总索引](../docs/README.md)
+- **全局架构**：
+- [全局契约地图](../docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)
+- **决策与研究**：
+- [研究决策与当前边界](../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)
+- [安全与数据持续性](../docs/research/SECURITY-AND-PERSISTENCE-2026-10-31.md)
+- **审查报告**：
+- [复杂业务契约压力审查](../docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)
+- **准备度与批次结论**：[本域施工准备度](../docs/batch6/READINESS.md) · [F01–F09 契约收敛](../docs/batch6/CONVERGENCE.md) · [集中决策与待决项](../docs/batch6/DECISIONS.md)
+- **实验与验证证据**：[第六批实验总表](../docs/batch6/EXPERIMENTS.md) · [可复现实验入口](../experiments/contract-readiness-spike/README.md)
+
+维护规则：模块职责/业务行为修改在本域 README/CONTRACT；跨模块架构或政策变更更新对应全局文档；每次实验只更新证据，不改写未批准的决策。施工批次结束后，先回写模块契约，再更新本节关联；不得把批次历史报告当作模块当前状态的替代品。
