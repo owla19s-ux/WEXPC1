@@ -34,7 +34,8 @@ let loaded = 0, disposed = 0
 ctx.on('wex-test/hello-loaded', () => loaded++)
 ctx.on('wex-test/hello-disposed', () => disposed++)
 try {
-  const owner = ctx.plugin(Loader, { baseUrl: import.meta.url })
+  // Anchor resolution in the fixture package, independent of any repository-root package.json.
+  const owner = ctx.plugin(Loader, { baseUrl: new URL('./fixtures-native-bundle/index.mjs', import.meta.url).href })
   await owner.await()
   const loader = ctx.loader
   const id = await loader.create({ id: entryId, name: entryName })

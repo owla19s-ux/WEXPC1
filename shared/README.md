@@ -1,5 +1,6 @@
 # shared
 
+**当前：第七批基础产品实现已落地；稳定实现与限制见本文“第七批实际实现”及[验收报告](../docs/batch7/REPORT.md)。下方阶段描述保留为历史依据。**
 实际共用机制。各功能维护自己的业务数据含义；此处不成为集中业务逻辑的杂物目录。
 
 状态：2026-10-30 按用户确认建立的源码维护目录，当前只有职责说明，尚无产品实现。目录不是运行时数据路径，也不代表独立插件、进程或编译包。
@@ -45,3 +46,18 @@
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+
+## 第七批实际实现（2026-10-31）
+
+本节为当前产品实现范围，先前“没有产品代码”描述是历史状态。公开入口 `shared/src/index.ts`，真实消费者为 `permissions/src/service.ts` 和 `app/src/foundations.ts`；无反向业务依赖。
+
+- `Store.read/commit/query`：一个命名空间聚合快照及原意图记录；期望修订 CAS；明确 committed / not_committed / unknown。成功及意图记录在同一 SQLite 事务；命名空间在构造时由可信宿主绑定，消费者不取得 DB 句柄。读取故障抛错，不能冒充空库。
+- 意图作用域为同一数据库、命名空间及 intent；原提交包含 expectedRevision 与规范 JSON 内容，完全一致重送返回原修订，不同内容冲突。原意图记录当前不自动过期、不提供清理；跨重启保留。unknown 后通过原 intent query/权威记录回读，未确认不重建外部动作。
+- `openSqliteStore/createSqliteStore` 为可替换 Node SQLite 适配；`SqlitePort` 是技术驱动接口；对外不承诺跨库/文件/服务原子性。不将本批适配器冻结为全产品存储选型。当前使用 Node 24.22.1 内建 SQLite，未验证 Electron 的 Node 版本适配。
+- `inspectRoot` 只读现存 `.wex-root.json`（format=1、id非空）；不自动初始化、移动、修复旧根。诊断 missing_path / missing_volume（需平台 ENODEV/ENXIO 证据）/ permission_denied / corrupt / incompatible / identity_conflict / unavailable；ENOENT 不推断缺盘。
+- `resolveWithin` 重新核根身份并用 realpath + relative 检查现存路径；拒绝绝对路径与链接逃逸。结果只是当时定位观察，不是抗同用户恶意换链的文件操作凭证；未来真正读写/删除出口仍需句柄级平台校验。
+- `RootLock` 可替换。默认 `directoryLock` 是保守合作目录锁：原子 mkdir、随机 owner、释放核对、不自动清旧锁。进程崩溃会留下锁并阻断，尚无安全自动回收；不是 Windows OS 活性锁/ACL/沙箱证明。
+- `createDiagnostics` 只允许技术 code/module/level 白名单，不接受自由消息正文、任意字段或业务证据；sink失败明确返回 failed。普通诊断不是 Operation、权限审计或 Task/Artifact/Verification 账本。没有日志文件轮转/保留策略实现。
+
+测试：`npm run test:shared`。真实 SQLite 与测试专用内存替身共用 `shared/tests/store-contract.mjs` 向量；ACK丢失通过真实 COMMIT 后的传输端口异常注入，另有真实只读与跨进程锁竞争。不以替身证明持久性。SH03–05 的完整备份/Windows凭证/ACL/重装关系恢复均未实现，C/D保留。

@@ -1,5 +1,6 @@
 # permissions — 策略、授权决定与撤权
 
+**当前：第七批基础产品实现已落地；稳定实现与限制见本文“第七批实际实现”及[验收报告](../docs/batch7/REPORT.md)。下方阶段描述保留为历史依据。**
 状态：第二批架构细化；尚无产品授权引擎。此处是唯一的权限业务域；[shared/permissions](../shared/permissions/README.md) 仅保留旧入口指引，不再承担另一套授权服务。
 
 ## 判断什么
@@ -51,3 +52,20 @@
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+
+## 第七批实际实现（2026-10-31）
+
+当前公开入口 `permissions/src/index.ts`，消费者 `app/src/foundations.ts`；仅导入 shared 公开的 Store/Json/结果类型，不读取任何其他业务私库。
+
+`createPermissions(Store, TrustPort)` 提供 evaluate / recheck / grant / revoke / history。TrustPort 只能由可信宿主实现：current 将真实调用对象绑定为核验事实，canManage 核验精确管理请求，canReadHistory 仅用于本批受信任完整历史管理入口。外部文本、Renderer字段、Key、角色和Context自报值不实现该端口。当前无IPC/OS主体认证实现，正例事实为测试宿主注入；CLI默认全部无可信事实/无管理权。
+
+许可按 subject、entry、conversation、可空context、resource、action、target、relationship及relationshipGeneration精确匹配；对话三层开关与来源限制任一不满足均不能允许。非对话返回 entry_policy_unresolved，不伪造对话、自动降级或跨Context发布策略。
+
+每次授权/撤销以聚合修订CAS持久化，记录命令/原意图/精确范围/代次；撤销保留历史，重新授予必须新事实。recheck 重新读取当前授权，并核对旧决定的范围/修订/代次；旧允许、迟到旧修订和重新授予前的旧决定均不能继续使用。保守地使任一授权变更失效旧决定；当前无按资源细粒度代次优化。
+
+提交三态原样交给调用方；重复意图核对原命令并query原提交，unknown不自动再写。失败/损坏/存储不可用返回不可判定或unknown，不放行。history当前只向受信任管理入口提供完整本域历史；普通用户按资源筛选、分页与可见性投影尚未开放，不可将布尔管理检查当成任意用户读取许可。
+
+出口前接口是复核点，不是外部副作用的原子锁；复核与真实资源/网络发送间竞态、IPC重放、Windows主体与安装关系识别仍C。未实现有限次数、自动审批、D01非对话政策、D05强审计全局阻断或D06降级发布政策。
+
+测试：`npm run test:permissions`。真实SQLite/共享存储替身共用本域行为；`permissions/tests/reader-contract.mjs` 被app消费者对真实权限与权限替身共同执行。历史是本域事实，不复制Operation或Task账本。

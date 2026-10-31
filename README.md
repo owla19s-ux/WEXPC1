@@ -2,12 +2,12 @@
 
 **文档索引：** [WEXPC1 文档体系](docs/README.md) —— 模块契约、全局架构、决策、研究、审查与批次交付的统一入口。
 
-**最新阶段：[第六批收敛与准备度](docs/batch6/README.md)**：部分具备独立施工条件；绿色仅组织引用、AI配置依据、布局配置包。完整DSH成功链路/Windows生命周期仍未验证，不冻结所有接口。
+**最新阶段：[第七批基础模块首轮实现与验收](docs/batch7/REPORT.md)**：shared、permissions、app已有TypeScript产品实现、独立测试与最小真实装配。完整DSH链路、Electron窗口及Windows实机仍未验证。
 
 **当前研究决策摘要（2026-10-30）**：[连接器、DSH、视图引擎与持续数据的阶段边界](docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)。首期以连接器为主体，外部 Agent 执行能力优先研究；React Flow 为实验性的视图交互组件，DSH Core+Loader 仅供 DSH 原生插件兼容实验，WEX 自有插件机制暂不定型。本文下方早期 Cordis 优先候选及源码目录描述如有矛盾，以此最新共识为准。
 
 
-本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。大多数功能域只有职责说明，尚未形成可运行 WEXPC 应用；旧 WEXPC 产品代码未迁移。
+本仓保存设计研究、独立可运行实验和用户确认的源码维护目录。三个基础域已有无窗口可运行装配，其余大多数功能域仍只有职责说明；尚未形成完整 WEXPC 桌面应用，旧产品代码未迁移。
 
 ## 当前技术基线（2026-10-30 已确认）
 
@@ -107,3 +107,8 @@ WEX 自行开发轻量独立客户端；DSH 仍为独立运行的外部 Agent，
 ## 第六批更新（2026-10-31）
 
 [最新收敛、实验及施工准备度](docs/batch6/README.md)取代上述历史准备度结论；F01–F09均有处置，11域分范围准入。B/C/D仍分离，完整业务组合与Windows实机未通过。
+
+
+## 基础工程开发
+
+Node >=24.9；`npm ci` → `npm test`，严格类型检查 `npm run typecheck`，各模块 `npm run test:shared` / `test:permissions` / `test:app`。本批实际环境与限制见[开发说明](docs/batch7/DEVELOPMENT.md)。

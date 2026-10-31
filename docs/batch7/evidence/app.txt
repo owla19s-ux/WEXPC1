@@ -1,0 +1,32 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 test:app
+> npm run build && node --test app/tests/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 build
+> tsc -p tsconfig.json
+
+✔ app consumer same reader vectors: real permissions + SQLite (4.029788ms)
+✔ app consumer same reader vectors: contract double (1.641341ms)
+✔ host only injects declared dependencies and releases in reverse order once (1.953424ms)
+✔ optional failure degrades with affected dependent; critical failure fails startup (0.545688ms)
+✔ late initialization cannot register and its resources are released (9.986691ms)
+✔ release failure stays observable and does not prevent other cleanup (0.620409ms)
+✔ dependency cycles and duplicate module IDs fail without starting modules (0.187488ms)
+✔ shutdown stays incomplete while timed-out provider is pending or late cleanup fails (9.541582ms)
+✔ late successful release permits a later confirmed shutdown (10.212265ms)
+✔ real app/shared/permissions assembly persists revocation and blocks old authorization (16.947582ms)
+✔ missing root and unavailable storage report affected capabilities without fake success (7.837509ms)
+✔ storage commit failure remains not_committed in real host consumer (3.328009ms)
+✔ existing store symlink cannot redirect host writes outside selected root (3.391604ms)
+✔ unconfirmed provider close retains root lease and exposes incomplete shutdown (2.52515ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.807803

@@ -1,0 +1,23 @@
+test_F01_cycle_persists_independent_work_and_safe_recovery (__main__.Mechanisms.test_F01_cycle_persists_independent_work_and_safe_recovery) ... ok
+test_F01_normal_wait_self_cycle_and_failure_release (__main__.Mechanisms.test_F01_normal_wait_self_cycle_and_failure_release) ... ok
+test_F01_unknown_external_effect_recovery_does_not_redispatch (__main__.Mechanisms.test_F01_unknown_external_effect_recovery_does_not_redispatch) ... ok
+test_F02_definition_immutable_and_invalid_branch_rejected (__main__.Mechanisms.test_F02_definition_immutable_and_invalid_branch_rejected) ... ok
+test_F02_versions_join_round_attempt_and_restart (__main__.Mechanisms.test_F02_versions_join_round_attempt_and_restart) ... ok
+test_F03_modified_missing_or_incomplete_provenance_denied (__main__.Mechanisms.test_F03_modified_missing_or_incomplete_provenance_denied) ... ok
+test_F03_read_transform_save_reload_send_and_revoke (__main__.Mechanisms.test_F03_read_transform_save_reload_send_and_revoke) ... ok
+test_F03_revoke_between_read_and_send_target_substitution (__main__.Mechanisms.test_F03_revoke_between_read_and_send_target_substitution) ... ok
+test_F03_second_transform_cannot_broaden_source_targets (__main__.Mechanisms.test_F03_second_transform_cannot_broaden_source_targets) ... ok
+test_F05_atomic_last_unit_only_one_winner (__main__.Mechanisms.test_F05_atomic_last_unit_only_one_winner) ... ok
+test_F05_crash_unknown_retry_cancel_reconcile (__main__.Mechanisms.test_F05_crash_unknown_retry_cancel_reconcile) ... ok
+test_F05_naive_read_then_write_overbooks (__main__.Mechanisms.test_F05_naive_read_then_write_overbooks) ... ok
+test_F06_takeover_race_has_one_current_writer (__main__.Mechanisms.test_F06_takeover_race_has_one_current_writer) ... ok
+test_F06_takeover_stale_return_and_concurrent_edit (__main__.Mechanisms.test_F06_takeover_stale_return_and_concurrent_edit) ... ok
+test_F07_content_not_mtime_and_acceptance_version (__main__.Mechanisms.test_F07_content_not_mtime_and_acceptance_version) ... ok
+test_F07_move_delete_duplicate_names_and_failed_output (__main__.Mechanisms.test_F07_move_delete_duplicate_names_and_failed_output) ... ok
+test_F08_concurrent_writers_guard_root_and_database_integrity (__main__.Mechanisms.test_F08_concurrent_writers_guard_root_and_database_integrity) ... ok
+test_F08_same_root_different_roots_kill_and_stale_metadata (__main__.Mechanisms.test_F08_same_root_different_roots_kill_and_stale_metadata) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.578s
+
+OK

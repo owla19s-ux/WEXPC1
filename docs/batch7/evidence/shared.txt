@@ -1,0 +1,29 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 test:shared
+> npm run build && node --test shared/tests/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 build
+> tsc -p tsconfig.json
+
+✔ real SQLite competing process cannot overwrite locked revision (1138.27851ms)
+✔ shared provider: same contract vectors against SQLite real transactions with transport fault port (4.627724ms)
+✔ consumer double: same success, failure, ACK-loss and conflict vectors (0.469616ms)
+✔ actual SQLite read-only failure is confirmed not committed (0.778333ms)
+✔ root identity, realpath containment and cooperative lock fail closed (16.479338ms)
+✔ root diagnostics distinguish absent, missing volume, denied and corrupt (2.267048ms)
+✔ technical diagnostics accept codes only; secret and business fields are omitted (1.086019ms)
+✔ unknown existing root lock is never cleaned and foreign owner cannot release (5.384264ms)
+✔ diagnostic sink failure is observable without rewriting business results (0.29032ms)
+✔ CAS, original intent replay and conflict survive reopen (2.899354ms)
+✔ sparse arrays are rejected before commit and cannot corrupt readable snapshot (2.262285ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1234.494689

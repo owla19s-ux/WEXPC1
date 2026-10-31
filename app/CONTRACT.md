@@ -124,3 +124,18 @@ app继续只拥有可信装配、实例/生命周期事实与恢复协调。应�
 - **实验与验证证据**：[第六批实验总表](../docs/batch6/EXPERIMENTS.md) · [可复现实验入口](../experiments/contract-readiness-spike/README.md)
 
 维护规则：模块职责/业务行为修改在本域 README/CONTRACT；跨模块架构或政策变更更新对应全局文档；每次实验只更新证据，不改写未批准的决策。施工批次结束后，先回写模块契约，再更新本节关联；不得把批次历史报告当作模块当前状态的替代品。
+
+
+## 第七批实际实现（2026-10-31）
+
+当前公开入口 `app/src/index.ts`；`assemble` 只消费可信内置模块定义，不加载第三方代码。先检查重复ID与依赖环，再拓扑装配，仅注入声明的依赖窄面，冻结依赖映射；不公开全容器或DB。缺依赖、依赖不可用、初始化失败与超时分别诊断。必需能力失败为failed；可选能力失效为degraded；装配不产生业务授权。
+
+生命周期以一次stop协调，逆序释放已注册资源；超时结果不允许迟到注册，迟到实例仍需stop。初始化或释放尚未确认时返回incomplete，清理失败保留诊断，不报告外部已停止；迟到成功释放后允许重新确认stop。初始化函数在返回实例前自行清理其部分资源，AbortSignal只请求停止，不能保证平台工作已停。
+
+`startFoundations` 实际核验已存在数据根、取得 RootLock、装配真实shared技术存储与permissions，再向受信任宿主暴露明确的权限能力。权限聚合位于用户所选根 `permissions.sqlite`；app只接线，不解释/维护其业务数据。数据库及journal/wal/shm既存符号链接拒绝；无法确认关闭时保留根锁。路径检查不承诺对抗同用户恶意并发换链，Windows句柄/重解析点/ACL仍C。
+
+`app/src/main.ts` 是可执行无窗口诊断入口：`npm run start:headless -- <已有根目录>`。根需预先由可信维护者创建 `.wex-root.json`，例如 `{"format":1,"id":"chosen-root"}`；本批没有安装/选根向导，不在缺根时生成替代数据。CLI不授予任何权限，退出只释放宿主资源，不创建/取消Task。
+
+该入口验证基础装配，不是Electron应用或完整WEX闭环。没有Electron窗口、preload/IPC、React UI、后台常驻、开机启动或窗口关闭策略；未对这些未来接口建空实现。Electron/Windows接线及E4仍未验证，不冻结打包器/平台协议。D04与全部D01–D07未代裁。
+
+测试：`npm run test:app`。提供方生命周期测试使用故障模块；消费方同一权限reader向量对照真实与替身；集成真实根/锁/SQLite/permissions，覆盖撤销持久化、缺模块/存储、链接逃逸和不确定释放。
