@@ -1,6 +1,6 @@
 # WEX 工作流编辑器 — React Flow 集成边界
 
-**当前源码归属说明（2026-10-30）**：此目录保留 React Flow 二维工作流**实验原型**，不代表 WEX 所有架构树与专业视图归 workflows。更广义的视图职责已在 [views/](../../views/README.md) 建立源码维护入口，目前只含 README，后续是否迁移原型须以实际 PC 试验为依据。React Flow 只负责交互与渲染，不拥有业务数据或执行语义。按类型拆分的节点组件仅是原型结构；同名节点在不同模板中可以拥有完全不同的业务机制。历史通过的模型/DOM 测试不等于节点拆分之后已重新通过。详见 [研究共识](../../docs/WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)。
+**当前源码归属说明（2026-10-30）**：此目录保留 React Flow 二维工作流**实验原型**，不代表 WEX 所有架构树与专业视图归 workflows。更广义的视图职责已在 [views/](../../views/README.md) 建立源码维护入口，目前只含 README，后续是否迁移原型须以实际 PC 试验为依据。React Flow 只负责交互与渲染，不拥有业务数据或执行语义。按类型拆分的节点组件仅是原型结构；同名节点在不同模板中可以拥有完全不同的业务机制。历史通过的模型/DOM 测试不等于节点拆分之后已重新通过。详见 [研究共识](../../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)。
 
 
 状态：2026-10-30 已有独立原型，已通过实际安装、TypeScript/Vite 构建、模型/DOM 集成测试和 HTTP 预览；真实浏览器交互与 Electron 尚待环境恢复后验收。详见 [本批验证报告](prototype/VERIFICATION-2026-10-30.md)。不自行开发另一套节点画布。
@@ -70,3 +70,14 @@
 
 
 第六批：[最新准备度/证据及限制](../../docs/batch6/CONVERGENCE.md)。原生Core+Loader实验、WEX外部DSH连接和Windows实机证据分别验收；预留平台不因局部实验通过进入正式施工。
+
+
+## 上级契约与文档入口
+
+- **上级业务/职责契约：** [workflows/CONTRACT.md](../../workflows/CONTRACT.md)
+- **全局文档总索引：** [docs/README.md](../../docs/README.md)
+- [Space 与工作流编辑器设计](../../docs/architecture/SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)
+- [视图与证据链审计](../../docs/audits/VIEWS-AND-EVIDENCE-AUDIT-2026-10-31.md)
+- [views 业务契约](../../views/CONTRACT.md)
+
+本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。

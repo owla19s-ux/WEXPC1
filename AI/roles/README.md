@@ -13,3 +13,13 @@
 
 
 第六批：[最新准备度/证据及限制](../../docs/batch6/READINESS.md)。原生Core+Loader实验、WEX外部DSH连接和Windows实机证据分别验收；预留平台不因局部实验通过进入正式施工。
+
+
+## 上级契约与文档入口
+
+- **上级业务/职责契约：** [AI/CONTRACT.md](../../AI/CONTRACT.md)
+- **全局文档总索引：** [docs/README.md](../../docs/README.md)
+- [外部 Agent 生态](../../docs/research/AGENT-ECOSYSTEM-2026-10-31.md)
+- [研究决策](../../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)
+
+本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。

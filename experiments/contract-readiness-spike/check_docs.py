@@ -6,6 +6,14 @@ ROOT = Path(__file__).resolve().parents[2]
 domains = ['app','space','AI','conversations','connections','workflows','permissions','shared','views','workflows/modes','UI']
 paths = [f'{domain}/{name}' for domain in domains for name in ['README.md','CONTRACT.md']]
 paths += ['README.md','AI/roles/README.md','shared/storage/README.md','shared/credentials/README.md',
+          'connections/api/README.md','connections/github/README.md','connections/local/README.md','connections/search/README.md',
+          'connections/api/UI/README.md','connections/github/UI/README.md','AI/roles/README.md',
+          'UI/components/README.md','UI/conversation/README.md','UI/settings/README.md','UI/space/README.md',
+          'shared/storage/README.md','shared/credentials/README.md','shared/permissions/README.md',
+          'connections/dsh/README.md','workflows/runtime/README.md','workflows/editor/README.md',
+          'workflows/modes/software-development/README.md','workflows/modes/software-development/UI/README.md',
+          'dsh/runtime/README.md','experiments/model-coordination-spike/README.md',
+          'experiments/runtime-loader-spike/README.md','references/ecosystem-extension-research/README.md',
           'connections/dsh/README.md','workflows/runtime/README.md','workflows/editor/README.md',
           'dsh/README.md','dsh/runtime/README.md','plugins/README.md','accounts/README.md',
           'docs/README.md','docs/MODULE-CONTRACTS.md','docs/decisions/RESEARCH-DECISIONS-2026-10-30.md',
@@ -59,6 +67,26 @@ for domain in domains:
 for domain in ['plugins','dsh','accounts']:
     if '## 文档入口与证据边界' not in (ROOT/domain/'README.md').read_text():
         errors.append(f'missing reserved-domain evidence boundary: {domain}/README.md')
+
+
+submodules = {
+    'AI/roles/README.md': 'AI/CONTRACT.md',
+    'shared/storage/README.md': 'shared/CONTRACT.md',
+    'shared/credentials/README.md': 'shared/CONTRACT.md',
+    'connections/api/README.md': 'connections/CONTRACT.md',
+    'connections/dsh/README.md': 'connections/CONTRACT.md',
+    'connections/github/README.md': 'connections/CONTRACT.md',
+    'connections/local/README.md': 'connections/CONTRACT.md',
+    'connections/search/README.md': 'connections/CONTRACT.md',
+    'workflows/runtime/README.md': 'workflows/CONTRACT.md',
+    'workflows/editor/README.md': 'workflows/CONTRACT.md',
+    'workflows/modes/software-development/README.md': 'workflows/modes/CONTRACT.md',
+    'dsh/runtime/README.md': 'dsh/README.md',
+    'tools/README.md': 'docs/MODULE-CONTRACTS.md',
+}
+for readme, parent in submodules.items():
+    if parent not in (ROOT/readme).read_text():
+        errors.append(f'missing parent contract link: {readme} -> {parent}')
 
 if errors: raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(files)} Markdown files, {links} file targets, 11 domain entries, F01–F09/X01–X09, original 33+9 samples; anchors and semantics not certified')

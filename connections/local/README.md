@@ -4,7 +4,7 @@
 
 状态：2026-10-30 按用户确认建立的源码维护目录，当前只有职责说明，尚无产品实现。目录不是运行时数据路径，也不代表独立插件、进程或编译包。
 
-[源码目录与 Windows 数据要求](../../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
+[源码目录与 Windows 数据要求](../../docs/architecture/SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
 
@@ -16,3 +16,13 @@
 ## 冲突与执行证据
 
 对真实路径、文件/Git 版本、进程和退出结果提供可核验观察；WEX 管理的排队与资源占用由 `workflows/runtime` 协调，连接器在实际动作前复核适用条件。不同 Context/路径别名可能指向同一资源，不能靠 Context ID 判定无冲突。WEX 的占用记录约束不了未纳管的外部进程，仍需隔离工作区或重新核对并报告冲突；不承诺全局文件锁。终端/Git 的 Windows 能力范围仍待实测，本批不扩大首期范围。
+
+
+## 上级契约与文档入口
+
+- **上级业务/职责契约：** [connections/CONTRACT.md](../../connections/CONTRACT.md)
+- **全局文档总索引：** [docs/README.md](../../docs/README.md)
+- [源码目录与 Windows 数据布局](../../docs/architecture/SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
+- [安全与数据持续性](../../docs/research/SECURITY-AND-PERSISTENCE-2026-10-31.md)
+
+本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。

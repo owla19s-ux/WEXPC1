@@ -4,7 +4,7 @@
 
 状态：2026-10-30 按用户确认建立的源码维护目录，当前只有职责说明，尚无产品实现。目录不是运行时数据路径，也不代表独立插件、进程或编译包。
 
-[源码目录与 Windows 数据要求](../../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
+[源码目录与 Windows 数据要求](../../docs/architecture/SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
 
@@ -22,3 +22,14 @@
 
 
 第六批：[最新准备度/证据及限制](../../docs/batch6/CONVERGENCE.md)。原生Core+Loader实验、WEX外部DSH连接和Windows实机证据分别验收；预留平台不因局部实验通过进入正式施工。
+
+
+## 上级契约与文档入口
+
+- **上级业务/职责契约：** [workflows/CONTRACT.md](../../workflows/CONTRACT.md)
+- **全局文档总索引：** [docs/README.md](../../docs/README.md)
+- [模块局部性设计](../../docs/architecture/MODULE-LOCALITY-DESIGN-V0.1.md)
+- [第六批关键机制实验](../../docs/batch6/EXPERIMENTS.md)
+- [集中决策与待决项](../../docs/batch6/DECISIONS.md)
+
+本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。

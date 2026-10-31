@@ -4,14 +4,14 @@
 
 状态：2026-10-30 按用户确认建立的源码维护目录，当前只有职责说明，尚无产品实现。目录不是运行时数据路径，也不代表独立插件、进程或编译包。
 
-[源码目录与 Windows 数据要求](../docs/WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
+[源码目录与 Windows 数据要求](../docs/architecture/SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
 
 修改原则：实现与必要测试按实际需要就近添加；不预建技术分层。模块专属 UI 随模块，内置页面集中在顶层 UI。实现后补充具体入口和验证方式。
 
 
 ## 第四批：模块施工与依赖检查规格（B，推荐未批准）
 
-本节是未来工程执行规格，不是已安装的门禁。基线`a62996a`；[第三批§7](../docs/WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)已有dependency-cruiser隔离夹具，本批不重跑、不安装Nx/Pact/DI，不新增正式类型/脚本/目录壳。模块入口和完整allowlist在真实模块开始时评审后登记，不能把示例文件名误认作已确定接口。
+本节是未来工程执行规格，不是已安装的门禁。基线`a62996a`；[第三批§7](../docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md)已有dependency-cruiser隔离夹具，本批不重跑、不安装Nx/Pact/DI，不新增正式类型/脚本/目录壳。模块入口和完整allowlist在真实模块开始时评审后登记，不能把示例文件名误认作已确定接口。
 
 ### 一张模块施工卡的必填信息
 
@@ -80,3 +80,14 @@ module.exports = {
 ## 第六批更新（2026-10-31）
 
 [最新收敛、实验及施工准备度](../docs/batch6/DEPENDENCIES.md)取代上述历史准备度结论；F01–F09均有处置，11域分范围准入。B/C/D仍分离，完整业务组合与Windows实机未通过。
+
+
+## 上级契约与文档入口
+
+- **上级业务/职责契约：** [docs/MODULE-CONTRACTS.md](../docs/MODULE-CONTRACTS.md)
+- **全局文档总索引：** [docs/README.md](../docs/README.md)
+- [模块局部性设计](../docs/architecture/MODULE-LOCALITY-DESIGN-V0.1.md)
+- [模块施工顺序](../docs/batch6/NEXT.md)
+- [文档体系总索引](../docs/README.md)
+
+本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
