@@ -52,7 +52,7 @@ F01–F15 可以继续作为产品功能域主骨架，但必须把基础功能�
 | F02 Agent / Role | Agent 定义、角色职责、上下文内分配、外部 Agent | 实例/Session 生命周期、替换接续、记忆共享和责任归因 | AI 契约细化；不自建外部 Agent Loop |
 | F03 Conversations | 独立对话、消息、序列、分支、追加/重发 | 流式中断、局部采纳状态、附件来源、工具结果未知、跨会话检查点 | conversations 契约细化；消息状态不复制 Operation |
 | F04 Model | Provider、模型、凭证引用、调用适配 | 多账号、模型能力兼容、限额成本、故障切换和请求输入快照 | 归 connections/api 与 AI 配置，不建立第二套模型运行时 |
-| F05 Connections | 连接、能力描述、Operation、回执、外部 Agent | 真实成功调用、能力可用性时效、回调身份、网络代理、取消/接续差异 | 继续完善真实连接器；不把插件机制当连接前置 |
+| F05 Connections | 连接、能力描述、Service、Operation、回执、外部 Agent | 真实成功调用、能力可用性时效、回调身份、网络代理、外部 Search/Fetch/Browser 的边界、取消/接续差异 | 继续完善真实连接器；不把插件机制当连接前置 |
 | F06 Local Tools | 文件、终端、Git、开发环境 | 进程树、外部修改、文件版本、环境发现、Android 工具链、输出洪泛 | 具体本地适配器就近负责，Host/权限由 app/permissions 提供 |
 | F07 Workflow / Template | 定义、节点、流程依赖、模板和专业模式 | 触发、版本、循环/分支、模板继承冲突、编辑草稿和运行隔离 | workflows/modes 细化；视图布局不写进运行定义 |
 | F08 Task / Runtime | Task、轮次、分配、调度、资源协调、恢复 | 非 Task 副作用协调、并发配额、未知结果恢复、人工接管 | workflows/runtime 继续拥有任务与协调；connections 拥有 Operation |
@@ -62,7 +62,7 @@ F01–F15 可以继续作为产品功能域主骨架，但必须把基础功能�
 | F12 Plugins | WEX 插件预留、DSH 原生插件实验 | WEX 自有可信加载、隔离、依赖、升级/卸载、数据处理 | 长期研究；不列为当前启动前置 |
 | F13 Evidence | Artifact、Receipt 引用、Review、Verification、Acceptance | 证据来源完整性、版本漂移、验证环境、矛盾证据和独立验收权限 | workflows 持有验收记录；connections 持有 Operation 事实 |
 | F14 App Host | 启动装配、存储根锁、Electron/React 隔离实验 | 正式安装、首次选根、单实例、Windows IPC/ACL、升级卸载、崩溃安全模式 | app 补契约和 E4 证据；不把业务状态集中到宿主 |
-| F15 Runtime Ops | 受限诊断、部分健康与生命周期机制 | 持久日志、Tracing、指标、容量、备份、离线恢复、通知可靠性 | app/shared 技术支持；各 owner 保留领域账本 |
+| F15 Runtime Ops | 受限诊断、部分健康与生命周期机制 | 持久日志、Tracing、指标、容量、备份、离线恢复、通知可靠性、用户帮助与问题报告 | app/shared 技术支持；各 owner 保留领域账本 |
 
 ### 2.1 新发现但不建议独立成域的横向机制
 
