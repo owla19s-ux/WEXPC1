@@ -45,3 +45,13 @@ test('late successful release permits a later confirmed shutdown',async()=>{
  let resolve;const pending=new Promise(r=>{resolve=r;});const h=await api.assemble([{id:'late',requires:[],start:()=>pending}],{required:['late'],timeoutMs:5});
  assert.equal((await h.stop()).status,'incomplete');resolve({value:1,stop:async()=>{}});await new Promise(r=>setTimeout(r,5));assert.equal((await h.stop()).status,'stopped');
 });
+
+test('late initialization cleanup failure is retained and can be retried',async()=>{
+ let resolve,attempts=0;const pending=new Promise(r=>{resolve=r;});
+ const h=await api.assemble([{id:'late',requires:[],start:()=>pending}],{required:[],timeoutMs:5});
+ assert.equal(h.status,'degraded');assert.equal(h.diagnostics[0].reason,'initialization_timeout');
+ resolve({value:{},stop:async()=>{if(++attempts===1)throw Error('temporary late cleanup failure');}});
+ await new Promise(r=>setTimeout(r,5));
+ assert.equal(h.diagnostics.some(d=>d.module==='late'&&d.reason==='release_failed'),true);
+ assert.equal((await h.stop()).status,'stopped');assert.equal(attempts,2);
+});
