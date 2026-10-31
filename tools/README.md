@@ -29,7 +29,7 @@
 
 ### 可执行规则的落实方法
 
-本节提出的 dependency-cruiser 方案仍是未来候选：它可解析文件图并运行更完整的规则，再按模块归属折叠图检查模块级 SCC。当前已实现的是本仓自有 TypeScript AST 检查器，文件环与模块环分别检查；文件环检查不替代模块环。解析包含type-only/re-export/字面量动态import及实际tsconfig别名；无法解析报错。computed import、注册配置和IPC使用另维护显式消费登记与装配样例，不声称静态图穷尽动态能力。
+本节提出的 dependency-cruiser 方案仍是未来候选：它可解析文件图并运行更完整的规则，再按模块归属折叠图检查模块级 SCC。当前已实现的是本仓自有 TypeScript AST 检查器，文件环与模块环分别检查；文件环检查不替代模块环。自有检查器目前识别 import/export/re-export、type import、字面量 dynamic import 与 require，并对无法解析的依赖报错；**尚未解析 tsconfig paths alias，也未解析第三方非相对包依赖（目前会报 unresolved）**。computed import、注册配置和 IPC 使用另维护显式消费登记与装配样例，不声称静态图穷尽动态能力。
 
 下面是**示例配置片段**，不创建rules文件、不承诺命令现在可运行。假设经评审决定各域以`public.ts`为唯一跨域出口；若实际出口不是它，须根据评审清单精确生成规则，不能为了测试绿而扩大到整个目录。
 
