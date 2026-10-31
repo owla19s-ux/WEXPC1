@@ -1,26 +1,25 @@
-"""Checks batch-six file links/coverage only; does not certify architecture semantics."""
+"""Checks documentation links/navigation and batch-six coverage; does not certify architecture semantics."""
 from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[2]
 domains = ['app','space','AI','conversations','connections','workflows','permissions','shared','views','workflows/modes','UI']
 paths = [f'{domain}/{name}' for domain in domains for name in ['README.md','CONTRACT.md']]
-paths += ['README.md','AI/roles/README.md','shared/storage/README.md','shared/credentials/README.md',
-          'connections/api/README.md','connections/github/README.md','connections/local/README.md','connections/search/README.md',
-          'connections/api/UI/README.md','connections/github/UI/README.md','AI/roles/README.md',
-          'UI/components/README.md','UI/conversation/README.md','UI/settings/README.md','UI/space/README.md',
-          'shared/storage/README.md','shared/credentials/README.md','shared/permissions/README.md',
-          'connections/dsh/README.md','workflows/runtime/README.md','workflows/editor/README.md',
-          'workflows/modes/software-development/README.md','workflows/modes/software-development/UI/README.md',
-          'dsh/runtime/README.md','experiments/model-coordination-spike/README.md',
-          'experiments/runtime-loader-spike/README.md','references/ecosystem-extension-research/README.md',
-          'connections/dsh/README.md','workflows/runtime/README.md','workflows/editor/README.md',
-          'dsh/README.md','dsh/runtime/README.md','plugins/README.md','accounts/README.md',
-          'docs/README.md','docs/MODULE-CONTRACTS.md','docs/decisions/RESEARCH-DECISIONS-2026-10-30.md',
-          'docs/architecture/GLOBAL-CONTRACT-MAP-V0.1.md',
-          'docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md',
-          'docs/audits/APP-FOUNDATIONS-GAP-AUDIT-2026-10-31.md','docs/architecture/README.md',
-          'docs/decisions/README.md','docs/research/README.md','docs/audits/README.md','tools/README.md']
+paths += [
+    'README.md', 'docs/README.md', 'docs/MODULE-CONTRACTS.md', 'tools/README.md',
+    'AI/roles/README.md',
+    'UI/components/README.md', 'UI/conversation/README.md', 'UI/settings/README.md', 'UI/space/README.md',
+    'shared/storage/README.md', 'shared/credentials/README.md', 'shared/permissions/README.md',
+    'connections/api/README.md', 'connections/api/UI/README.md', 'connections/dsh/README.md',
+    'connections/github/README.md', 'connections/github/UI/README.md', 'connections/local/README.md',
+    'connections/search/README.md',
+    'workflows/runtime/README.md', 'workflows/editor/README.md',
+    'workflows/modes/software-development/README.md', 'workflows/modes/software-development/UI/README.md',
+    'plugins/README.md', 'dsh/README.md', 'dsh/runtime/README.md', 'accounts/README.md',
+    'experiments/contract-readiness-spike/README.md',
+    'experiments/model-coordination-spike/README.md', 'experiments/runtime-loader-spike/README.md',
+    'references/ecosystem-extension-research/README.md',
+]
 files = {ROOT/name for name in paths}
 files.update((ROOT/'docs/batch6').glob('*.md'))
 files.update((ROOT/'docs/architecture').glob('*.md'))
@@ -57,6 +56,10 @@ if set(re.findall(r'^### (H\d\d) ',stress,re.M)) != {f'H{i}' for i in range(22,3
     errors.append('H22–H30 changed')
 
 # Module-to-global documentation navigation contract.
+if '[文档体系总索引](README.md)' not in (ROOT/'docs/MODULE-CONTRACTS.md').read_text():
+    errors.append('module contract index missing documentation index link')
+if '## 模块文档引用规范' not in (ROOT/'docs/README.md').read_text():
+    errors.append('missing module documentation reference standard')
 for domain in domains:
     contract = (ROOT/domain/'CONTRACT.md').read_text()
     readme = (ROOT/domain/'README.md').read_text()
