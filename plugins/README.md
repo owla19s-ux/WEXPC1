@@ -1,6 +1,6 @@
 # plugins — WEX 自有插件机制（预留研究）
 
-**状态：机制尚未研究定型，无产品级动态插件加载器。当前不作为 WEXPC1 首期前置。** 不预设 Cordis、DSH Service 或其他框架是 WEX 自有插件的必选底层。
+**状态：机制尚未研究定型，无产品级动态插件加载器。当前不作为 WEXPCeasy 首期前置。** 不预设 Cordis、DSH Service 或其他框架是 WEX 自有插件的必选底层。
 
 ## 研究边界
 
@@ -24,7 +24,7 @@
 - [全局架构：双插件体系边界](../docs/architecture/DUAL-PLUGIN-SYSTEM-BOUNDARIES-2026-10-30.md)
 - [运行时扩展契约研究](../docs/architecture/RUNTIME-EXTENSION-CONTRACT-V0.1.md)
 - [研究决策](../docs/decisions/RESEARCH-DECISIONS-2026-10-30.md)
-- [DSH 能力差距审计](../docs/audits/DSH-WEXPC1-GAP-MATRIX-V0.1.md)
+- [DSH 能力差距审计](../docs/audits/DSH-WEXPCeasy-GAP-MATRIX-V0.1.md)
 - [第六批准备度](../docs/batch6/READINESS.md)
 
 本目录当前为预留机制或独立实验，不等于完整产品模块已获施工准入。研究/实验结果只证明其明确记录的范围；不得外推为完整 WEX 集成、Windows 实机或生产可用性。

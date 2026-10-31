@@ -1,4 +1,4 @@
-# WEXPC1 文档体系索引
+# WEXPCeasy 文档体系索引
 
 **最近工程交付：[第八批基础复验与 Electron / React 宿主最小验证](batch8/REPORT.md)** · [Electron / React 实验复现说明](../experiments/electron-host-spike/README.md)。
 
