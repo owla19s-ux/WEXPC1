@@ -72,3 +72,9 @@
 ## 第八批验证补充（2026-10-31）
 
 当前产品装配源码与公开契约不变；隔离Electron实验真实消费app公开出口，验证ready、窗口关闭至停机、incomplete占锁/重试及启动pending退出。实验先等待初始化所有权再释放，不把故障注入/测试探针升级为产品入口。正式Electron启动器、首次选根及Windows E4仍未交付。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。
+
+## G3/G6：可信入口与恢复协调
+
+App 负责把可信宿主身份/入口事实和窄能力注入模块，并协调启动、退出、数据根接回及诊断入口；不拥有权限政策、Task 检查点或 Operation 账本。重启后由各 owner 恢复自己的事实，App 不自动重派未知工作。应用关闭期间是否后台运行仍属既有用户待决，不因跨对话持续工作要求而默认常驻。
+
+见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

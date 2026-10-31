@@ -69,3 +69,9 @@
 出口前接口是复核点，不是外部副作用的原子锁；复核与真实资源/网络发送间竞态、IPC重放、Windows主体与安装关系识别仍C。未实现有限次数、自动审批、D01非对话政策、D05强审计全局阻断或D06降级发布政策。
 
 测试：`npm run test:permissions`。真实SQLite/共享存储替身共用本域行为；`permissions/tests/reader-contract.mjs` 被app消费者对真实权限与权限替身共同执行。历史是本域事实，不复制Operation或Task账本。
+
+## G3：非对话入口施工门槛
+
+当前真实实现对 Conversation 入口有允许路径；Task、用户直接操作和外部回调等非对话入口仍按 `entry_policy_unresolved` 阻断。不得伪造 Conversation ID、继承创建 Task 的对话授权，或把角色/Context/连接可用性当成许可。对应入口的可信主体、实例/代次、目标和动作策略经批准、实现并由真实消费者验证前，不开放副作用。
+
+G1 引用、G2 工具意图、G4 Operation 历史和 G5 搜索命中均不产生授权。详见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

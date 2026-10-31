@@ -60,3 +60,9 @@
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+## G1/G4：Task 资料引用与跨对话检查点
+
+Task/工作轮次/Requirement/Artifact/Review/Verification/Acceptance 由本域维护；Task 引用输入资料与 Operation，不复制文件正文或 Operation 状态。Task 检查点必须能让新 Conversation、模型或执行者在读取最新修订、核对资源和原 Operation、重新判权后安全接续。检查点不是聊天总结，也不保证 Agent 或进程仍在运行。
+
+见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

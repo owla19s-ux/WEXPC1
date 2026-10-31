@@ -37,3 +37,9 @@
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+## G2/G6：角色配置与持续工作边界
+
+AI/roles 保存角色、模型/连接引用、职责和配置修订；不保存凭证秘密、Task 检查点、Operation 状态或 Conversation 历史。原生 API 工具往返由 Conversations 协调，外部 Agent 循环由外部客户端负责。新对话可以重新采用获准角色配置，但不继承旧模型隐藏上下文或旧授权。
+
+见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

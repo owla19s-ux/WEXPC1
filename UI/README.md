@@ -40,3 +40,9 @@ WEX 内置界面。主 UI 入口未来负责导航、加载页面和挂载模块
 ## 第八批验证补充（2026-10-31）
 
 正式页面/IPC协议尚未产品化；隔离React最小页面已验证窄preload状态查询、错误反馈与Renderer无Node。负例探针属于测试preload，不是公开产品API。AST新增禁止UI直接导入permissions等特权领域；业务事实仍由owner持有。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。
+
+## G5/G7：内部检索与输入附件
+
+UI 聚合各业务 owner 的获准查询并负责导航；外部互联网 Search/Fetch 不等于内部检索。输入页支持文本及后续文件选择/拖入/粘贴、附件预览和来源提示，但文件访问通过 App/Connections 窄能力，Renderer 不直接读取任意路径。UI 可呈现 Task 检查点与“继续”入口，点击后先交 Workflows 核对，不直接派发。
+
+跨域要求见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

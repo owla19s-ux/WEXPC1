@@ -66,3 +66,9 @@
 ## 第八批验证补充（2026-10-31）
 
 当前存储/根锁源码与契约不变；现有SQLite驱动已在Electron45.2.1内嵌Node24.22.1真实建库、事务提交、关闭、独立进程重启回读。无需为本批增加驱动适配；不是Windows锁/ACL/迁移恢复验收。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。
+
+## G1/G6：持久技术基础的范围
+
+Shared 的 SQLite/路径/提交能力是技术基础，不是资源正文管理器或 Task 检查点服务。各领域在自己的命名空间保存业务事实。当前 `shared/src/diagnostics.ts` 仅为受限诊断 sink，不是持久化日志、查询、轮转或脱敏导出平台；凭证后端也尚未完成。Operation、权限审计和 Task/验收证据仍由各自 owner 保存。
+
+见[基础能力落地映射](../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。
