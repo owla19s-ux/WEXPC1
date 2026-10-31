@@ -67,3 +67,8 @@
 该入口验证基础装配，不是Electron应用或完整WEX闭环。没有Electron窗口、preload/IPC、React UI、后台常驻、开机启动或窗口关闭策略；未对这些未来接口建空实现。Electron/Windows接线及E4仍未验证，不冻结打包器/平台协议。D04与全部D01–D07未代裁。
 
 测试：`npm run test:app`。提供方生命周期测试使用故障模块；消费方同一权限reader向量对照真实与替身；集成真实根/锁/SQLite/permissions，覆盖撤销持久化、缺模块/存储、链接逃逸和不确定释放。
+
+
+## 第八批验证补充（2026-10-31）
+
+当前产品装配源码与公开契约不变；隔离Electron实验真实消费app公开出口，验证ready、窗口关闭至停机、incomplete占锁/重试及启动pending退出。实验先等待初始化所有权再释放，不把故障注入/测试探针升级为产品入口。正式Electron启动器、首次选根及Windows E4仍未交付。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。

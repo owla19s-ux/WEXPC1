@@ -1,0 +1,23 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 test:permissions
+> npm run build && node --test permissions/tests/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 build
+> tsc -p tsconfig.json
+
+✔ permissions provider and shared consumer against real SQLite (7.165248ms)
+✔ permissions consumer against shared contract double (1.843069ms)
+✔ missing trusted facts, unprivileged mutation and unavailable store never allow (1.013102ms)
+✔ ACK loss is unknown, original intent recovers without a second permission event (0.350852ms)
+✔ confirmed failure and malformed stored permission evidence never create a grant (0.972701ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.862091

@@ -1,0 +1,82 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> verify
+> node verify.mjs
+
+[31:1031/203918.786109:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[31:1031/203918.786161:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[31:1031/203918.852791:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[31:1031/203918.852838:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[31:1031/203918.853091:ERROR:net/base/address_tracker_linux.cc:224] Could not create NETLINK socket: Operation not permitted (1)
+[31:1031/203918.854164:ERROR:device/udev_linux/udev_watcher.cc:51] Failed to initialize a udev monitor.
+PASS session path assigned before ready
+[67:1031/203918.859382:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203918.859567:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203918.859645:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[67:1031/203918.859699:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203918.859727:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203918.859745:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[67:1031/203918.859789:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[67:1031/203918.859807:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+[67:1031/203918.859859:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203918.859885:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203918.859901:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[67:1031/203918.859922:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203918.859940:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203918.859955:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[67:1031/203918.859969:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[67:1031/203918.859984:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+PASS SQLite transaction committed
+[67:1031/203918.861248:ERROR:components/viz/service/main/viz_main_impl.cc:192] Exiting GPU process due to errors during initialization
+PASS SQLite read matches committed value
+PASS SQLite original intent survives restart/reopen
+[31:1031/203918.862662:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[31:1031/203918.862843:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[31:1031/203918.866972:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[78:1031/203918.871250:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203918.871350:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203918.871379:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[78:1031/203918.871426:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203918.871446:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203918.871464:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[78:1031/203918.871481:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[78:1031/203918.871499:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+[78:1031/203918.871542:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203918.871567:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203918.871583:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[78:1031/203918.871604:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203918.871624:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203918.871640:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[78:1031/203918.871655:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[78:1031/203918.871671:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+[78:1031/203918.872945:ERROR:components/viz/service/main/viz_main_impl.cc:192] Exiting GPU process due to errors during initialization
+PASS real foundations assembled
+(electron) 'console-message' arguments are deprecated and will be removed. Please use Event<WebContentsConsoleMessageEventParams> object instead.
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS React rendered actual IPC status
+PASS sandbox/contextIsolation and no Node integration
+PASS renderer exposes only readStatus and no Node
+PASS real bridge returns only narrow host status
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS actual IPC rejects invalid payload
+renderer-console undefined
+[Error: Script failed to execute, this normally means an error was thrown. Check the renderer console for the error.]
+shutdown incomplete {"status":"incomplete","failed":["shared"]}
+file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:16
+   child.on('error',fail);child.on('exit',(code,signal)=>{clearTimeout(timeout);code===0?done():fail(Error(`Electron ${mode}: code=${code},signal=${signal}`));});
+                                                                                                     ^
+
+Error: Electron write: code=1,signal=null
+    at ChildProcess.<anonymous> (file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:16:102)
+    at ChildProcess.emit (node:events:514:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:324:12)
+
+Node.js v24.22.1

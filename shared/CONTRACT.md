@@ -156,3 +156,8 @@ shared提供限定技术提交/回读、根身份/锁与日志凭证机制，不
 inspectRoot 在读取根身份标记前通过 lstat 检查，拒绝符号链接和非普通文件；缺失、损坏和不兼容仍按既有结果分类。该检查不是句柄级原子操作，不承诺抵抗同用户恶意并发换链。
 
 createDirectoryLock 提供可注入文件系统端口用于故障测试，默认 directoryLock 行为不变。创建锁目录后若owner写入失败，只在owner内容与本次随机token完全一致时删除该文件，并仅尝试删除空目录；若内容未知、清理失败或目录非空，保留锁并返回unavailable，避免误删其他执行者的占用。
+
+
+## 第八批验证补充（2026-10-31）
+
+当前存储/根锁源码与契约不变；现有SQLite驱动已在Electron45.2.1内嵌Node24.22.1真实建库、事务提交、关闭、独立进程重启回读。无需为本批增加驱动适配；不是Windows锁/ACL/迁移恢复验收。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。

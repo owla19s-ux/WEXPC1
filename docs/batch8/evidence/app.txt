@@ -1,0 +1,35 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 test:app
+> npm run build && node --test app/tests/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 build
+> tsc -p tsconfig.json
+
+✔ app consumer same reader vectors: real permissions + SQLite (10.124112ms)
+✔ app consumer same reader vectors: contract double (2.036393ms)
+✔ host only injects declared dependencies and releases in reverse order once (3.6287ms)
+✔ optional failure degrades with affected dependent; critical failure fails startup (0.543048ms)
+✔ late initialization cannot register and its resources are released (11.404882ms)
+✔ release failure stays observable, cleans other modules, and can be retried (1.127407ms)
+✔ dependency cycles and duplicate module IDs fail without starting modules (0.209967ms)
+✔ shutdown stays incomplete while timed-out provider is pending or late cleanup fails (10.086234ms)
+✔ late successful release permits a later confirmed shutdown (10.419617ms)
+✔ late initialization cleanup failure is retained and can be retried (11.163313ms)
+✔ real app/shared/permissions assembly persists revocation and blocks old authorization (32.667317ms)
+✔ missing root and unavailable storage report affected capabilities without fake success (13.932019ms)
+✔ storage commit failure remains not_committed in real host consumer (6.37463ms)
+✔ existing store symlink cannot redirect host writes outside selected root (5.836216ms)
+✔ unconfirmed provider close retains root lease and exposes incomplete shutdown (3.891371ms)
+✔ foundation shutdown retries a transient provider close failure before releasing the root lease (3.222388ms)
+✔ foundation shutdown retries root lease release after providers have stopped (6.155115ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 212.661129

@@ -1,0 +1,59 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> verify
+> node verify.mjs
+
+[31:1031/204204.311935:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[31:1031/204204.312000:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[31:1031/204204.402315:ERROR:net/base/address_tracker_linux.cc:224] Could not create NETLINK socket: Operation not permitted (1)
+[31:1031/204204.402362:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[31:1031/204204.402529:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[31:1031/204204.403677:ERROR:device/udev_linux/udev_watcher.cc:51] Failed to initialize a udev monitor.
+PASS session path assigned before ready
+PASS SQLite transaction committed
+PASS SQLite read matches committed value
+PASS SQLite original intent survives restart/reopen
+[31:1031/204204.412993:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[31:1031/204204.413130:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[31:1031/204204.416392:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+PASS real foundations assembled
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS React rendered actual IPC status
+PASS sandbox/contextIsolation and no Node integration
+PASS renderer exposes only readStatus and no Node
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS real bridge returns only narrow host status
+IPC {"subject":"admin"} {"ok":false,"error":"invalid_request"}
+PASS actual IPC rejects invalid payload
+IPC {"action":"protected-probe"} {"ok":false,"error":"not_authorized"}
+PASS actual IPC denies unauthorized probe
+IPC {} {"ok":false,"error":"untrusted_sender"}
+IPC {} {"ok":false,"error":"untrusted_sender"}
+PASS actual IPC rejects another WebContents
+IPC {} {"ok":false,"error":"host_unavailable"}
+IPC {} {"ok":false,"error":"host_unavailable"}
+PASS React displays sanitized host error
+PASS external window blocked
+PASS persistent session resides in selected root
+PASS permission request denied
+(node:31) electron: Failed to load URL: https://example.invalid/ with error: ERR_BLOCKED_BY_CLIENT
+(Use `electron --trace-warnings ...` to show where the warning was created)
+PASS remote navigation/load blocked by request allowlist
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS window bitmap has requested dimensions
+PASS window close is held while release is unconfirmed
+TypeError: Cannot read properties of undefined (reading 'status')
+    at file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/main.mjs:100:95
+    at check (file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/main.mjs:14:25)
+    at run (file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/main.mjs:100:31)
+shutdown incomplete {"status":"incomplete","failed":["shared"]}
+file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:16
+   child.on('error',fail);child.on('exit',(code,signal)=>{clearTimeout(timeout);code===0?done():fail(Error(`Electron ${mode}: code=${code},signal=${signal}`));});
+                                                                                                     ^
+
+Error: Electron write: code=1,signal=null
+    at ChildProcess.<anonymous> (file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:16:102)
+    at ChildProcess.emit (node:events:514:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:324:12)
+
+Node.js v24.22.1

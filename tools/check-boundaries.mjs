@@ -36,7 +36,7 @@ export function analyze(files){
  if(!target.endsWith('/src/index.ts'))fail(file,'private_import',target);
  if(to==='app')fail(file,'reverse_app',target);
  if(from==='shared')fail(file,'shared_business',target);
- if(from==='UI'&&to==='shared')fail(file,'renderer_privileged',target);
+ if(from==='UI'&&['shared','permissions','connections','app'].includes(to))fail(file,'renderer_privileged',target);
  }
  }
  }

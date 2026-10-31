@@ -1,0 +1,21 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node --test tests/*.test.mjs
+
+✔ quit before startup does not start providers or dereference an absent host (1.339511ms)
+✔ quit during initialization waits for owned instance and retries incomplete release (0.256559ms)
+✔ startup rejection is not reported as confirmed release (0.41485ms)
+✔ only exact live main frame with empty request can read status (1.633669ms)
+✔ subframe, forged sender, remote URL and destroyed sender are refused before reads (0.206971ms)
+✔ authorization is checked in main, and errors never disclose paths (0.484975ms)
+✔ navigation whitelist compares exact local URL (0.18664ms)
+✔ isolated host has a runnable main, sandbox preload and React entry (2.050443ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.107304

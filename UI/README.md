@@ -35,3 +35,8 @@ WEX 内置界面。主 UI 入口未来负责导航、加载页面和挂载模块
 - [全模块契约索引](../docs/MODULE-CONTRACTS.md)
 
 全局架构、决策、研究、审查、实验和当前施工准入范围，以本域 `CONTRACT.md` 的“文档关联与施工入口”章节为准；README 只负责提供入口，不重复维护一份容易漂移的资料清单。
+
+
+## 第八批验证补充（2026-10-31）
+
+正式页面/IPC协议尚未产品化；隔离React最小页面已验证窄preload状态查询、错误反馈与Renderer无Node。负例探针属于测试preload，不是公开产品API。AST新增禁止UI直接导入permissions等特权领域；业务事实仍由owner持有。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。

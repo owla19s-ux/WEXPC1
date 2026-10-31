@@ -1,0 +1,113 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wexpc1-foundations@0.0.0 check:boundaries
+> node tools/check-boundaries.mjs
+
+{
+  "files": 10,
+  "edges": [
+    [
+      "app/src/foundations.ts",
+      "shared/src/index.ts"
+    ],
+    [
+      "app/src/foundations.ts",
+      "shared/src/index.ts"
+    ],
+    [
+      "app/src/foundations.ts",
+      "permissions/src/index.ts"
+    ],
+    [
+      "app/src/foundations.ts",
+      "permissions/src/index.ts"
+    ],
+    [
+      "app/src/foundations.ts",
+      "app/src/assembly.ts"
+    ],
+    [
+      "app/src/foundations.ts",
+      "app/src/assembly.ts"
+    ],
+    [
+      "app/src/index.ts",
+      "app/src/assembly.ts"
+    ],
+    [
+      "app/src/index.ts",
+      "app/src/assembly.ts"
+    ],
+    [
+      "app/src/index.ts",
+      "app/src/foundations.ts"
+    ],
+    [
+      "app/src/index.ts",
+      "app/src/foundations.ts"
+    ],
+    [
+      "app/src/main.ts",
+      "app/src/index.ts"
+    ],
+    [
+      "shared/src/index.ts",
+      "shared/src/storage.ts"
+    ],
+    [
+      "shared/src/index.ts",
+      "shared/src/storage.ts"
+    ],
+    [
+      "shared/src/index.ts",
+      "shared/src/paths.ts"
+    ],
+    [
+      "shared/src/index.ts",
+      "shared/src/paths.ts"
+    ],
+    [
+      "shared/src/index.ts",
+      "shared/src/diagnostics.ts"
+    ],
+    [
+      "shared/src/index.ts",
+      "shared/src/diagnostics.ts"
+    ],
+    [
+      "permissions/src/index.ts",
+      "permissions/src/service.ts"
+    ],
+    [
+      "permissions/src/index.ts",
+      "permissions/src/service.ts"
+    ],
+    [
+      "permissions/src/service.ts",
+      "shared/src/index.ts"
+    ]
+  ],
+  "moduleEdges": [
+    [
+      "app",
+      "shared"
+    ],
+    [
+      "app",
+      "shared"
+    ],
+    [
+      "app",
+      "permissions"
+    ],
+    [
+      "app",
+      "permissions"
+    ],
+    [
+      "permissions",
+      "shared"
+    ]
+  ],
+  "errors": []
+}

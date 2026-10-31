@@ -1,0 +1,26 @@
+✔ test double: stdin task arrives unchanged, completed final and exit zero succeed (82.097877ms)
+✔ test double: explicit DSH error is failed (90.757941ms)
+✔ test double: lost process is disconnected, result unknown (73.287393ms)
+✔ test double: zero exit without final never means success (76.316151ms)
+✔ test double: contradictory exit and completed final is unknown (80.106868ms)
+✔ test double: invalid JSON or mismatched identity is unknown (152.644009ms)
+✔ test double: timeout is unknown and bounded (82.450524ms)
+✔ missing executable is connection failure before dispatch (3.591896ms)
+✔ test double: output overflow stops run without claiming outcome (69.475391ms)
+✔ published rc.5 wire: final text uses last durable turn_end reason (183.424292ms)
+✔ conflicting terminal reasons cannot establish success (72.409799ms)
+✔ timeout returns without waiting for inherited descendant pipes (153.427499ms)
+✔ signal remains disconnected even when last NDJSON line was interrupted (104.759875ms)
+✔ test double: capability discovery, controlled host service, dispatch and receipt round trip (2.118495ms)
+✔ denied external capability never dispatches (0.387846ms)
+✔ denied controlled task read never reaches external process (0.213991ms)
+✔ attempt receipt failure prevents dispatch (0.311134ms)
+✔ post-dispatch throw is unknown; result receipt failure preserves observed evidence (0.483075ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1340.649729

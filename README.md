@@ -2,7 +2,7 @@
 
 **文档索引：** [WEXPC1 文档体系](docs/README.md) —— 模块契约、全局架构、决策、研究、审查、阶段规划与批次交付的统一入口。
 
-**最近工程交付：[第七批基础模块首轮实现与验收](docs/batch7/REPORT.md)**：shared、permissions、app 已有 TypeScript 产品实现、独立测试与最小真实装配。第七批最后收尾修复仍需在当前 HEAD 重新执行完整测试；Electron 窗口、完整 DSH 链路及 Windows 实机尚未验证。
+**最近工程交付：[第八批基础复验与 Electron / React 宿主最小验证](docs/batch8/REPORT.md)**：基础完整测试50/50，独立编译与边界检查通过；隔离Electron实验真实SQLite重启回读、React/Preload/IPC与释放重试通过。Linux E2，Windows E4未通过；不是正式桌面产品交付。
 
 **当前施工入口：[阶段路线图](docs/planning/PHASE-ROADMAP-2026-10-31.md)** · [后续施工计划](docs/planning/CONSTRUCTION-PLAN-2026-10-31.md) · [第八批任务书](docs/batch8/PLAN.md)。
 

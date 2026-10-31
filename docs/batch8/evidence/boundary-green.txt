@@ -1,0 +1,23 @@
+✔ nonempty real AST graph accepts public dependency (11.508529ms)
+✔ rejects private import (0.860767ms)
+✔ rejects reverse app (0.423622ms)
+✔ rejects shared business (0.539584ms)
+✔ rejects renderer Node (0.330936ms)
+✔ rejects renderer Electron (0.354084ms)
+✔ rejects renderer storage (0.904606ms)
+✔ rejects file cycle (0.289761ms)
+✔ rejects module cycle (0.546995ms)
+✔ rejects parse failure (0.92467ms)
+✔ rejects dynamic unresolved (0.372181ms)
+✔ rejects missing file (0.244563ms)
+✔ rejects empty graph (0.212677ms)
+✔ type imports cannot bypass module and private boundaries (1.471406ms)
+✔ renderer cannot import permission authority through its public barrel (0.300276ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 378.608132

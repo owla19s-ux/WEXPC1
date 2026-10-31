@@ -21,3 +21,7 @@ test('type imports cannot bypass module and private boundaries',()=>{
  const files={'shared/src/index.ts':"import './ok.js'; type Bad = import('../../app/src/private.js').Secret;",'shared/src/ok.ts':'export {};','app/src/private.ts':'export type Secret = string;'};
  const errors=analyze(files).errors;assert.ok(errors.some(e=>e.code==='reverse_app'));assert.ok(errors.some(e=>e.code==='private_import'));assert.ok(errors.some(e=>e.code==='shared_business'));
 });
+test('renderer cannot import permission authority through its public barrel',()=>{
+ const files={'UI/src/main.ts':"import '../../permissions/src/index.js';",'permissions/src/index.ts':'export {};'};
+ assert.ok(analyze(files).errors.some(x=>x.code==='renderer_privileged'));
+});

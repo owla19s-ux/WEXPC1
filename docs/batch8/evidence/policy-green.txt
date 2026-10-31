@@ -1,0 +1,12 @@
+✔ only exact live main frame with empty request can read status (1.570137ms)
+✔ subframe, forged sender, remote URL and destroyed sender are refused before reads (0.233655ms)
+✔ authorization is checked in main, and errors never disclose paths (0.27361ms)
+✔ navigation whitelist compares exact local URL (0.129124ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.004081

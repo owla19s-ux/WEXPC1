@@ -91,3 +91,6 @@ module.exports = {
 - [文档体系总索引](../docs/README.md)
 
 本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
+
+
+第八批：`npm run build:shared`、`build:permissions`、`build:app`以单域公开入口独立编译必要依赖闭包（不等于npm包隔离）；构建输出临时目录自动清理。AST增加Renderer公开导入permissions的拒绝反例。详见[报告](../docs/batch8/REPORT.md)。

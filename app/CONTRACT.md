@@ -143,3 +143,8 @@ app继续只拥有可信装配、实例/生命周期事实与恢复协调。应�
 ## 第七批收尾修复（2026-10-31）
 
 app/src/assembly.ts 对未确认释放的模块实例保留引用；stop 返回 incomplete 后允许再次调用，重试失败实例和迟到初始化实例的清理。成功释放的实例才从待清理集合移除，历史 release_failed 诊断保留。startFoundations 外层仅缓存进行中的stop；provider关闭或root lease释放未确认时清除缓存，下一次stop重新执行必要步骤。root lease 仅在所有provider停止确认后释放。相关行为由 app host 与真实SQLite集成测试覆盖。
+
+
+## 第八批验证补充（2026-10-31）
+
+当前产品装配源码与公开契约不变；隔离Electron实验真实消费app公开出口，验证ready、窗口关闭至停机、incomplete占锁/重试及启动pending退出。实验先等待初始化所有权再释放，不把故障注入/测试探针升级为产品入口。正式Electron启动器、首次选根及Windows E4仍未交付。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。

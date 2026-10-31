@@ -1,0 +1,113 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> verify
+> node verify.mjs
+
+Downloading Electron binary...
+[153:1031/204434.148268:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[153:1031/204434.148349:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+PASS session paths are assigned before Electron ready
+[153:1031/204434.217373:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[153:1031/204434.217402:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[153:1031/204434.217528:ERROR:net/base/address_tracker_linux.cc:224] Could not create NETLINK socket: Operation not permitted (1)
+[153:1031/204434.218892:ERROR:device/udev_linux/udev_watcher.cc:51] Failed to initialize a udev monitor.
+PASS session path assigned before ready
+PASS SQLite transaction committed
+PASS SQLite read matches committed value
+PASS SQLite original intent survives restart/reopen
+[153:1031/204434.231917:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[153:1031/204434.234783:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[153:1031/204434.235979:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+PASS real foundations assembled
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS React rendered actual IPC status
+PASS sandbox/contextIsolation and no Node integration
+PASS renderer exposes only readStatus and no Node
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS real bridge returns only narrow host status
+IPC {"subject":"admin"} {"ok":false,"error":"invalid_request"}
+PASS actual IPC rejects invalid payload
+IPC {"action":"protected-probe"} {"ok":false,"error":"not_authorized"}
+PASS actual IPC denies unauthorized probe
+IPC {} {"ok":false,"error":"untrusted_sender"}
+IPC {} {"ok":false,"error":"untrusted_sender"}
+PASS actual IPC rejects another WebContents
+IPC {} {"ok":false,"error":"host_unavailable"}
+IPC {} {"ok":false,"error":"host_unavailable"}
+PASS React displays sanitized host error
+PASS external window blocked
+PASS persistent session resides in selected root
+PASS permission request denied
+(node:153) electron: Failed to load URL: https://example.invalid/ with error: ERR_BLOCKED_BY_CLIENT
+(Use `electron --trace-warnings ...` to show where the warning was created)
+PASS remote navigation/load blocked by request allowlist
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS window bitmap has requested dimensions
+PASS window close is held while release is unconfirmed
+shutdown incomplete {"status":"incomplete","failed":["shared"]}
+PASS incomplete release is diagnosed
+PASS incomplete release keeps root locked
+PASS release retry completes
+PASS released root can be reacquired
+[289:1031/204434.770155:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[289:1031/204434.770208:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+PASS session paths are assigned before Electron ready
+[289:1031/204434.843186:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[289:1031/204434.843227:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[289:1031/204434.843245:ERROR:net/base/address_tracker_linux.cc:224] Could not create NETLINK socket: Operation not permitted (1)
+[289:1031/204434.844227:ERROR:device/udev_linux/udev_watcher.cc:51] Failed to initialize a udev monitor.
+PASS session path assigned before ready
+PASS SQLite read matches committed value
+PASS SQLite original intent survives restart/reopen
+[289:1031/204434.853393:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[289:1031/204434.853887:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[289:1031/204434.857212:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+PASS real foundations assembled
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS React rendered actual IPC status
+PASS sandbox/contextIsolation and no Node integration
+PASS renderer exposes only readStatus and no Node
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS real bridge returns only narrow host status
+IPC {"subject":"admin"} {"ok":false,"error":"invalid_request"}
+PASS actual IPC rejects invalid payload
+IPC {"action":"protected-probe"} {"ok":false,"error":"not_authorized"}
+PASS actual IPC denies unauthorized probe
+IPC {} {"ok":false,"error":"untrusted_sender"}
+IPC {} {"ok":false,"error":"untrusted_sender"}
+PASS actual IPC rejects another WebContents
+IPC {} {"ok":false,"error":"host_unavailable"}
+IPC {} {"ok":false,"error":"host_unavailable"}
+PASS React displays sanitized host error
+PASS external window blocked
+PASS persistent session resides in selected root
+PASS permission request denied
+(node:289) electron: Failed to load URL: https://example.invalid/ with error: ERR_BLOCKED_BY_CLIENT
+(Use `electron --trace-warnings ...` to show where the warning was created)
+PASS remote navigation/load blocked by request allowlist
+IPC {} {"ok":true,"value":{"status":"ready"}}
+PASS window bitmap has requested dimensions
+PASS window close is held while release is unconfirmed
+shutdown incomplete {"status":"incomplete","failed":["shared"]}
+PASS incomplete release is diagnosed
+PASS incomplete release keeps root locked
+PASS release retry completes
+PASS released root can be reacquired
+[414:1031/204435.435085:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[414:1031/204435.435154:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+PASS session paths are assigned before Electron ready
+[414:1031/204435.502305:ERROR:net/base/address_tracker_linux.cc:224] Could not create NETLINK socket: Operation not permitted (1)
+[414:1031/204435.502330:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[414:1031/204435.502386:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[414:1031/204435.504460:ERROR:device/udev_linux/udev_watcher.cc:51] Failed to initialize a udev monitor.
+PASS session path assigned before ready
+PASS SQLite read matches committed value
+PASS SQLite original intent survives restart/reopen
+[414:1031/204435.513786:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[414:1031/204435.513883:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[414:1031/204435.517945:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+shutdown incomplete {"status":"incomplete","failed":["shared"]}
+PASS quit during startup waits for provider cleanup
+PASS startup quit retains failed release for retry
+PASS startup quit cleanup retry succeeds
+PASS separate Electron processes persisted and read shared SQLite; both windows verified

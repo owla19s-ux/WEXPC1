@@ -1,0 +1,17 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> verify
+> node verify.mjs
+
+[90:1031/203816.392317:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[90:1031/203816.392406:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:15
+   const timeout=setTimeout(()=>{child.kill('SIGKILL');fail(Error('Electron timed out after 45s'));},45000);
+                                                            ^
+
+Error: Electron timed out after 45s
+    at Timeout.<anonymous> (file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:15:61)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+
+Node.js v24.22.1

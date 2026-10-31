@@ -1,0 +1,78 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> verify
+> node verify.mjs
+
+[32:1031/203908.886799:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[32:1031/203908.886863:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[32:1031/203908.954294:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[32:1031/203908.954458:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to open socket: Operation not permitted
+[32:1031/203908.954323:ERROR:net/base/address_tracker_linux.cc:224] Could not create NETLINK socket: Operation not permitted (1)
+[32:1031/203908.956334:ERROR:device/udev_linux/udev_watcher.cc:51] Failed to initialize a udev monitor.
+PASS session path assigned before ready
+[67:1031/203908.961946:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203908.962216:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203908.962276:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[67:1031/203908.962370:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203908.962421:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203908.962458:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[67:1031/203908.962493:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[67:1031/203908.962528:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+[67:1031/203908.962593:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+PASS SQLite transaction committed
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203908.962639:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203908.962674:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[67:1031/203908.962749:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[67:1031/203908.962804:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[67:1031/203908.962839:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[67:1031/203908.962944:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[67:1031/203908.962982:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+PASS SQLite read matches committed value
+PASS SQLite original intent survives restart/reopen
+[67:1031/203908.964128:ERROR:components/viz/service/main/viz_main_impl.cc:192] Exiting GPU process due to errors during initialization
+[32:1031/203908.964306:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[32:1031/203908.964533:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[32:1031/203908.968322:ERROR:dbus/object_proxy.cc:589] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[78:1031/203908.972683:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203908.972784:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203908.972817:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[78:1031/203908.972856:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203908.972872:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203908.972884:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[78:1031/203908.972894:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[78:1031/203908.972906:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+[78:1031/203908.972933:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203908.972949:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203908.972959:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
+[78:1031/203908.972971:ERROR:ui/gl/angle_platform_impl.cc:34] Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+ERR: Display.cpp:1505 (initialize): ANGLE Display::initialize error 12289: Could not open the default X display.
+[78:1031/203908.972983:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Critical) eglInitialize: Could not open the default X display.
+[78:1031/203908.972994:ERROR:ui/gl/gl_display.cc:613] eglInitialize OpenGLES failed with error EGL_NOT_INITIALIZED
+[78:1031/203908.973004:ERROR:ui/gl/gl_display.cc:648] Initialization of all (2) EGL display types failed.
+[78:1031/203908.973014:ERROR:ui/ozone/common/gl_ozone_egl.cc:26] GLDisplayEGL::Initialize failed.
+[78:1031/203908.974245:ERROR:components/viz/service/main/viz_main_impl.cc:192] Exiting GPU process due to errors during initialization
+PASS real foundations assembled
+PASS React rendered actual IPC status
+PASS sandbox/contextIsolation and no Node integration
+PASS renderer exposes only readStatus and no Node
+PASS real bridge returns only narrow host status
+PASS actual IPC rejects invalid payload
+[Error: Script failed to execute, this normally means an error was thrown. Check the renderer console for the error.]
+shutdown incomplete {"status":"incomplete","failed":["shared"]}
+file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:16
+   child.on('error',fail);child.on('exit',(code,signal)=>{clearTimeout(timeout);code===0?done():fail(Error(`Electron ${mode}: code=${code},signal=${signal}`));});
+                                                                                                     ^
+
+Error: Electron write: code=1,signal=null
+    at ChildProcess.<anonymous> (file:///workspace/scratch/458a7aae9cee/WEXPC1/experiments/electron-host-spike/verify.mjs:16:102)
+    at ChildProcess.emit (node:events:514:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:324:12)
+
+Node.js v24.22.1

@@ -1,0 +1,34 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wex-flow-editor-spike@0.0.1 test
+> node --test src/model.test.mjs && npm run test:dom
+
+✔ edits do not mutate original draft (2.131768ms)
+✔ stale revision rejected (1.387697ms)
+✔ connection validates endpoints (0.726232ms)
+✔ deleting node removes incident edges (2.066193ms)
+✔ flow projection preserves stable IDs (2.824317ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 189.445982
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wex-flow-editor-spike@0.0.1 test:dom
+> vitest run
+
+
+ RUN  v3.2.4 /workspace/scratch/458a7aae9cee/WEXPC1/workflows/editor/prototype
+
+ ✓ src/App.test.tsx (6 tests) 622ms
+   ✓ editor DOM integration > renders four real flow nodes, adds, renames and restores a draft  307ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  20:40:17
+   Duration  1.74s (transform 141ms, setup 0ms, collect 440ms, tests 622ms, environment 406ms, prepare 91ms)
+

@@ -61,3 +61,8 @@
 - `createDiagnostics` 只允许技术 code/module/level 白名单，不接受自由消息正文、任意字段或业务证据；sink失败明确返回 failed。普通诊断不是 Operation、权限审计或 Task/Artifact/Verification 账本。没有日志文件轮转/保留策略实现。
 
 测试：`npm run test:shared`。真实 SQLite 与测试专用内存替身共用 `shared/tests/store-contract.mjs` 向量；ACK丢失通过真实 COMMIT 后的传输端口异常注入，另有真实只读与跨进程锁竞争。不以替身证明持久性。SH03–05 的完整备份/Windows凭证/ACL/重装关系恢复均未实现，C/D保留。
+
+
+## 第八批验证补充（2026-10-31）
+
+当前存储/根锁源码与契约不变；现有SQLite驱动已在Electron45.2.1内嵌Node24.22.1真实建库、事务提交、关闭、独立进程重启回读。无需为本批增加驱动适配；不是Windows锁/ACL/迁移恢复验收。见[第八批报告](../docs/batch8/REPORT.md)与[实验说明](../experiments/electron-host-spike/README.md)。

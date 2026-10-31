@@ -1,0 +1,46 @@
+✔ nonempty real AST graph accepts public dependency (16.46101ms)
+✔ rejects private import (0.862985ms)
+✔ rejects reverse app (0.513959ms)
+✔ rejects shared business (3.413349ms)
+✔ rejects renderer Node (0.520122ms)
+✔ rejects renderer Electron (0.443182ms)
+✔ rejects renderer storage (0.89509ms)
+✔ rejects file cycle (0.517022ms)
+✔ rejects module cycle (0.48405ms)
+✔ rejects parse failure (1.96576ms)
+✔ rejects dynamic unresolved (0.554803ms)
+✔ rejects missing file (1.374723ms)
+✔ rejects empty graph (0.287452ms)
+✔ type imports cannot bypass module and private boundaries (1.579524ms)
+✖ renderer cannot import permission authority through its public barrel (10.051032ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 577.906295
+
+✖ failing tests:
+
+test at tools/tests/boundaries.test.mjs:24:1
+✖ renderer cannot import permission authority through its public barrel (10.051032ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(analyze(files).errors.some(x=>x.code==='renderer_privileged'))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/458a7aae9cee/WEXPC1/tools/tests/boundaries.test.mjs:26:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
