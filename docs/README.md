@@ -1,55 +1,35 @@
-# 设计文档索引
+# WEXPC1 文档体系索引
 
-**代码目录同步**：现有工作流实验仍在 [workflows/editor/](../workflows/editor/README.md)，广义专业视图后续源码归属在 [views/](../views/README.md)；内外连接/适配边界在 [connections/](../connections/README.md)，WEX 动态插件研究在 [plugins/](../plugins/README.md)，内置 DSH 原生插件测试在 [dsh/](../dsh/README.md)。这些 README 是就近维护的职责说明，并非已实现功能。
+本页是仓库设计、架构、研究与审查资料的统一入口。源码功能域仍按模块就近维护；这里不复制模块私有契约。
 
+## 文档归属规则
 
-**当前研究总览（2026-10-30）**：[WEXPC1 当前研究共识与施工边界](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md)。统一整理连接器/外部 Agent 优先、DSH 两条路线、React Flow 视图研究、非执行映射图、数据一致性及暂缓事项；此前冲突的技术候选表述，以此处及专门的最新修正规则为准。
+| 类型 | 位置 | 内容与维护原则 |
+|---|---|---|
+| 模块职责与业务契约 | 各功能域的 `README.md`、`CONTRACT.md` | 模块自己维护；全局索引只负责导航 |
+| 全局架构 | [architecture/](architecture/README.md) | 跨模块结构、边界、运行与宿主设计 |
+| 决策记录 | [decisions/](decisions/README.md) | 已确认约束、候选、实验门槛、用户待决事项 |
+| 研究资料 | [research/](research/README.md) | 需求、生态、技术调查与方案比较 |
+| 审查报告 | [audits/](audits/README.md) | 压力审查、差距审计、验证与证据等级 |
+| 批次交付 | [batch6/](batch6/README.md) | 按批次保存任务、结论、原始证据与交付记录；当前准备度和下一阶段顺序仍从这里进入 |
+| 可执行实验 | 仓库根目录 `experiments/` 及模块内实验目录 | 代码、夹具和可重复运行入口，不等同产品实现 |
+| 外部参考 | 仓库根目录 `references/`、`dsh/upstream/` | 保留来源、版本与许可证；不自动成为 WEX 内部契约 |
+| 未来需求对冲 | [需求对冲架构](../需求对冲架构/README.md) | 长期需求候选，不自动进入首期施工范围 |
+| 历史资料 | [旧资料](../旧资料/README.md) | 已被新结构取代的旧版资料，仅供追溯 |
 
+## 当前施工入口
 
-**现行技术选择**：TypeScript + Electron + React 为 WEXPC1 新实现的优先基线；React Flow 为首期工作流编辑器，DSH 为首期外部连接器，Cordis 为后续扩展优先参考。详见 [运行时方案 §10](WEXPC-RUNTIME-OPTIONS-V0.1.md) 和 [Windows 目录文档 §9](WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)。旧文档中的 Rust/Tauri 首选及全面自研执行器不再约束新实现；正式版本范围未改。
+- [全模块业务契约索引](MODULE-CONTRACTS.md)：11 个功能域的职责、公开能力与依赖导航。
+- [第六批总览](batch6/README.md)：F01–F09 收敛、九类机制实验、模块准备度与限制。
+- [模块准备度矩阵](batch6/READINESS.md)：明确绿/黄/红施工范围。
+- [下一阶段模块施工顺序](batch6/NEXT.md)：按模块组织施工，不按复杂业务链路拆工程包。
+- [关键机制实验结果](batch6/EXPERIMENTS.md)：区分 E0–E4 证据等级及尚未验证事项。
 
-新确认的 Space/Context 目录语义与 React Flow 选型见 [Space 与工作流编辑器设计（2026-10-30）](WEXPC-SPACE-AND-WORKFLOW-EDITOR-DESIGN-2026-10-30.md)；它修正旧文档中“所有 Space/Context 实际数据归入公共数据根目录”的泛化表述。
+## 维护规则
 
-当前源码目录和 Windows 文件存放以 [2026-10-30 新要求](WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md) 为入口。此前目录、契约地图等保留研究价值，其中不同的目录命名和拆分不自动约束新结构；安全与真实执行要求不因此取消。
-
-- [WEXPC-BOUNDARY-DECISION-NOTES-V0.1.md](WEXPC-BOUNDARY-DECISION-NOTES-V0.1.md)
-- [模块化施工与契约设计方法研究（第三批修订，含 12 链路覆盖与固定源码来源）](WEXPC-GLOBAL-CONTRACT-MAP-V0.1.md)
-- [WEXPC-MODULE-LOCALITY-DESIGN-V0.1.md](WEXPC-MODULE-LOCALITY-DESIGN-V0.1.md)
-- [WEXPC-PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md](WEXPC-PRODUCT-REINTERPRETATION-AND-ENGINEERING-REVIEW-2026-10-30.md)
-- [WEXPC-PROVIDER-BOUNDARY-WALKTHROUGH-V0.1.md](WEXPC-PROVIDER-BOUNDARY-WALKTHROUGH-V0.1.md)
-- [WEXPC-RUNTIME-EXTENSION-CONTRACT-V0.1.md](WEXPC-RUNTIME-EXTENSION-CONTRACT-V0.1.md)
-- [WEXPC-RUNTIME-OPTIONS-V0.1.md](WEXPC-RUNTIME-OPTIONS-V0.1.md)
-- [WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md](WEXPC-SOURCE-LAYOUT-AND-WINDOWS-DATA-2026-10-30.md)
-- [audits/ARCHITECTURE-VALIDATION-ORDER-AND-VERSION-GATE.md](audits/ARCHITECTURE-VALIDATION-ORDER-AND-VERSION-GATE.md)
-- [audits/DSH-WEXPC1-GAP-MATRIX-V0.1.md](audits/DSH-WEXPC1-GAP-MATRIX-V0.1.md)
-- [audits/WEXPC-SOURCE-BOUNDARY-READONLY-2026-10-28.md](audits/WEXPC-SOURCE-BOUNDARY-READONLY-2026-10-28.md)
-- [audits/WEXPC1-ARCHITECTURE-STRESS-TEST-TASK.md](audits/WEXPC1-ARCHITECTURE-STRESS-TEST-TASK.md)
-
-现有独立实验不等于产品功能；未迁移旧 WEXPC 代码。第二批仅更新对应域 README 与[统一审查 §§6–9](WEXPC1-RESEARCH-DECISIONS-2026-10-30.md#6-第二批整体职责与依赖方向)，记录职责、权威归属、冲突追踪和七个场景，不新增平行架构文档。
-
-## 2026-10-31 专项研究
-
-- [产品功能全景与研究总表](research/PRODUCT-FUNCTION-LANDSCAPE-2026-10-31.md)：从安装到重装恢复的功能树、归属、依赖和实现证据等级；以模块施工、组合验收为后续原则。
-- [Windows 安装与数据生命周期](research/WINDOWS-LIFECYCLE-2026-10-31.md)
-- [外部 Agent 客户端连接能力](research/AGENT-ECOSYSTEM-2026-10-31.md)
-- [安全边界与数据持续性](research/SECURITY-AND-PERSISTENCE-2026-10-31.md)
-- [视图生态与设计—源码—实验核对](research/VIEWS-AND-EVIDENCE-AUDIT-2026-10-31.md)
-
-本组为独立专项研究，不替代当前模块化与契约方法研究，不冻结接口、不调整版本、不迁移或重构产品。官方来源不可访问和未做 Windows/真实模型运行的项目在正文标明。
-
-
-
-
-## 第四批：模块业务契约与接口边界
-
-[模块契约总索引与准备度](MODULE-CONTRACTS.md)汇总全模块能力/消费关系、四组跨域边界、C/D门槛；契约按模块就近维护，不堆入统一巨型协议。另见[接口通信边界](../app/COMMUNICATION.md)、[模块施工及依赖检查规格](../tools/README.md)。本批为设计交付，不要求全部接口协议一次性定稿，不写产品代码、不触发Actions。
-
-
-## 第五批：复杂压力审查
-
-[覆盖矩阵与冲突闭环](research/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)：逐项复核L01–L12/H01–H21，按机制补H22–H30，列提供/消费者差异、就近修正、第二轮E0再推演、真实实验需求与成熟度。历史实验与完整链路分级，不自动采纳B。
-
-
-## 第六批更新（2026-10-31）
-
-[最新收敛、实验及施工准备度](batch6/README.md)取代上述历史准备度结论；F01–F09均有处置，11域分范围准入。B/C/D仍分离，完整业务组合与Windows实机未通过。
+1. 新的模块业务规则写回对应模块的 `CONTRACT.md`，不要另建一份平行的全局模块契约。
+2. 跨模块结构写入 `architecture/`；正式决策及未决政策写入 `decisions/`。
+3. 研究与审查报告保留来源、日期、证据等级和未验证限制。
+4. 批次报告保留完整历史，不直接覆盖模块当前契约；批次结论需回写模块后才成为其当前施工依据。
+5. 旧路径可能暂时保留迁移指向页以兼容历史链接；指向页不是正文，不得继续在旧位置维护。
+6. 任何报告、实验或测试通过都不能自动改变用户批准的产品范围、权限政策或正式决策。

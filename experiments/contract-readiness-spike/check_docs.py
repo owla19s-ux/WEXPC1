@@ -14,6 +14,10 @@ paths += ['README.md','AI/roles/README.md','shared/storage/README.md','shared/cr
           'docs/research/APP-FOUNDATIONS-GAP-AUDIT-2026-10-31.md','tools/README.md']
 files = {ROOT/name for name in paths}
 files.update((ROOT/'docs/batch6').glob('*.md'))
+files.update((ROOT/'docs/architecture').glob('*.md'))
+files.update((ROOT/'docs/decisions').glob('*.md'))
+files.update((ROOT/'docs/research').glob('*.md'))
+files.update((ROOT/'docs/audits').glob('*.md'))
 files.add(ROOT/'experiments/contract-readiness-spike/README.md')
 errors = []; links = 0
 for file in sorted(files):
@@ -36,7 +40,7 @@ for number in range(1,10):
     if not re.search(rf'^## F{number:02d} ',convergence,re.M): errors.append(f'missing F{number:02d}')
     if f'X{number:02d}/' not in experiments: errors.append(f'missing X{number:02d}')
 # Preserve exactly the fifth-batch 33 baseline sample rows plus H22–H30 sections.
-stress = (ROOT/'docs/research/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md').read_text()
+stress = (ROOT/'docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md').read_text()
 rows = re.findall(r'^\| ((?:L|H)\d\d) ',stress,re.M)
 expected = {f'L{i:02d}' for i in range(1,13)}|{f'H{i:02d}' for i in range(1,22)}
 if set(rows) != expected or len(rows)!=33: errors.append('33 baseline sample matrix changed')
