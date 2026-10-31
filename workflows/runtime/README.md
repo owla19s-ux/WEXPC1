@@ -33,3 +33,11 @@
 - [集中决策与待决项](../../docs/batch6/DECISIONS.md)
 
 本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
+
+## G1/G4：Task 检查点与跨对话恢复
+
+Runtime 负责推进 Task/工作轮次、保存检查点引用、协调资源冲突和恢复核对；Connections 独占 Operation/attempt/外部观察，Task 只保存其引用。检查点必须包含目标/验收修订、已完成与未完成项、阻塞、输入资源版本、Operation 引用、Artifact/Verification 依据、责任配置修订及下一步前置条件；不得只存聊天总结或复制 Operation 状态。
+
+新 Conversation/模型/Agent 接手时，先读取 Task 当前修订、核对资源、查询原 Operation、重新判权并检查冲突，再决定继续观察、继续无副作用工作、人工裁决或创建新轮次。未知副作用未核清前不重派；没有常驻宿主时不承诺关机后继续执行。
+
+强制组合样例与状态边界见[基础能力落地映射](../../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

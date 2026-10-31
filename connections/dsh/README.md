@@ -53,3 +53,9 @@ DSH Session、内部 Agent 状态和自身权限由独立 DSH 持有；本适配
 - [DSH 能力差距审计](../../docs/audits/DSH-WEXPC1-GAP-MATRIX-V0.1.md)
 
 本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
+
+## G4：外部会话接续边界
+
+外部 DSH 的 Session/Agent Loop 仍由 DSH 自身拥有。WEX 保存投递关联、可查询的外部会话定位、Operation 观察和产物引用；恢复时先查询原 Session/Operation，不以新会话重发任务。只有真实接口证明确实支持的查询、停止或接续能力才声明支持；进程退出、timeout、not found 均不自动证明外部任务停止或未执行。
+
+跨对话验收见[基础能力落地映射](../../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

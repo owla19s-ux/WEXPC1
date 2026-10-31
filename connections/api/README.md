@@ -26,3 +26,9 @@ API 配置与模型协议适配。AI 配置引用连接，不复制密钥；不�
 - [外部 Agent 生态与 Provider 观察](../../docs/research/AGENT-ECOSYSTEM-2026-10-31.md)
 
 本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
+
+## G2/G6：Provider 请求与工具意图
+
+API 适配器负责 Provider/Model 配置、鉴权适配、请求和流式解析；工具意图只作为结构化提议返回给 Conversations，不在本目录直接执行。Conversations 组织逻辑生成，Permissions 判权，Connections 宿主边界记录 Operation 并派发实际工具。Provider 配置保存非秘密参数和受控凭证引用；Key 由 shared/credentials 保管。新会话/新模型不得继承旧 Operation 或旧授权。
+
+见[基础能力落地映射](../../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

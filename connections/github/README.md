@@ -17,3 +17,9 @@ GitHub 操作与连接配置。权限使用共用机制；专属面板留在本�
 - [复杂业务契约压力审查](../../docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)
 
 本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
+
+## G1/G4：远端资源引用与操作回执
+
+GitHub 仓库、分支、提交、PR 和文件均按远端对象身份/版本观察引用；名称、URL 或默认分支不能替代当前修订核对。每次写操作由 Connections 宿主记录 Operation/attempt，回读远端结果后再报告；提交请求超时或回执缺失时先查询原 Operation/远端事实，不盲目创建第二次提交、PR 或分支。
+
+见[基础能力落地映射](../../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。

@@ -13,3 +13,9 @@
 - [复杂业务契约压力审查](../../docs/audits/COMPLEX-CONTRACT-STRESS-REVIEW-2026-10-31.md)
 
 本子目录只细化上级模块内部的职责或实现入口，不另建第二份业务权威。若本页与上级契约冲突，以对应 owner 契约为准；实验结论只按原记录的环境和范围解释。
+
+## G5：外部搜索与内部检索分离
+
+本目录只提供互联网 Search/Fetch 适配器、外部来源和抓取限制，不负责搜索 WEX 自身的 Space、Context、Conversation、Task、Artifact 或 Operation。内部检索由各业务 owner 提供获准查询，UI 聚合。外部命中不等于可信事实或授权；打开、读取、摘要和外发仍按当前来源及权限规则处理。
+
+见[基础能力落地映射](../../docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)。
