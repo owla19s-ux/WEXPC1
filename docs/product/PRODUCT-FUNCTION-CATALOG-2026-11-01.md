@@ -234,7 +234,7 @@
 | F05-009 | 取消与接续能力声明 | 各连接器声明 interrupt、detach、query、resume 等实际能力 | connector | 请求停止不等于确认停止；杀本地进程不等于外部回滚 | A/C |
 | F05-010 | 外部事件与回调接入 | 接收外部通知/回调，校验来源、身份、范围和重放 | app、permissions | 伪造身份、重放回调、超范围数据请求均被拒绝 | B/C |
 | F05-011 | 外部 Agent 连接器 | 接入 DSH 等独立 Agent 客户端，交接任务并接收真实结果 | connections/dsh、workflows | 外部 Agent 的 Session/Loop 归外部系统；WEX 只保存可追溯关联 | A |
-| F05-012 | API / GitHub / Local 适配 | 分别提供模型 API、GitHub 远端、本地工具等适配器 | F04、F06 | 本地 Git 成功不等于 GitHub 远端成功；不同适配器分别验收 | A |
+| F05-012 | GitHub / Local 等系统适配 | 提供 GitHub 远端、本地工具和其他外部系统适配；模型 Provider 协议适配由 F04 细化 | F04、F06 | 本地 Git 成功不等于 GitHub 远端成功；模型 Provider 不重复实现通用连接账本 | A |
 | F05-013 | 网络代理与连接策略 | 支持通用网络偏好和具体连接器的代理、证书、离线诊断 | app、各 connector | 不同 Provider 可用不同连接设置；网络超时不推断操作未执行 | B/C |
 | F05-014 | 连接器错误规范化 | 区分拒绝、未派发、明确失败、超时、断连、未知、保存失败 | shared、workflows | 原始证据和规范化结论都可追溯，不能压成一个 failed | A |
 | F05-015 | Service 生命周期与连接绑定 | 区分 Service（持续提供能力的服务实例）、Connection（接入关系/配置）和 Capability（可调用能力）；管理服务实例状态、可用性和绑定关系 | app、connections | 同一 Service 可暴露多项 Capability；连接断开不把 Service 定义删除；能力不可用不等于能力不存在 | B |
