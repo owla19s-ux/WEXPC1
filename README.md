@@ -16,7 +16,7 @@
 
 ### 尚未建立的规划依据
 
-1. **产品功能表：** 尚未形成覆盖产品模块、模块功能、功能边界和实现状态的正式总表。各模块 README / CONTRACT 是职责与业务语义依据，不能替代产品功能总表。
+1. **产品功能表：** 已建立首轮 [F01–F15 基础功能总表](docs/product/PRODUCT-FUNCTION-CATALOG-2026-11-01.md)、[交互与 UI 边界](docs/product/INTERACTION-AND-UI-BOUNDARY-2026-11-01.md)及[需求对冲审查](docs/product/REQUIREMENT-REVIEW-2026-11-01.md)。目前仍是首轮整理稿，需继续逐项评审；各模块 README / CONTRACT 仍是模块业务语义依据。
 2. **0.1.1 版本计划：** 尚未完成正式功能纳入、版本范围、依赖和验收目标的确认。
 3. **阶段施工任务总表：** 尚待依据功能表与版本计划重新建立。现有旧施工计划和历史批次任务书不能自动视为当前有效的施工派工。
 
@@ -58,6 +58,7 @@
 - [全局架构](docs/architecture/README.md)：跨模块架构和技术边界。
 - [架构决策](docs/decisions/README.md)：已确认约束、候选、实验门槛和用户待决事项。
 - [研究资料](docs/research/README.md) · [审查报告](docs/audits/README.md)：研究证据、缺口和验证结论。
+- [产品需求基线](docs/product/README.md)：F01–F15 基础功能、交互语义、UI 映射与需求审查。
 - [G1–G7 基础能力落地映射](docs/planning/FOUNDATION-CAPABILITY-IMPLEMENTATION-MAP-2026-10-31.md)：基础能力归属及跨对话持续工作要求。
 - [第八批交付报告](docs/batch8/REPORT.md)：最近已完成批次的结果与证据。
 
